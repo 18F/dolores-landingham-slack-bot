@@ -11,6 +11,16 @@ and ask that all contributors do the same.
 
 To get started, run `bin/setup`
 
+After setting up, you can run the application using [foreman]:
+
+    % foreman start
+
+If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
+is [purposefully excluded from the project's `Gemfile`][exclude].
+
+[foreman]: https://github.com/ddollar/foreman
+[exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
+
 ### Required keys
 
 The setup script creates a `.env` file with a dummy value for `SLACK_API_TOKEN`.

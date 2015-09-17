@@ -1,4 +1,7 @@
-# Run this script immediately after cloning the codebase.
+#!/usr/bin/env sh
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+# https://github.com/thoughtbot/guides/tree/master/protocol
 
 # Exit if any subcommand fails
 set -e
@@ -11,3 +14,23 @@ bundle check || bundle install
 if [ ! -f .env ]; then
   cp .sample.env .env
 fi
+
+# Set up database and add any development seed data
+bundle exec rake db:setup dev:prime
+
+# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
+mkdir -p .git/safe
+
+# Pick a port for Foreman
+if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
+  printf 'port: 8000\n' >> .foreman
+fi
+
+if ! command -v foreman > /dev/null; then
+  printf 'Foreman is not installed.\n'
+  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+fi
+
+# Only if this isn't CI
+# if [ -z "$CI" ]; then
+# fi
