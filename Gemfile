@@ -3,11 +3,11 @@ source "https://rubygems.org"
 ruby "2.2.3"
 
 gem "jquery-rails"
-gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
 gem "rails", "~> 4.2.0"
+gem "simple_form"
 gem "slack-ruby-client"
 gem "uglifier"
 
