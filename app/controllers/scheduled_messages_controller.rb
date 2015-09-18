@@ -15,6 +15,10 @@ class ScheduledMessagesController < ApplicationController
     end
   end
 
+  def index
+    @scheduled_messages = ScheduledMessage.order(:days_after_start)
+  end
+
   private
 
   def scheduled_message_params

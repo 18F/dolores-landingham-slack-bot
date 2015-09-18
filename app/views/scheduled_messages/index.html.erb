@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Send day (after employee start)</th>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+
+  <% @scheduled_messages.each do |message| %>
+    <tr>
+      <td><%= message.days_after_start %></td>
+      <td><%= message.title %></td>
+      <td><%= message.body %></td>
+    </tr>
+  <% end %>
+<table>
