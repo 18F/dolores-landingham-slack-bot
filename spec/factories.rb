@@ -1,7 +1,9 @@
 FactoryGirl.define do
+  sequence(:slack_username) { |n| "test_username_#{n}" }
+
   factory :employee do
-    slack_username "test_username_123"
     started_on  { Date.today }
+    slack_username
   end
 
   factory :scheduled_message do
