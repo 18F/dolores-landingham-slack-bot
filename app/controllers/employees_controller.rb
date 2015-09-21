@@ -13,6 +13,10 @@ class EmployeesController < ApplicationController
       flash.now[:error] = "Could not create employee"
       render action: :new
     end
+  end
+
+  def index
+    @employees = Employee.order(started_on: :desc)
 
   end
 

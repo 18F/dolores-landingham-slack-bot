@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th>Slack username</th>
+    <th>Started on</th>
+  </tr>
+
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><%= employee.slack_username %></td>
+      <td><%= employee.started_on %></td>
+    </tr>
+  <% end %>
+<table>

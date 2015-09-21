@@ -1,0 +1,30 @@
+require "rails_helper"
+
+feature "View employees" do
+  scenario "sees all employee details" do
+    visit root_path
+    create_employees
+
+    click_on "See all employees"
+
+    expect(page).to have_content(first_employee.slack_username)
+    expect(page).to have_content(first_employee.started_on)
+    expect(page).to have_content(second_employee.slack_username)
+    expect(page).to have_content(second_employee.started_on)
+  end
+
+  private
+
+  def create_employees
+    first_employee
+    second_employee
+  end
+
+  def first_employee
+    @first_employee ||= create(:employee)
+  end
+
+  def second_employee
+    @second_employee ||= create(:employee)
+  end
+end
