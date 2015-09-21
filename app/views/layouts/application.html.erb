@@ -9,8 +9,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render "flashes" -%>
-  <%= yield %>
-  <%= render "javascript" %>
+	<div class="container">
+		<div class="banner">
+			<a href="/">
+				<%= image_tag "dolores.jpg" %>
+			</a>
+			<h1>Dolores Landingham</h1>
+			<%= image_tag "logo-18f.png", class: "logo-18f" %><p>Onboarding bot!</p>
+			<hr>
+			<%= link_to "Create scheduled message", new_scheduled_message_path %>
+			<hr>
+			<%= link_to "See all scheduled messages", scheduled_messages_path %>
+			<hr>
+			<%= link_to "See all employees", employees_path %>
+			<hr>
+		</div>
+		<%= render "flashes" -%>
+		<div class="content">
+			<%= yield %>
+		</div>
+	</div>
+	<%= render "javascript" %>
 </body>
 </html>
