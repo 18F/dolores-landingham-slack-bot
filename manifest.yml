@@ -1,0 +1,11 @@
+# based on https://github.com/18F/C2/blob/master/manifest.yml
+domain: 18f.gov
+  # environment-specific configuration
+applications:
+- name: dolores
+  command: bundle exec rake cf:on_first_instance db:migrate && bundle exec rails s -p $PORT -e $RAILS_ENV
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  env:
+    DEFAULT_URL_HOST: dolores-app.18f.gov
+    DISABLE_SANDBOX_WARNING: true
+    RESTRICT_ACCESS: true

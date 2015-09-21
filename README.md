@@ -16,3 +16,23 @@ copyright and related rights in the work worldwide are waived through
 the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 For more information, see [license](LICENSE.md).
+
+
+## Deployment
+
+Refer to [docs.18f.gov](https://docs.18f.gov/getting-started/setup/) for getting set up with Cloud Foundry
+
+
+To deploy:
+`cf target -o 18f -s dolores` 
+
+`cf set-env dolores HOST dolores-app.18f.gov`
+`cf set-env dolores APPLICATION_HOST dolores-app.18f.gov`
+`cf set-env dolores ASSET_HOST dolores-app.18f.gov`
+`cf set-env dolores DEFAULT_URL_HOST dolores-app.18f.gov`
+
+To push to production:
+`cf push dolores`
+To push to staging
+`cf push dolores-staging`
+
