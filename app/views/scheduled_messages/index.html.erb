@@ -10,6 +10,7 @@
       <td><%= message.days_after_start %></td>
       <td><%= message.title %></td>
       <td><%= message.body %></td>
+      <td><%= link_to "Edit", edit_scheduled_message_path(message) %></td>
     </tr>
   <% end %>
 <table>
