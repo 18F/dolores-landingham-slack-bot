@@ -10,7 +10,7 @@ gem "rails", "~> 4.2.0"
 gem "simple_form"
 gem "slack-ruby-client"
 gem "uglifier"
-gem 'sass-rails'
+gem "sass-rails"
 
 group :development, :test do
   gem "awesome_print"
