@@ -17,7 +17,22 @@ class EmployeesController < ApplicationController
 
   def index
     @employees = Employee.order(started_on: :desc)
+  end
 
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    @employee = Employee.find(params[:id])
+
+    if @employee.update(employee_params)
+      flash[:notice] = "Employee updated successfully"
+      redirect_to employees_path
+    else
+      flash.now[:error] = "Could not update employee"
+      render action: :edit
+    end
   end
 
   private

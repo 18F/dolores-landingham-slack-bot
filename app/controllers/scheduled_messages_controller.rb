@@ -30,8 +30,8 @@ class ScheduledMessagesController < ApplicationController
       flash[:notice] = "Scheduled message updated successfully"
       redirect_to scheduled_messages_path
     else
-      flash.now[:error] = "Could not create scheduled message"
-      render action: :new
+      flash.now[:error] = "Could not update scheduled message"
+      render action: :edit
     end
   end
 

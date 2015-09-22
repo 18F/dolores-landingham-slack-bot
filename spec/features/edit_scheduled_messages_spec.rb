@@ -8,9 +8,10 @@ feature "Edit scheduled messages" do
 
     visit scheduled_messages_path
     click_on "Edit"
-    fill_in "Title",with: new_title
+    fill_in "Title", with: new_title
     click_on "Update Scheduled message"
 
+    expect(page).to have_content "Scheduled message updated successfully"
     expect(page).to have_content new_title
   end
 end

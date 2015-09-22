@@ -2,12 +2,14 @@
   <tr>
     <th>Slack username</th>
     <th>Started on</th>
+    <th></th>
   </tr>
 
   <% @employees.each do |employee| %>
     <tr>
       <td><%= employee.slack_username %></td>
       <td><%= employee.started_on %></td>
+      <td><%= link_to "Edit", edit_employee_path(employee) %></td>
     </tr>
   <% end %>
 <table>
