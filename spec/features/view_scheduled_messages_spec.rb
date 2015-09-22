@@ -5,7 +5,7 @@ feature "View scheduled messages" do
     visit root_path
     create_scheduled_messages
 
-    click_on "See all scheduled messages"
+    click_on "See and/or edit scheduled messages"
 
     expect(page).to have_content(first_scheduled_message.title)
     expect(page).to have_content(first_scheduled_message.body)
