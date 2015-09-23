@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "View message sent to employees" do
   scenario "see all sent scheduled messages" do
+    login_with_oauth
     visit root_path
     create_scheduled_message
     create_employee

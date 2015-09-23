@@ -12,19 +12,21 @@ class MessageSender
       employees_for_message.each do |employee|
         channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
 
-        begin
-          post_message(channel_id: channel_id, message: message)
-          create_sent_scheduled_message(
-            employee: employee,
-            scheduled_message: message,
-            error: nil,
-          )
-        rescue Slack::Web::Api::Error => error
-          create_sent_scheduled_message(
-            employee: employee,
-            scheduled_message: message,
-            error: error,
-          )
+        if channel_id
+          begin
+            post_message(channel_id: channel_id, message: message)
+            create_sent_scheduled_message(
+              employee: employee,
+              scheduled_message: message,
+              error: nil,
+            )
+          rescue Slack::Web::Api::Error => error
+            create_sent_scheduled_message(
+              employee: employee,
+              scheduled_message: message,
+              error: error,
+            )
+          end
         end
       end
     end

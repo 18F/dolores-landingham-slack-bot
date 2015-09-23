@@ -1,0 +1,21 @@
+{
+  "ok": true,
+    "members": [
+      {
+        "id": "123ABC_ID",
+        "name": "testusername",
+        "deleted": false,
+        "color": "9f69e7",
+        "profile": {
+          "first_name": "Bobby",
+          "last_name": "Tables",
+          "real_name": "Bobby Tables",
+          "email": "bobby@slack.com"
+        },
+        "is_admin": true,
+        "is_owner": true,
+        "has_2fa": false,
+        "has_files": true
+      }
+    ]
+}

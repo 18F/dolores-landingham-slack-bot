@@ -61,10 +61,19 @@ GEM
     capybara-webkit (1.7.0)
       capybara (>= 2.3.0, < 2.6.0)
       json
+    clockwork (1.2.0)
+      activesupport
+      tzinfo
     coderay (1.1.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
+    daemons (1.2.3)
     database_cleaner (1.5.0)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
     dotenv (2.0.2)
@@ -86,6 +95,8 @@ GEM
     faye-websocket (0.10.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    foreman (0.78.0)
+      thor (~> 0.19.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -245,9 +256,13 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara-webkit (>= 1.2.0)
+  clockwork
+  daemons
   database_cleaner
+  delayed_job_active_record
   dotenv-rails
   factory_girl_rails
+  foreman
   jquery-rails
   omniauth-myusa!
   pg

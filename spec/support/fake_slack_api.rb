@@ -11,6 +11,14 @@ class FakeSlackApi < Sinatra::Base
     end
   end
 
+  post "/api/users.list" do
+    json_response 200, "users_list.json"
+  end
+
+  post "/api/im.open" do
+    json_response 200, "im_open.json"
+  end
+
   private
 
   def json_response(response_code, file_name)

@@ -5,9 +5,11 @@ class SlackChannelIdFinder
   end
 
   def run
-    slack_user_id = slack_user["id"]
-    chat = client.im_open(user: slack_user_id)
-    chat["channel"]["id"]
+    if slack_user
+      slack_user_id = slack_user["id"]
+      chat = client.im_open(user: slack_user_id)
+      chat["channel"]["id"]
+    end
   end
 
   private
@@ -15,7 +17,9 @@ class SlackChannelIdFinder
   attr_accessor :client, :slack_username
 
   def slack_user
-    all_slack_users.find { |user_data| user_data["name"] == slack_username }
+    @slack_user ||= all_slack_users.find do |user_data|
+      user_data["name"] == slack_username
+    end
   end
 
   def all_slack_users
