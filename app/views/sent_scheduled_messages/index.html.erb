@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>Slack username</th>
+    <th>Sent on</th>
+    <th>Message body</th>
+    <th>Error message</th>
+  </tr>
+
+  <% @sent_scheduled_messages.each do |sent_message| %>
+    <tr>
+      <td><%= sent_message.slack_username %></td>
+      <td><%= sent_message.sent_on %></td>
+      <td><%= sent_message.message_body %></td>
+      <td><%= sent_message.error_message %></td>
+    </tr>
+  <% end %>
+<table>

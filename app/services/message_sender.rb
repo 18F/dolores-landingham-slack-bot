@@ -7,16 +7,25 @@ class MessageSender
 
   def run
     ScheduledMessage.all.each do |message|
-      employee_slack_usernames_for_messages = find_employees(message)
+      employees_for_message = find_employees(message)
 
-      employee_slack_usernames_for_messages.each do |slack_username|
-        channel_id = SlackChannelIdFinder.new(slack_username, client).run
+      employees_for_message.each do |employee|
+        channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
 
-        client.chat_postMessage(
-          channel: channel_id,
-          as_user: true,
-          text: message.body
-        )
+        begin
+          post_message(channel_id: channel_id, message: message)
+          create_sent_scheduled_message(
+            employee: employee,
+            scheduled_message: message,
+            error: nil,
+          )
+        rescue Slack::Web::Api::Error => error
+          create_sent_scheduled_message(
+            employee: employee,
+            scheduled_message: message,
+            error: error,
+          )
+        end
       end
     end
   end
@@ -35,5 +44,31 @@ class MessageSender
 
   def client
     @client ||= Slack::Web::Client.new
+  end
+
+  def post_message(options)
+    client.chat_postMessage(
+      channel: options[:channel_id],
+      as_user: true,
+      text: options[:message].body
+    )
+  end
+
+  def create_sent_scheduled_message(options)
+    SentScheduledMessage.create(
+      employee: options[:employee],
+      scheduled_message: options[:scheduled_message],
+      sent_on: Date.current,
+      error_message: error_message(options[:error]),
+      message_body: options[:scheduled_message].body,
+    )
+  end
+
+  def error_message(error)
+    if error
+      error.message
+    else
+      ""
+    end
   end
 end

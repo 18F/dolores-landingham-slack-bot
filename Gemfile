@@ -28,6 +28,7 @@ group :test do
   gem "database_cleaner"
   gem "shoulda-matchers", require: false
   gem "simplecov", require: false
+  gem "sinatra"
   gem "timecop"
   gem "webmock"
 end

@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   match "/auth/:provider/callback" => "auth#oauth_callback", via: [:get]
 
   resources :employees, only: [:new, :create, :index, :edit, :update]
+  resources :sent_scheduled_messages, only: [:index]
   resources :scheduled_messages, only: [:new, :create, :index, :edit, :update]
 end

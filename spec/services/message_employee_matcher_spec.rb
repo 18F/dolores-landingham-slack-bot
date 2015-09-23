@@ -12,7 +12,7 @@ describe MessageEmployeeMatcher do
       matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
       expect(matched_employees_and_messages).to eq(
-          [ employee_for_scheduled_message.slack_username ]
+          [ employee_for_scheduled_message ]
       )
     end
   end

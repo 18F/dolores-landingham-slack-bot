@@ -9,6 +9,11 @@ require "shoulda/matchers"
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
 RSpec.configure do |config|
+  config.before(:each) do
+    FakeSlackApi.failure = false
+    stub_request(:any, /slack.com/).to_rack(FakeSlackApi)
+  end
+
   config.include OauthHelper, type: :feature
   config.include Rails.application.routes.url_helpers
   config.infer_base_class_for_anonymous_controllers = false

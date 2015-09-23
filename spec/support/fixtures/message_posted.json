@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "channel": "123ABC",
+  "ts": "1443053184.000012",
+  "message": {
+    "type": "message",
+    "user": "123ABC",
+    "text": "blah blah ",
+    "ts": "1443053184.000012"
+   }
+}

@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918175357) do
+ActiveRecord::Schema.define(version: 20150923224816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.datetime "created_at",     null: false
@@ -30,5 +46,17 @@ ActiveRecord::Schema.define(version: 20150918175357) do
     t.text     "body",             null: false
     t.integer  "days_after_start", null: false
   end
+
+  create_table "sent_scheduled_messages", force: :cascade do |t|
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "employee_id",                       null: false
+    t.string   "error_message",        default: "", null: false
+    t.text     "message_body",                      null: false
+    t.integer  "scheduled_message_id",              null: false
+    t.date     "sent_on",                           null: false
+  end
+
+  add_index "sent_scheduled_messages", ["employee_id", "scheduled_message_id"], name: "by_employee_scheduled_message", unique: true, using: :btree
 
 end

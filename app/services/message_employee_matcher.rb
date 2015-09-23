@@ -4,7 +4,7 @@ class MessageEmployeeMatcher
   end
 
   def run
-    Employee.where(started_on: day_count.days.ago).pluck(:slack_username)
+    Employee.where(started_on: day_count.days.ago)
   end
 
   private
