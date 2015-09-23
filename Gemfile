@@ -11,6 +11,7 @@ gem "simple_form"
 gem "slack-ruby-client"
 gem "uglifier"
 gem "sass-rails"
+gem "omniauth-myusa", github: "18f/omniauth-myusa"
 
 group :development, :test do
   gem "awesome_print"
@@ -33,4 +34,5 @@ end
 
 group :staging, :production do
   gem "rack-timeout"
-end
+  gem "rails_12factor"
+end 

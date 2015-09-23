@@ -7,7 +7,7 @@ Rails.application.configure do
   config.middleware.use Rack::Deflater
   config.middleware.use Rack::CanonicalHost, ENV.fetch("HOST")
   config.assets.js_compressor = :uglifier
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.digest = true
   config.log_level = :debug
   config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
