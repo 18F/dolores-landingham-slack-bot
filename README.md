@@ -3,7 +3,9 @@
 ![Dolores](http://seattletimes.nwsource.com/ABPub/2006/05/11/2002987603.jpg)
 
 This is a Slack bot that helps onboard new hires at 18F through scheduled Slack
-messages about topics relevant to GSA employees.
+messages about topics relevant to 18F and GSA employees. Messages will be scheduled once per day and will trickle out to employees over the course of 60 days.
+
+Mrs. Landingham will 18F employees about working in the federal government, how to set up travel, how to add their biographical information and pictures to our Hub, and other facts that will help them get acclimated to both 18F and the federal government. 
 
 ### Contributing
 
