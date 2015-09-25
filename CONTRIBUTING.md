@@ -7,6 +7,16 @@ To that end, we follow the [18F Code of
 Conduct](https://github.com/18F/code-of-conduct/blob/master/code-of-conduct.md)
 and ask that all contributors do the same.
 
+### Git Protocol
+
+To contribute to this project, people internal to 18F can create a branch and submit a pull request. If you are external to 18F, you can fork the repository and submit a pull request that way.
+
+We are minimizing commits on the `master` branch by squashing commits and force pushing them to `master`. 
+
+For a more detailed walk through on how to do this, you can read thoughtbot's [Git Protocol](https://github.com/thoughtbot/guides/tree/master/protocol/git#write-a-feature) document.
+
+18f-ers can merge their changes into master after getting approval from another contributor.
+
 ### App setup
 
 To get started, run `bin/setup`
