@@ -8,12 +8,8 @@ require "shoulda/matchers"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
-module Features
-  # Extend this module in spec/support/features/*.rb
-end
-
 RSpec.configure do |config|
-  config.include Features, type: :feature
+  config.include OauthHelper, type: :feature
   config.include Rails.application.routes.url_helpers
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!
@@ -22,3 +18,4 @@ end
 
 ActiveRecord::Migration.maintain_test_schema!
 Capybara.javascript_driver = :webkit
+OmniAuth.config.test_mode = true

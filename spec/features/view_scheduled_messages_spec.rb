@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "View scheduled messages" do
   scenario "sees all message details" do
+    login_with_oauth
     visit root_path
     create_scheduled_messages
 

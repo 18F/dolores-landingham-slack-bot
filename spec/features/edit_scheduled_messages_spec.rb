@@ -6,6 +6,7 @@ feature "Edit scheduled messages" do
     new_title = "New title"
     create(:scheduled_message, title: old_title)
 
+    login_with_oauth
     visit scheduled_messages_path
     click_on "Edit"
     fill_in "Title", with: new_title

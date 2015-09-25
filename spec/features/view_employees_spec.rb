@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "View employees" do
   scenario "sees all employee details" do
+    login_with_oauth
     visit root_path
     create_employees
 

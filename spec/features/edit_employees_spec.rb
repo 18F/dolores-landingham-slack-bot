@@ -6,6 +6,7 @@ feature "Edit employees" do
     new_slack_username = "new_name_555"
     create(:employee, slack_username: old_slack_username)
 
+    login_with_oauth
     visit employees_path
     click_on "Edit"
     fill_in "Slack username", with: new_slack_username

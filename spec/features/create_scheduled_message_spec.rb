@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "Create scheduled message" do
   scenario "successfully" do
+    login_with_oauth
     visit root_path
     click_on "Create scheduled message"
 

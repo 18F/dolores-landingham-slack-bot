@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature "Create employees" do
   scenario "successfully" do
+    login_with_oauth
     visit root_path
 
     username = "test_slack_username_3000"
