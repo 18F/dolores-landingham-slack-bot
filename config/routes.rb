@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   resources :employees, only: [:new, :create, :index, :edit, :update]
   resources :sent_scheduled_messages, only: [:index]
-  resources :scheduled_messages, only: [:new, :create, :index, :edit, :update]
+  resources :scheduled_messages, only: [:new, :create, :index, :edit, :update] do
+    resources :test_messages, only: [:new, :create]
+  end
 end

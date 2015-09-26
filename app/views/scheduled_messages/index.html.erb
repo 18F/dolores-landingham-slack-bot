@@ -4,6 +4,7 @@
     <th>Title</th>
     <th>Body</th>
     <th></th>
+    <th></th>
   </tr>
 
   <% @scheduled_messages.each do |message| %>
@@ -12,6 +13,7 @@
       <td><%= message.title %></td>
       <td><%= message.body %></td>
       <td><%= link_to "Edit", edit_scheduled_message_path(message) %></td>
+      <td><%= link_to "Test", new_scheduled_message_test_message_path(message) %></td>
     </tr>
   <% end %>
 </table>

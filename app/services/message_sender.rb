@@ -1,47 +1,41 @@
 require "slack-ruby-client"
 
 class MessageSender
-  def initialize
-    configure_slack
+  def initialize(employee, message)
+    @employee = employee
+    @message = message
   end
 
   def run
-    ScheduledMessage.all.each do |message|
-      employees_for_message = find_employees(message)
+    configure_slack
+    channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
 
-      employees_for_message.each do |employee|
-        channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
-
-        if channel_id
-          begin
-            post_message(channel_id: channel_id, message: message)
-            create_sent_scheduled_message(
-              employee: employee,
-              scheduled_message: message,
-              error: nil,
-            )
-          rescue Slack::Web::Api::Error => error
-            create_sent_scheduled_message(
-              employee: employee,
-              scheduled_message: message,
-              error: error,
-            )
-          end
-        end
+    if channel_id
+      begin
+        post_message(channel_id: channel_id, message: message)
+        create_sent_scheduled_message(
+          employee: employee,
+          scheduled_message: message,
+          error: nil,
+        )
+      rescue Slack::Web::Api::Error => error
+        create_sent_scheduled_message(
+          employee: employee,
+          scheduled_message: message,
+          error: error,
+        )
       end
     end
   end
 
   private
 
+  attr_reader :employee, :message
+
   def configure_slack
     Slack.configure do |config|
       config.token = ENV['SLACK_API_TOKEN']
     end
-  end
-
-  def find_employees(message)
-    MessageEmployeeMatcher.new(message).run
   end
 
   def client

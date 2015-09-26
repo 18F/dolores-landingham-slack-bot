@@ -1,0 +1,6 @@
+<h2>Send test message</h2>
+<%= simple_form_for :test_message, url: scheduled_message_test_messages_path(@message) do |form| %>
+  <%= form.input :body, input_html: { value: @message.body }, readonly: true, label: "Message body to send (to edit, update the scheduled message you are testing)" %>
+  <%= form.input :slack_username, label: "Slack username to send test to", as: :string %>
+  <%= form.submit "Send test" %>
+<% end %>
