@@ -7,15 +7,31 @@ To that end, we follow the [18F Code of
 Conduct](https://github.com/18F/code-of-conduct/blob/master/code-of-conduct.md)
 and ask that all contributors do the same.
 
+### Not sure what to work on?
+
+Check out the [Dolores Bot Waffle.io
+board](https://waffle.io/18F/dolores-landingham-bot) and pick out something in
+the "Up next" column. Make sure you move the feature you're working on the "In
+progress" so we all know who is working on what.
+
 ### Git Protocol
 
-To contribute to this project, people internal to 18F can create a branch and submit a pull request. If you are external to 18F, you can fork the repository and submit a pull request that way.
+To contribute to this project, people internal to 18F can create a branch and
+submit a pull request. If you are external to 18F, you can fork the repository
+and submit a pull request that way.
 
-We are minimizing commits on the `master` branch by squashing commits and force pushing them to `master`. 
+We are minimizing commits on the `master` branch by rebasing and squashing
+commits on branches before merging them into `master`. This will require you to
+force push on your branch (but not to `master`...please don't force push
+`master`).
 
-For a more detailed walk through on how to do this, you can read thoughtbot's [Git Protocol](https://github.com/thoughtbot/guides/tree/master/protocol/git#write-a-feature) document.
+For a more detailed walk through on how to do this, you can read thoughtbot's
+[Git
+Protocol](https://github.com/thoughtbot/guides/tree/master/protocol/git#write-a-feature)
+document.
 
-18f-ers can merge their changes into master after getting approval from another contributor.
+18f-ers can merge their changes into master after getting approval from another
+contributor.
 
 ### App setup
 
