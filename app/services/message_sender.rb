@@ -62,7 +62,7 @@ class MessageSender
       scheduled_message: options[:scheduled_message],
       sent_on: Date.current,
       error_message: error_message(options[:error]),
-      message_body: options[:scheduled_message].body,
+      message_body: MessageFormatter.new(options[:scheduled_message]).escape_slack_characters
     )
   end
 
