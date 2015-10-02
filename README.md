@@ -47,4 +47,4 @@ To see existing environment variables on production:
 
 To set or change the value of an environment variable on production:
 
-`cf set-env dolores-app <ENVIRONMENT VARIABLE> dolores-app.18f.gov`
+`cf set-env dolores-app <env-name> <env-value>`
