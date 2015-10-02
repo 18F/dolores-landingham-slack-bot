@@ -4,4 +4,4 @@ set -e
 set -x
 
 bin/rake cf:on_first_instance db:migrate
-foreman start -p $PORT -e $RAILS_ENV
+foreman start -p $PORT
