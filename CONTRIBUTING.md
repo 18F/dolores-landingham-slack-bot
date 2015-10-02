@@ -31,9 +31,13 @@ is [purposefully excluded from the project's `Gemfile`][exclude].
 [foreman]: https://github.com/ddollar/foreman
 [exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
 
-The application will run locally at `http://localhost:5000/`
+The application will run locally at `http://localhost:5000/`. 
 
-### Required keys
+If you have previously run a project on a different port, a `.foreman` file 
+may be generated at the root of your directory. If so, make sure that this 
+file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
+
+### <a name="required-keys">Required Keys</a>
 
 The setup script creates a `.env` file with a dummy environment configuration variables.
 If you are internal to 18F and would like access to these configs,
@@ -43,4 +47,12 @@ you can contact Jessie Young. Otherwise, you can create a Slack bot
 ### Authentication
 
 You will need to be on the developer list to authenticate locally via MyUSA.
-Contact Brian Hedberg to be added to the developer list.
+
+If you are internal to 18F, contact Brian Hedberg to be added to the developer list.
+If you are on the list, `dolores-local` will be one of your [Authorized Applications](https://alpha.my.usa.gov/authorizations) 
+on MyUSA.
+
+If `dolores-local` is on your MyUSA list for Authorized Applications and you 
+are still unable to authenticate, check with Brian to make sure that the `MYUSA_KEY`
+and `MYUSA_SECRET` keys listed in `.env` are up to date.
+For more on environmental variables and keys, refer to [Required Keys](#required-keys) above.
