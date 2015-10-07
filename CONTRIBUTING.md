@@ -53,7 +53,7 @@ If you have previously run a project on a different port, a `.foreman` file
 may be generated at the root of your directory. If so, make sure that this 
 file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
 
-### <a name="required-keys">Required Keys</a>
+### Required Keys
 
 The setup script creates a `.env` file with a dummy environment configuration variables.
 If you are internal to 18F and would like access to these configs,
@@ -72,3 +72,73 @@ If `dolores-local` is on your MyUSA list for Authorized Applications and you
 are still unable to authenticate, check with Brian to make sure that the `MYUSA_KEY`
 and `MYUSA_SECRET` keys listed in `.env` are up to date.
 For more on environmental variables and keys, refer to [Required Keys](#required-keys) above.
+
+If you are not part of 18F and would like to run the application locally, you can 
+follow these steps: 
+
+1. Create a [MyUSA Account](https://alpha.my.usa.gov/) and create an application for
+development with the following:
+
+	For Url:
+
+	`http://localhost:5000/`
+
+	For Redirect uri:
+
+	`http://localhost:5000/auth/myusa/callback`
+
+2. Generate a set of keys, `MYUSA_KEY` and `MYUSA_SECRET`, and reference them in 
+`.env`
+
+3. Edit the method `is_gsa` and its inovocation in `/app/controllers/auth_controller` to accomodate 
+non-`gsa.gov` email addresses locally.
+
+```ruby
+  # Invocation 
+  if is_gsa?(auth_email)
+
+  # Method
+  def is_gsa?(auth_email)
+    /gsa.gov/.match(auth_email)
+  end
+```
+
+## Deployment
+
+Dolores is configured to be deployed with Cloud Foundry as an 18f-er.
+
+Refer to [docs.18f.gov](https://docs.18f.gov/getting-started/setup/) for getting
+set up with Cloud Foundry.
+
+The Dolores Landingham bot is deployed within the `18f` Cloud Foundry org. To 
+see if you have access to the `18f` do the following in the root of your repo:
+
+`cf orgs`
+
+If `18f` does not show up as an available org, you can request access by 
+posting an issue to the [DevOps repo](https://github.com/18F/DevOps/issues/new) 
+on GitHub.
+
+
+Once you have access to the org, you can target the Cloud Foundry organization 
+and space for this project:
+
+`cf target -o 18f -s dolores`
+
+Once your target is set, you can push the application. We have two Cloud Foundry 
+instances: `dolores-app` and `dolores-staging`. 
+Test your changes by pushing to `dolores-staging` before pushing to the 
+`dolores-app` instance.
+
+`cf push <app-instance-name>`
+
+New migrations will be run automatically. See the [manifest](manifest.yml) for
+more details on the Cloud Foundry setup.
+
+To see existing environment variables:
+
+`cf env <app-instance-name>`
+
+To set or change the value of an environment variable:
+
+`cf set-env <app-instance-name> <env-name> <env-value>`

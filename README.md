@@ -41,33 +41,3 @@ copyright and related rights in the work worldwide are waived through
 the [CC0 1.0 Universal public domain dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 For more information, see [license](LICENSE.md).
-
-## Deployment
-
-Refer to [docs.18f.gov](https://docs.18f.gov/getting-started/setup/) for getting
-set up with Cloud Foundry
-
-The Dolores Landingham bot is deployed within the 18F org in Cloud Foundry. If
-you do not already have access to the 18F org, you can request access by posting
-an issue to the [DevOps repo](https://github.com/18F/DevOps/issues/new) on
-GitHub.
-
-Once you have access to the 18F org, you can target the Cloud Foundry
-organization and space for this project:
-
-`cf target -o 18f -s dolores`
-
-Then, you can push to production:
-
-`cf push dolores-app`
-
-New migrations will be run automatically. See the [manifest](manifest.yml) for
-more details on the Cloud Foundry setup.
-
-To see existing environment variables on production:
-
-`cf env dolores-app`
-
-To set or change the value of an environment variable on production:
-
-`cf set-env dolores-app <env-name> <env-value>`

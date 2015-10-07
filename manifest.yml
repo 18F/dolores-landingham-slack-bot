@@ -10,3 +10,9 @@ applications:
     DEFAULT_URL_HOST: dolores-app.18f.gov
     DISABLE_SANDBOX_WARNING: true
     RESTRICT_ACCESS: true
+- name: dolores-staging
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  env:
+    DEFAULT_URL_HOST: dolores-staging.18f.gov
+    DISABLE_SANDBOX_WARNING: true
+    RESTRICT_ACCESS: true
