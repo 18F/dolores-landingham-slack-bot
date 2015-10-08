@@ -16,6 +16,38 @@
         "is_owner": true,
         "has_2fa": false,
         "has_files": true
+      },
+      {
+        "id": "456DEF_ID",
+        "name": "testusername2",
+        "deleted": false,
+        "color": "9f69e7",
+        "profile": {
+          "first_name": "Joe",
+          "last_name": "Smith",
+          "real_name": "Joe Smith",
+          "email": "joe@slack.com"
+        },
+        "is_admin": true,
+        "is_owner": true,
+        "has_2fa": false,
+        "has_files": true
+      },
+      {
+        "id": "789GHI_ID",
+        "name": "testusername3",
+        "deleted": false,
+        "color": "9f69e7",
+        "profile": {
+          "first_name": "Jane",
+          "last_name": "Smith",
+          "real_name": "Jane Smith",
+          "email": "jane@slack.com"
+        },
+        "is_admin": true,
+        "is_owner": true,
+        "has_2fa": false,
+        "has_files": true
       }
     ]
 }
