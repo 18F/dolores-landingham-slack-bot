@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.3"
 
+gem "acts-as-taggable-on"
 gem "clockwork"
 gem "daemons" # for delayed_job
 gem "delayed_job_active_record"
@@ -40,4 +41,4 @@ end
 group :staging, :production do
   gem "rack-timeout"
   gem "rails_12factor"
-end 
+end

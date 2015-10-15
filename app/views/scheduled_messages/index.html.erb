@@ -3,6 +3,7 @@
     <th>Send day (after employee start)</th>
     <th>Title</th>
     <th>Body</th>
+    <th>Tags</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,6 +13,7 @@
       <td><%= message.days_after_start %></td>
       <td><%= message.title %></td>
       <td><%= message.body %></td>
+      <td><%= message.tag_list.join(", ") %></td>
       <td><%= link_to "Edit", edit_scheduled_message_path(message) %></td>
       <td><%= link_to "Test", new_scheduled_message_test_message_path(message) %></td>
     </tr>

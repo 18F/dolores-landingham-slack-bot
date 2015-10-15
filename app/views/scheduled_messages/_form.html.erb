@@ -1,7 +1,8 @@
 <%= simple_form_for @scheduled_message do |form| %>
   <%= form.input :title,
-    hint: "This is for identifying purposes only, the employee will not see the message title" %>
+    hint: "This is for identifying purposes only, the employee will not see the message title." %>
   <%= form.input :body, label: "Message body" %>
   <%= form.input :days_after_start, label: "Days after employee starts to send message" %>
+  <%= form.input :tag_list, label: "Tags", hint: "Separate tags with commas to enter multiple tags at once." %>
   <%= form.button :submit %>
 <% end %>

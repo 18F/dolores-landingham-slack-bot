@@ -17,5 +17,6 @@ FactoryGirl.define do
     title "Onboarding message 1"
     body "This is an awesome message!"
     days_after_start 3
+    tag_list "test_tag, test_tag_two"
   end
 end
