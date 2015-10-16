@@ -12,7 +12,7 @@ class TestMessagesController < ApplicationController
       flash[:notice] = "Test message sent successfully"
       redirect_to scheduled_messages_path
     else
-      flash[:error] = "Could not update employee with the Slack username you entered. Please make sure there is an employee record for the username listed in #{employees_path}"
+      flash[:error] = "Oops! Looks like that employee isn't in the Dolores system yet! Make sure you've entered the Slack handle (#{slack_username}) for the employee before sending him/her/them a test message."
       redirect_to scheduled_messages_path
     end
   end
