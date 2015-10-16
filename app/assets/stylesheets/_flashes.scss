@@ -1,0 +1,21 @@
+.flash {
+  &-error {
+    background-color: #FF6565;
+  }
+
+  &-notice {
+    background-color: #A4E7A0;
+  }
+
+  color: black;
+  position: fixed;
+  font-weight: bold;
+  width: 96%;
+  margin: 20px;
+
+  p {
+    font-size: 110%;
+    margin: 15px 0;
+  }
+}
+

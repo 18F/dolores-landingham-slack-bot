@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="ROBOTS" content="NOODP" />
-  <meta name="viewport" content="initial-scale=1" />
-  <title><%= (yield(:title) || "Untitled") %></title>
-  <%= stylesheet_link_tag :application, media: "all" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<div class="container">
-<div class="banner">
-  <%= link_to root_path do %>
-    <%= image_tag "dolores.jpg" %>
-  <% end %>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="ROBOTS" content="NOODP" />
+    <meta name="viewport" content="initial-scale=1" />
+    <title><%= (yield(:title) || "Untitled") %></title>
+    <%= stylesheet_link_tag :application, media: "all" %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <h1>Dolores Landingham</h1>
-    <%= image_tag "logo-18f.png", class: "logo-18f" %><p>Onboarding bot!</p>
-  <hr>
-    <%= link_to "Create scheduled message", new_scheduled_message_path %>
-  <hr>
-    <%= link_to "See and/or edit scheduled messages", scheduled_messages_path %>
-  <hr>
-    <%= link_to "Add an employee", new_employee_path %>
-  <hr>
-    <%= link_to "See all employees", employees_path %>
-  <hr>
-    <%= link_to "See sent scheduled messages", sent_scheduled_messages_path %>
-  <hr>
-</div>
-<%= render "flashes" -%>
-<div class="content">
-  <%= yield %>
-</div>
-</div>
-<%= render "javascript" %>
-</body>
+  <body>
+  <div class="container">
+    <div class="banner">
+      <%= link_to root_path do %>
+        <%= image_tag "dolores.jpg" %>
+      <% end %>
+
+      <h1>Dolores Landingham</h1>
+        <%= image_tag "logo-18f.png", class: "logo-18f" %><p>Onboarding bot!</p>
+      <hr>
+        <%= link_to "Create scheduled message", new_scheduled_message_path %>
+      <hr>
+        <%= link_to "See and/or edit scheduled messages", scheduled_messages_path %>
+      <hr>
+        <%= link_to "Add an employee", new_employee_path %>
+      <hr>
+        <%= link_to "See all employees", employees_path %>
+      <hr>
+        <%= link_to "See sent scheduled messages", sent_scheduled_messages_path %>
+      <hr>
+    </div>
+
+    <%= render "flashes" -%>
+
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
+  <%= render "javascript" %>
+  </body>
 </html>
