@@ -2,10 +2,10 @@ require "rails_helper"
 
 feature "Create employees" do
   scenario "successfully" do
-    login_with_oauth
-    visit root_path
-
     username = "testusername2"
+    login_with_oauth
+
+    visit new_employee_path
     fill_in "Slack username", with: username
     select "2015", from: "employee_started_on_1i"
     select "June", from: "employee_started_on_2i"
@@ -16,10 +16,10 @@ feature "Create employees" do
   end
 
   scenario "unsuccessfully with invalid username" do
-    login_with_oauth
-    visit root_path
-
     username = "fakeusername2"
+    login_with_oauth
+
+    visit new_employee_path
     fill_in "Slack username", with: username
     select "2015", from: "employee_started_on_1i"
     select "June", from: "employee_started_on_2i"

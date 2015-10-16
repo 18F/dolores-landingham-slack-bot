@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "employees#new"
+  root to: "scheduled_messages#index"
 
   match "/auth/:provider/callback" => "auth#oauth_callback", via: [:get]
 
