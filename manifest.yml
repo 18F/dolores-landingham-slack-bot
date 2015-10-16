@@ -4,7 +4,7 @@ command: script/start
 
   # environment-specific configuration
 applications:
-- name: dolores
+- name: dolores-app
   buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
   env:
     DEFAULT_URL_HOST: dolores-app.18f.gov
