@@ -41,6 +41,14 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def destroy
+    @employee = Employee.find(params[:id])
+    @employee.destroy
+
+    flash[:notice] = "You deleted #{@employee.slack_username}"
+    redirect_to employees_path
+  end
+
   private
 
   def employee_params
