@@ -11,12 +11,12 @@
 
   <body>
   <div class="container">
-    <div class="banner">
+    <aside>
       <%= link_to root_path do %>
         <%= image_tag "dolores.jpg" %>
       <% end %>
 
-      <h1>Dolores Landingham</h1>
+      <h2>Dolores Landingham</h2>
         <%= image_tag "logo-18f.png", class: "logo-18f" %><p>Onboarding bot!</p>
       <hr>
         <%= link_to "Create scheduled message", new_scheduled_message_path %>
@@ -29,11 +29,11 @@
       <hr>
         <%= link_to "See sent scheduled messages", sent_scheduled_messages_path %>
       <hr>
-    </div>
+    </aside>
 
     <%= render "flashes" -%>
 
-    <div class="content">
+    <div class="inner-wrapper">
       <%= yield %>
     </div>
   </div>

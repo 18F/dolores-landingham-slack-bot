@@ -1,5 +1,44 @@
 .container {
   @include outer-container;
+
+  aside {
+    @include span-columns(2);
+    }
+
+  .inner-wrapper {
+    @include span-columns(10);
+    border-radius: 4px;
+    padding: 1em 1.6em 1.8em;
+  }
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: normal;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 0 0 0.4em;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
 .logo-18f {

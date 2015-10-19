@@ -1,13 +1,20 @@
-  Slack username
-  Started on
+<table>
+
+  <th>Slack username</th>
+  <th>Started on</th>
+  <th></th>
+  <th></th>
 
   <% @employees.each do |employee| %>
-      <li><%= employee.slack_username %></li>
-      <li><%= employee.started_on %></li>
-      <li><%= link_to "Edit", edit_employee_path(employee) %></li>
-      <li><%= link_to "Delete",
+    <tr>
+      <td><%= employee.slack_username %></td>
+      <td><%= employee.started_on %></td>
+      <td><%= link_to "Edit", edit_employee_path(employee) %></td>
+      <td><%= link_to "Delete",
         { action: :destroy, id: employee.id },
         method: :delete,
         data: { confirm: "Are you sure you want to delete @#{employee.slack_username}?" }
-        %></li>
+        %></td>
+      </tr>
   <% end %>
+</table>
