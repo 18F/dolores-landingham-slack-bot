@@ -7,7 +7,7 @@ messages about topics relevant to 18F and GSA employees. Messages will be
 scheduled once per day and will trickle out to employees over the course of 60
 days.
 
-Mrs. Landingham will 18F employees about working in the federal government, how
+Mrs. Landingham will teach 18F employees about working in the federal government, how
 to set up travel, how to add their biographical information and pictures to our
 Hub, and other facts that will help them get acclimated to both 18F and the
 federal government.
