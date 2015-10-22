@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   def new
     @employee = Employee.new
+    @employee.time_zone = "Eastern Time (US & Canada)"
   end
 
   def create
@@ -52,7 +53,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:slack_username, :started_on)
+    params.require(:employee).permit(:slack_username, :started_on, :time_zone)
   end
 
   def unknown_employee(slack_username)

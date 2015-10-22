@@ -17,7 +17,7 @@ describe EmployeeFinder do
       expect(employee_finder).to be_existing_employee
     end
 
-    it "rreturns false if an employee does not exist in the Slack organization associated with the auth token" do
+    it "returns false if an employee does not exist in the Slack organization associated with the auth token" do
       employee = create(:employee)
       client_double = Slack::Web::Client.new
       existing_user_double = double(existing_user?: false)

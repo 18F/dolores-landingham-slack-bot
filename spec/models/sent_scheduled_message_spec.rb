@@ -10,6 +10,7 @@ describe SentScheduledMessage do
     it { should validate_presence_of(:employee) }
     it { should validate_presence_of(:message_body) }
     it { should validate_presence_of(:scheduled_message) }
+    it { should validate_presence_of(:sent_at) }
     it { should validate_presence_of(:sent_on) }
 
     it "validates employee uniqueness scoped to scheduled message" do

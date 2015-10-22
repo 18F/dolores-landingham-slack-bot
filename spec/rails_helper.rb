@@ -1,4 +1,5 @@
 ENV["RAILS_ENV"] = "test"
+ENV["TZ"] = "UTC"
 
 require File.expand_path("../../config/environment", __FILE__)
 abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]

@@ -5,6 +5,7 @@ class SentScheduledMessage < ActiveRecord::Base
   validates :employee, presence: true, uniqueness: { scope: :scheduled_message }
   validates :message_body, presence: true
   validates :scheduled_message, presence: true
+  validates :sent_at, presence: true
   validates :sent_on, presence: true
 
   delegate :slack_username, to: :employee

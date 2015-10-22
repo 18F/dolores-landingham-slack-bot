@@ -9,6 +9,8 @@ feature "Create scheduled message" do
     fill_in "Title", with: "Message title"
     fill_in "Message body", with: "Message body"
     fill_in "Days after employee starts to send message", with: 1
+    select "11 AM", from: "scheduled_message_time_of_day_4i"
+    select "45", from: "scheduled_message_time_of_day_5i"
     fill_in "Tags", with: "tag_one, tag_two, tag_three"
     click_on "Create Scheduled message"
 

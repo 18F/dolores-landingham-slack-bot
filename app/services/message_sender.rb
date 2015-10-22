@@ -55,6 +55,7 @@ class MessageSender
       employee: options[:employee],
       scheduled_message: options[:scheduled_message],
       sent_on: Date.current,
+      sent_at: Time.current,
       error_message: error_message(options[:error]),
       message_body: MessageFormatter.new(options[:scheduled_message]).escape_slack_characters
     )
