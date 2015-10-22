@@ -5,6 +5,6 @@
     hint: "Don't forget, you can format your message using #{link_to "Slack's message formatting rules",
     "https://slack.zendesk.com/hc/en-us/articles/202288908-Formatting-your-messages", target: "_blank"}.".html_safe %>
   <%= form.input :days_after_start, label: "Days after employee starts to send message" %>
-  <%= form.input :tag_list, label: "Tags", hint: "Separate tags with commas to enter multiple tags at once." %>
+  <%= form.input :tag_list, label: "Tags", hint: "Separate tags with commas to enter multiple tags at once.", input_html: {value: @scheduled_message.tag_list.to_s} %>
   <%= form.button :submit %>
 <% end %>
