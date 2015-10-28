@@ -46,6 +46,25 @@ board](https://waffle.io/18F/dolores-landingham-bot) and pick out something in
 the "Up next" column. Make sure you move the feature you're working on the "In
 progress" and assign it to yourself so we all know who is working on what.
 
+### Using Dolores
+
+18F employees can view the scheduled messages that Dolores sends employees by visiting
+https://dolores-app.18f.gov/.
+
+Any 18F employee with a Slack handle can add themselves as a Dolores Landingham
+message recipient [here](https://dolores-app.18f.gov/).
+
+Only admin users can add and update scheduled messages. If you would like to
+add or update scheduled messages, please DM Melody Kramer on Slack or open an
+Issue on this repo.
+
+Admin users can add scheduled messages
+[here](https://dolores-app.18f.gov/scheduled_messages/new).
+
+Scheduled messages include a "day count" attribute. Messages to be sent on the
+day an employee starts have a day count of 0, messages to be sent the next day
+should have a day count of 1, and so on.
+
 ### Questions?
 
 If you have any questions about the Dolores Bot project and are internal to 18F,
