@@ -14,6 +14,25 @@ both 18F and the federal government.
 
 Please file an issue if you have any questions about Mrs. Landingham.
 
+## Usage Instructions
+
+**To add new users**
+
+Go https://dolores-app.18f.gov/
+Click https://dolores-app.18f.gov/employees/new
+Write their Slack username without the @ symbol
+Select the date that they started
+Click https://dolores-app.18f.gov/employees to make sure they’re on the list
+
+**To add new messages**
+
+Draft the message in this Google Doc
+Copy the message and paste it in the message body here: https://dolores-app.18f.gov/scheduled_messages/new
+Add a title to your message to be able to identify the message 
+Add the number of days after an employee starts. (Add 1 to the last message in this Google Doc)
+Add tags to be able to surface the message
+
+
 ### Contributing
 
 Please read the [contribution guidelines](CONTRIBUTING.md) before submitting a pull request.
