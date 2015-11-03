@@ -2,6 +2,7 @@
   <tr>
     <th>Slack username</th>
     <th>Sent on</th>
+    <th>Sent at</th>
     <th>Message body</th>
     <th>Error message</th>
   </tr>
@@ -10,6 +11,7 @@
     <tr>
       <td><%= sent_message.slack_username %></td>
       <td><%= sent_message.sent_on %></td>
+      <td><%= display_local_time_zone(sent_message) %></td>
       <td><%= sent_message.message_body %></td>
       <td><%= sent_message.error_message %></td>
     </tr>

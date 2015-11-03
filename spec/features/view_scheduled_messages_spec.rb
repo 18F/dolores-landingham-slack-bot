@@ -10,8 +10,12 @@ feature "View scheduled messages" do
 
     expect(page).to have_content(first_scheduled_message.title)
     expect(page).to have_content(first_scheduled_message.body)
+    expect(page).to have_content(first_scheduled_message.days_after_start)
+    expect(page).to have_content(first_scheduled_message.time_of_day.strftime("%l:%M %p"))
     expect(page).to have_content(second_scheduled_message.title)
     expect(page).to have_content(second_scheduled_message.body)
+    expect(page).to have_content(second_scheduled_message.days_after_start)
+    expect(page).to have_content(second_scheduled_message.time_of_day.strftime("%l:%M %p"))
   end
 
   private

@@ -1,6 +1,7 @@
 <table>
   <tr>
     <th>Send day (after employee start)</th>
+    <th>Send time</th>
     <th>Title</th>
     <th>Body</th>
     <th>Tags</th>
@@ -11,6 +12,7 @@
   <% @scheduled_messages.each do |message| %>
     <tr>
       <td><%= message.days_after_start %></td>
+      <td><%= message.time_of_day.strftime("%l:%M %p") %></td>
       <td><%= message.title %></td>
       <td><%= truncate(message.body, length: 100) %></td>
       <td><%= message.tag_list.join(", ") %></td>

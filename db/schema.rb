@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006161914) do
+ActiveRecord::Schema.define(version: 20151021202217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,28 +33,31 @@ ActiveRecord::Schema.define(version: 20151006161914) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "slack_username", null: false
-    t.date     "started_on",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "slack_username",                 null: false
+    t.date     "started_on",                     null: false
+    t.string   "time_zone",      default: "UTC", null: false
   end
 
   create_table "scheduled_messages", force: :cascade do |t|
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "title",            null: false
-    t.text     "body",             null: false
-    t.integer  "days_after_start", null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "title",                                            null: false
+    t.text     "body",                                             null: false
+    t.integer  "days_after_start",                                 null: false
+    t.time     "time_of_day",      default: '2000-01-01 12:00:00', null: false
   end
 
   create_table "sent_scheduled_messages", force: :cascade do |t|
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "employee_id",                       null: false
-    t.string   "error_message",        default: "", null: false
-    t.text     "message_body",                      null: false
-    t.integer  "scheduled_message_id",              null: false
-    t.date     "sent_on",                           null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.integer  "employee_id",                                          null: false
+    t.string   "error_message",        default: "",                    null: false
+    t.text     "message_body",                                         null: false
+    t.integer  "scheduled_message_id",                                 null: false
+    t.date     "sent_on",                                              null: false
+    t.time     "sent_at",              default: '2000-01-01 12:00:00', null: false
   end
 
   add_index "sent_scheduled_messages", ["employee_id", "scheduled_message_id"], name: "by_employee_scheduled_message", unique: true, using: :btree

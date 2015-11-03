@@ -10,8 +10,10 @@ feature "View employees" do
 
     expect(page).to have_content(first_employee.slack_username)
     expect(page).to have_content(first_employee.started_on)
+    expect(page).to have_content(first_employee.time_zone)
     expect(page).to have_content(second_employee.slack_username)
     expect(page).to have_content(second_employee.started_on)
+    expect(page).to have_content(second_employee.time_zone)
   end
 
   private

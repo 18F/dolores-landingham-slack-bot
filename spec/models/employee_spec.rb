@@ -8,5 +8,6 @@ describe Employee do
      it { should allow_value("test_user_1").for(:slack_username) }
      it { should_not allow_value("TEST USER 1").for(:slack_username) }
      it { should validate_presence_of(:started_on) }
+     it { should validate_presence_of(:time_zone) }
   end
 end
