@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @employees = Employee.order(started_on: :desc)
+    @employees = Employee.order(started_on: :desc).page(params[:page])
   end
 
   def edit

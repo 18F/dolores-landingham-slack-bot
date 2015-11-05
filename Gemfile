@@ -8,6 +8,7 @@ gem "daemons" # for delayed_job
 gem "delayed_job_active_record"
 gem "foreman"
 gem "jquery-rails"
+gem "kaminari"
 gem "omniauth-myusa", github: "18f/omniauth-myusa"
 gem "pg"
 gem "puma"
