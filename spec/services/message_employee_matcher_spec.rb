@@ -6,30 +6,48 @@ describe MessageEmployeeMatcher do
       Timecop.freeze(Time.current) do
         days_after_start = 3
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: Time.current.in_time_zone("Eastern Time (US & Canada)"))
-        employee = create(:employee, started_on: days_after_start.days.ago)
+        employee_one = create(:employee, started_on: days_after_start.days.ago)
+        employee_two = create(:employee, started_on: 5.days.ago)
 
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
         expect(matched_employees_and_messages).to eq(
-            [ employee ]
+            [ employee_one ]
         )
       end
     end
 
     it "matches messages to users if the user's time has advanced past the scheduled message send at time but hasn't been sent yet" do
-      Timecop.freeze(Time.current) do
+      Timecop.freeze(Time.parse("18:30:00 UTC")) do
         days_after_start = 3
-        half_hour_time_difference_in_seconds = 1800
-        scheduled_message_time = Time.current.in_time_zone("Eastern Time (US & Canada)")
-        scheduled_message_time = scheduled_message_time - half_hour_time_difference_in_seconds
+        scheduled_message_time = Time.parse("12:00:00 UTC")
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
-        employee = create(:employee, started_on: days_after_start.days.ago)
+        employee_est = create(:employee, started_on: days_after_start.days.ago)
+        employee_cst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Central Time (US & Canada)")
+        employee_mst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Mountain Time (US & Canada)")
+        employee_pst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Pacific Time (US & Canada)")
 
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
         expect(matched_employees_and_messages).to eq(
-            [ employee ]
+            [ employee_est, employee_cst ]
         )
+      end
+    end
+
+    it "ignores messages whose send at time has not come to pass yet based on a user's local time" do
+      Timecop.freeze(Time.parse("11:00:00 UTC")) do
+        days_after_start = 3
+        scheduled_message_time = Time.parse("12:00:00 UTC")
+        scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
+        employee_est = create(:employee, started_on: days_after_start.days.ago)
+        employee_cst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Central Time (US & Canada)")
+        employee_mst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Mountain Time (US & Canada)")
+        employee_pst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Pacific Time (US & Canada)")
+
+        matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
+
+        expect(matched_employees_and_messages).to eq([])
       end
     end
 
