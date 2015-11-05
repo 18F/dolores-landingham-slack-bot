@@ -12,8 +12,10 @@
       <td><%= sent_message.slack_username %></td>
       <td><%= sent_message.sent_on %></td>
       <td><%= display_local_time_zone(sent_message) %></td>
-      <td><%= sent_message.message_body %></td>
+      <td><%= truncate(sent_message.message_body, length: 25, separator: ' ') %></td>
       <td><%= sent_message.error_message %></td>
     </tr>
   <% end %>
 <table>
+
+<%= paginate(@sent_scheduled_messages) %>
