@@ -1,0 +1,19 @@
+<h1>Application Diagnostics</h1>
+
+<h2>Application Information</h2>
+
+<ul>
+    <li>Current Time: <%= @time_diagnostics[:application][:current_time] %></li>
+    <li>Default Time Zone: <%= @time_diagnostics[:application][:time_zone] %></li>
+    <li>Clockwork Default Time Zone: <%= @time_diagnostics[:application][:clockwork_time_zone] %></li>
+</ul>
+
+<br />
+
+<h2>Server Information</h2>
+
+<ul>
+    <li>TZ Environment Variable: <%= @time_diagnostics[:server][:tz_env_var] %></li>
+    <li>Server Time: <%= @time_diagnostics[:server][:current_time] %></li>
+    <li>Time Zone: <%= @time_diagnostics[:server][:time_zone] %></li>
+</ul>
