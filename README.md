@@ -37,7 +37,7 @@ Please file an issue if you have any questions about Mrs. Landingham.
 
 ### Contributing
 
-Please read the [contribution guidelines](CONTRIBUTING.md) before submitting a pull request.
+If you're interested in setting up a version of this bot or contributing to this one, read our [contribution guidelines](CONTRIBUTING.md) to find out how to set up and deploy this app, check out potential tasks to work on, and learn our guidelines for submitting pull requests.
 
 ### Not sure what to work on?
 
