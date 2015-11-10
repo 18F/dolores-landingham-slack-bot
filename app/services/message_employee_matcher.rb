@@ -22,10 +22,12 @@ class MessageEmployeeMatcher
 
   def match_time(time_zone)
     employee_current_time = Time.current.in_time_zone(time_zone)
-    employee_current_time_value = employee_current_time.strftime("%H%M").to_i
-    message_time_value = message.time_of_day.strftime("%H%M").to_i
 
-    employee_current_time_value >= message_time_value
+    if employee_current_time.day == Time.current.day
+      employee_current_time_value = employee_current_time.strftime("%H%M").to_i
+      message_time_value = message.time_of_day.strftime("%H%M").to_i
+      employee_current_time_value >= message_time_value
+    end
   end
 
   def message_not_already_sent?(employee)

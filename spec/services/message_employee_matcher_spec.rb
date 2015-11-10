@@ -7,13 +7,31 @@ describe MessageEmployeeMatcher do
         days_after_start = 3
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: Time.current.in_time_zone("Eastern Time (US & Canada)"))
         employee_one = create(:employee, started_on: days_after_start.days.ago)
-        employee_two = create(:employee, started_on: 5.days.ago)
+        _employee_two = create(:employee, started_on: 5.days.ago)
 
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
         expect(matched_employees_and_messages).to eq(
             [ employee_one ]
         )
+      end
+    end
+
+    context "midnight UTC" do
+      it "does not send messages to employees who are at a later time but on a different date" do
+        Timecop.freeze(Time.parse("00:00:00 UTC")) do
+          days_after_start = 3
+          scheduled_message_time = Time.parse("12:00:00 UTC")
+          scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
+
+          _employee_cst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Central Time (US & Canada)")
+
+          matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
+
+          expect(matched_employees_and_messages).to eq(
+            []
+          )
+        end
       end
     end
 
@@ -24,8 +42,8 @@ describe MessageEmployeeMatcher do
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
         employee_est = create(:employee, started_on: days_after_start.days.ago)
         employee_cst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Central Time (US & Canada)")
-        employee_mst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Mountain Time (US & Canada)")
-        employee_pst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Pacific Time (US & Canada)")
+        _employee_mst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Mountain Time (US & Canada)")
+        _employee_pst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Pacific Time (US & Canada)")
 
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
@@ -40,10 +58,10 @@ describe MessageEmployeeMatcher do
         days_after_start = 3
         scheduled_message_time = Time.parse("12:00:00 UTC")
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
-        employee_est = create(:employee, started_on: days_after_start.days.ago)
-        employee_cst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Central Time (US & Canada)")
-        employee_mst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Mountain Time (US & Canada)")
-        employee_pst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Pacific Time (US & Canada)")
+        _employee_est = create(:employee, started_on: days_after_start.days.ago)
+        _employee_cst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Central Time (US & Canada)")
+        _employee_mst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Mountain Time (US & Canada)")
+        _employee_pst = create(:employee, started_on: days_after_start.days.ago, time_zone: "Pacific Time (US & Canada)")
 
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
