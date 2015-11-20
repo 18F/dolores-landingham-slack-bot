@@ -12,21 +12,25 @@ class MessageEmployeeMatcher
   attr_reader :message
 
   def retrieve_matching_employees
-    Employee.where(started_on: day_count.days.ago)
-      .select { |employee| match_time(employee.time_zone) && message_not_already_sent?(employee) }
+    Employee.where(started_on: day_count.days.ago).select do |employee|
+      time_to_send_message?(employee.time_zone) && message_not_already_sent?(employee)
+    end
   end
 
   def day_count
     message.days_after_start
   end
 
-  def match_time(time_zone)
+  def time_to_send_message?(time_zone)
     employee_current_time = Time.current.in_time_zone(time_zone)
 
     if employee_current_time.day == Time.current.day
       employee_current_time_value = employee_current_time.strftime("%H%M").to_i
       message_time_value = message.time_of_day.strftime("%H%M").to_i
+
       employee_current_time_value >= message_time_value
+    else
+      false
     end
   end
 
