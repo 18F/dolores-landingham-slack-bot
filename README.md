@@ -1,5 +1,7 @@
 ## Dolores Landingham Bot
 
+[![Build Status](https://travis-ci.org/18F/dolores-landingham-bot.svg?branch=master)](https://travis-ci.org/18F/dolores-landingham-bot)
+
 ![Dolores](http://seattletimes.nwsource.com/ABPub/2006/05/11/2002987603.jpg)
 
 This is a Slack bot that helps onboard new hires at 18F through scheduled Slack
@@ -29,7 +31,7 @@ Please file an issue if you have any questions about Mrs. Landingham.
 
 1. Draft the message in this Google Doc
 2. Copy the message and paste it in the message body here: https://dolores-app.18f.gov/scheduled_messages/new
-3. Add a title to your message to be able to identify the message 
+3. Add a title to your message to be able to identify the message
 4. Add the number of days after an employee starts. (Add 1 to the last message in this Google Doc)
 5. Select a time that the message should be sent (the message will be sent at each employee's local time)
 6. Add tags to be able to surface the message
