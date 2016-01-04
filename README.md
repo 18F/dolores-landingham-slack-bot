@@ -1,4 +1,4 @@
-## Dolores Landingham Bot
+# Dolores Landingham Bot
 
 [![Build Status](https://travis-ci.org/18F/dolores-landingham-bot.svg?branch=master)](https://travis-ci.org/18F/dolores-landingham-bot)
 
@@ -16,7 +16,7 @@ both 18F and the federal government.
 
 Please file an issue if you have any questions about Mrs. Landingham.
 
-### Usage Instructions
+## Usage instructions for 18F employees
 
 **To add new users**
 
@@ -37,9 +37,9 @@ Please file an issue if you have any questions about Mrs. Landingham.
 6. Add tags to be able to surface the message
 
 
-### Contributing
+## Installing and contributing
 
-If you're interested in setting up a version of this bot or contributing to this one, read our [contribution guidelines](CONTRIBUTING.md) to find out how to set up and deploy this app, check out potential tasks to work on, and learn our guidelines for submitting pull requests.
+If you're interested in setting up a version of this bot or contributing to this one, our [contribution guidelines](CONTRIBUTING.md) explain how to set up and deploy this app, find potential tasks to work on, and submit pull requests.
 
 ### Not sure what to work on?
 
@@ -48,7 +48,7 @@ board](https://waffle.io/18F/dolores-landingham-bot) and pick out something in
 the "Up next" column. Make sure you move the feature you're working on the "In
 progress" and assign it to yourself so we all know who is working on what.
 
-### Using Dolores
+## Using Dolores
 
 18F employees can view the scheduled messages that Dolores sends employees by visiting
 https://dolores-app.18f.gov/.
@@ -67,10 +67,10 @@ Scheduled messages include a "day count" attribute. Messages to be sent on the
 day an employee starts have a day count of 0, messages to be sent the next day
 should have a day count of 1, and so on.
 
-### Questions?
+## Questions?
 
 If you have any questions about the Dolores Bot project and are internal to 18F,
-you can chat us up in the [#bots](https://18f.slack.com/messages/bots/) Slack
+you can chat with us in the [#bots](https://18f.slack.com/messages/bots/) Slack
 channel.
 
 If you are not internal to 18F and have a question, we would be delighted to
@@ -78,7 +78,7 @@ help. Please [open a GitHub
 issue](https://github.con/18F/dolores-landingham-bot/issues/new) and we will get back to
 you as soon as we can.
 
-### Public domain
+## Public domain
 
 This project is in the public domain within the United States, and
 copyright and related rights in the work worldwide are waived through
