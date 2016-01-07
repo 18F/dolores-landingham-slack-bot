@@ -1,3 +1,5 @@
+require "business_time"
+
 class MessageEmployeeMatcher
   def initialize(message)
     @message = message
@@ -12,7 +14,7 @@ class MessageEmployeeMatcher
   attr_reader :message
 
   def retrieve_matching_employees
-    Employee.where(started_on: day_count.days.ago).select do |employee|
+    Employee.where(started_on: day_count.business_days.ago).select do |employee|
       time_to_send_message?(employee.time_zone) && message_not_already_sent?(employee)
     end
   end
