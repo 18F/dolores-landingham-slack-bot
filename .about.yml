@@ -1,0 +1,132 @@
+---
+# .about.yml project metadata
+#
+# Short name that acts as the project identifier (required)
+name: dolores-landingham-bot
+
+# Full proper name of the project (required)
+full_name: Dolores Landingham Slack Bot
+
+# The type of content in the repo
+# values: app, docs, policy
+type: app
+
+# Describes whether a project team, working group/guild, etc. owns the repo (required)
+# values: guild, working-group, project
+owner_type: project
+
+# Name of the main project repo if this is a sub-repo; name of the working group/guild repo if this is a working group/guild subproject
+parent: wg-onboarding
+
+# Maturity stage of the project (required)
+# values: discovery, alpha, beta, live, sunset, transfer, end
+stage: live
+
+# Description of the project
+description: This is a Slack bot that helps onboard new hires at 18F.
+
+# Tags that describe the project or aspects of the project
+tags:
+- onboarding
+- slack
+- bot
+- dolores
+- landingham
+
+# Should this repo have automated tests? If so, set to `true`. (required)
+# values: true, false
+testable: true
+
+# Team members contributing to the project (required)
+# Items:
+# - github: GitHub user name
+#   id: Internal team identifier/user name
+#   role: Team member's role; leads should be designated as 'lead'
+team:
+- github: jessieay
+  id: jessie
+  role: lead
+- github: gemfarmer
+  id: brian
+- github: ccostino
+  id: carlo.costino
+- github: monfresh
+  id: moncef
+- github: melodykramer
+  id: melody
+- github: brittag
+  id: britta.gustafson
+- github: danielmorrison
+- github: adelevie
+  id: alan
+
+# Organizations or individuals who have adopted the project for their own use
+# Items:
+# - id: The name of the organization or individual
+#   url: A URL to the user's version of the project
+#users:
+#-
+
+# Brief descriptions of significant project developments
+#milestones:
+#-
+
+# Technologies used to build the project
+stack:
+- Ruby
+- Rails
+- Clockwork
+- Timecop
+- RSpec
+- Slack API
+- MyUSA Authentication
+- Cloud.gov
+
+# Brief description of the project's outcomes
+impact: A successful drip of campaign of information to support new hires at 18F.
+
+# Services used to supply project status information
+# Items:
+# - name: Name of the service
+#   category: Type of the service
+#   url: URL for detailed information
+#   badge: URL for the status badge
+services:
+- name: Travis CI
+  url: https://travis-ci.org/18F/dolores-landingham-bot/
+- name: Waffle Board
+  url: https://waffle.io/18F/dolores-landingham-bot
+
+# Licenses that apply to the project and/or its components (required)
+# Items by property name pattern:
+#   .*:
+#     name: Name of the license from the Software Package Data Exchange (SPDX): https://spdx.org/licenses/
+#     url: URL for the text of the license
+licenses:
+  dolores-landingham-bot:
+    name: CC0
+    url: https://github.com/18F/dolores-landingham-bot/blob/master/LICENSE.md
+
+# Tag to use when blogging about this project
+blogTag:
+- onboarding
+- how we work
+- culture
+
+# Links to project artifacts
+# Items:
+# - url: URL for the link
+#   text: Anchor text for the link
+#   category: Type of the link
+links:
+- url: https://18f.gsa.gov/2015/12/01/how-we-dramatically-improved-18fs-onboarding-process-in-3-months/
+  text: How we dramatically improved 18F’s onboarding process in 3 months
+  category: process
+
+# URIs for points-of-contact
+# Items:
+# - url: URL for the link
+#   text: Anchor text for the link
+contact:
+- url: https://github.com/18F/dolores-landingham-bot/issues
+  text: 18F/dolores-landingham-bot issues
