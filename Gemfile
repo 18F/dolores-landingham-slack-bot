@@ -18,6 +18,8 @@ gem "sass-rails"
 gem "simple_form"
 gem "slack-ruby-client"
 gem "uglifier"
+gem "business_time"
+gem "holidays"
 
 group :development, :test do
   gem "awesome_print"

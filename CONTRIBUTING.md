@@ -33,6 +33,10 @@ document.
 18f-ers can merge their changes into master after getting approval from another
 contributor.
 
+### Managing time / Updating holidays
+Each message created will send a specified number of **business days** after an employee joins 18F.
+What constitutes a business day is managed by the gem `business_time` and is configured [here](config/initializers/business_time.rb) and [here](config/business_time.yml). To add days that dolores will skip, add that date to the `holidays` field in [this yaml config file](config/business_time.yml).
+
 ### App setup
 
 To get started, run `bin/setup`
@@ -68,12 +72,12 @@ If you are internal to 18F, contact Brian Hedberg to be added to the developer
 list.  If you are on the list, `dolores-local` will be one of your [Authorized
 Applications](https://alpha.my.usa.gov/authorizations) on MyUSA.
 
-If `dolores-local` is on your MyUSA list for Authorized Applications and you 
+If `dolores-local` is on your MyUSA list for Authorized Applications and you
 are still unable to authenticate, check with Brian to make sure that the `MYUSA_KEY`
 and `MYUSA_SECRET` keys listed in `.env` are up to date.
 For more on environmental variables and keys, refer to [Required Keys](#required-keys) above.
 
-If you are not part of 18F and would like to run the application locally, you can 
+If you are not part of 18F and would like to run the application locally, you can
 follow these steps:
 
 1. Create a [MyUSA Account](https://alpha.my.usa.gov/) and create an application for
@@ -87,7 +91,7 @@ development with the following:
 
   `http://localhost:5000/auth/myusa/callback`
 
-2. Generate a set of keys, `MYUSA_KEY` and `MYUSA_SECRET`, and reference them in 
+2. Generate a set of keys, `MYUSA_KEY` and `MYUSA_SECRET`, and reference them in
 `.env`
 
 3. Edit the method `is_gsa` and its inovocation in
