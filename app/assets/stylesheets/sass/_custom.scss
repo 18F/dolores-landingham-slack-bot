@@ -1,5 +1,31 @@
 .logo-18f{
-	width: 25px;
-	float: left;
-	margin-right: 10px;
+  width: 25px;
+  float: left;
+  margin-right: 10px;
+}
+
+.filter-area {
+  background: white;
+  padding-top: 1em;
+  top: 0;
+  width: 100%;
+
+  &.fixedsticky-on {
+    border-bottom: 1px solid $gray-mid;
+    padding-bottom: 1em;
+  }
+}
+
+.filter-input {
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+  max-width: 150px;
+}
+
+.filter-buttom {
+  float: left;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }

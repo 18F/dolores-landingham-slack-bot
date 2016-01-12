@@ -1,3 +1,17 @@
+<header class="filter-area">
+  <h3>Filter by</h3>
+  <%= form_tag(sent_scheduled_messages_path, method: "get", class: "navbar-form", slack_username: "search-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :slack_username, params[:slack_username], class: "filter-input", placeholder: "slack username" %>
+      <%= text_field_tag :sent_on, params[:sent_on], class: "filter-input", placeholder: "sent on" %>
+      <%= text_field_tag :message_body, params[:message_body], class: "filter-input", placeholder: "body" %>
+
+
+      <button class="btn filter-buttom" type="submit"><i class="icon-search"></i>Filter</button>
+    </div>
+  <% end %>
+</header>
+
 <table>
   <tr>
     <th>Slack username</th>
@@ -17,5 +31,6 @@
     </tr>
   <% end %>
 <table>
-
-<%= paginate(@sent_scheduled_messages) %>
+<% if @sent_scheduled_messages.count == 0 %>
+  <label>No matches found.</label>
+<% end %>

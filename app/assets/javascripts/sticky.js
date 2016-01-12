@@ -1,0 +1,3 @@
+$(function(){
+  $( '.filter-area' ).fixedsticky();
+});
