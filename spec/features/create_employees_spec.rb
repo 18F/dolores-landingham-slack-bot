@@ -30,4 +30,5 @@ feature "Create employees" do
 
     expect(page).to have_content("There is not a slack user with the username \"#{username}\" in your organization.")
   end
+
 end

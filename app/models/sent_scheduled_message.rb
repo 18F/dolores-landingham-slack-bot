@@ -9,4 +9,25 @@ class SentScheduledMessage < ActiveRecord::Base
   validates :sent_on, presence: true
 
   delegate :slack_username, to: :employee
+
+  def self.filter(params)
+    if params[:slack_username].present? || params[:message_body].present? || params[:sent_on].present?
+      @employee = Employee.find_by slack_username: params[:slack_username]
+
+      results = self.all.where("lower(message_body) like ?", "%#{params[:message_body].downcase}%")
+
+      if @employee
+        employee_id = @employee.id
+        results.where(employee_id: employee_id)
+      end
+
+      if !params[:sent_on].blank?
+        results.where(sent_on: params[:sent_on])
+      end
+
+      results
+    else
+      self.all
+    end
+  end
 end

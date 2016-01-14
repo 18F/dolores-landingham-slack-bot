@@ -13,14 +13,21 @@ class EmployeesController < ApplicationController
     elsif @employee.save
       flash[:notice] = "Thanks for adding #{@employee.slack_username}"
       redirect_to root_path
-    else
+    elsif !unknown_employee(@employee.slack_username)
+      flash.now[:error] = "There is already a slack user with the username \"#{@employee.slack_username}\" in your organization."
+      render action: :new
+    elsif
       flash.now[:error] = "Could not create employee"
       render action: :new
     end
   end
 
   def index
-    @employees = Employee.order(started_on: :desc).page(params[:page])
+    if params[:slack_username].present? || params[:started_on].present?
+      @employees = Employee.filter(params).order(slack_username: :asc)
+    else
+      @employees = Employee.order(started_on: :desc).page(params[:page])
+    end
   end
 
   def edit

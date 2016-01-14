@@ -2,11 +2,11 @@
 
 .flash {
   &-error {
-    background-color: #FF6565;
+    background-color: $bg-error;
   }
 
   &-notice {
-    background-color: #A4E7A0;
+    background-color: $bg-notice;
   }
 
   color: black;

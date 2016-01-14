@@ -1,4 +1,15 @@
-<table>
+<header class="filter-area">
+  <h3>Filter by</h3>
+  <%= form_tag(employees_path, method: "get", class: "navbar-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :slack_username, params[:slack_username], class: "filter-input", placeholder: "slack username" %>
+      <%= text_field_tag :started_on, params[:started_on], class: "filter-input", placeholder: "date started" %>
+      <button class="btn filter-buttom" type="submit"><i class="icon-search"></i>Filter</button>
+    </div>
+  <% end %>
+</header>
+
+  <table>
   <tr>
     <th>Slack username</th>
     <th>Started on</th>
@@ -21,5 +32,7 @@
     </tr>
   <% end %>
 </table>
+<% if @employees.count == 0 %>
+  <label>No matches found.</label>
+<% end %>
 
-<%= paginate(@employees) %>
