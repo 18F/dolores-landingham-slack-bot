@@ -1,6 +1,10 @@
 require "rails_helper"
 
 describe Employee do
+  describe "Associations" do
+    it { should have_many(:sent_scheduled_messages).dependent(:destroy) }
+  end
+
   describe "Validations" do
      subject { create(:employee) }
      it { should validate_presence_of(:slack_username) }

@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe SentScheduledMessage do
   describe "Associations" do
-    it { should belong_to(:employee).dependent(:destroy) }
-    it { should belong_to(:scheduled_message).dependent(:destroy) }
+    it { should belong_to(:employee) }
+    it { should belong_to(:scheduled_message) }
   end
 
   describe "Validations" do
