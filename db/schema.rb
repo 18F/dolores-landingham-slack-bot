@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021202217) do
+ActiveRecord::Schema.define(version: 20160121174450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,15 @@ ActiveRecord::Schema.define(version: 20151021202217) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "slack_username",                 null: false
-    t.date     "started_on",                     null: false
-    t.string   "time_zone",      default: "UTC", null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.string   "slack_username",                                        null: false
+    t.date     "started_on",                                            null: false
+    t.string   "time_zone",      default: "Eastern Time (US & Canada)", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "employees", ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
 
   create_table "scheduled_messages", force: :cascade do |t|
     t.datetime "created_at",                                       null: false
@@ -47,7 +50,10 @@ ActiveRecord::Schema.define(version: 20151021202217) do
     t.text     "body",                                             null: false
     t.integer  "days_after_start",                                 null: false
     t.time     "time_of_day",      default: '2000-01-01 12:00:00', null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "scheduled_messages", ["deleted_at"], name: "index_scheduled_messages_on_deleted_at", using: :btree
 
   create_table "sent_scheduled_messages", force: :cascade do |t|
     t.datetime "created_at",                                           null: false
@@ -58,8 +64,10 @@ ActiveRecord::Schema.define(version: 20151021202217) do
     t.integer  "scheduled_message_id",                                 null: false
     t.date     "sent_on",                                              null: false
     t.time     "sent_at",              default: '2000-01-01 12:00:00', null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "sent_scheduled_messages", ["deleted_at"], name: "index_sent_scheduled_messages_on_deleted_at", using: :btree
   add_index "sent_scheduled_messages", ["employee_id", "scheduled_message_id"], name: "by_employee_scheduled_message", unique: true, using: :btree
 
   create_table "taggings", force: :cascade do |t|

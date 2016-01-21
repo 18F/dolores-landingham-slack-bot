@@ -1,6 +1,8 @@
 class SentScheduledMessage < ActiveRecord::Base
-  belongs_to :employee
-  belongs_to :scheduled_message
+  acts_as_paranoid
+
+  belongs_to :employee, dependent: :destroy
+  belongs_to :scheduled_message, dependent: :destroy
 
   validates :employee, presence: true, uniqueness: { scope: :scheduled_message }
   validates :message_body, presence: true
