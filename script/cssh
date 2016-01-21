@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [[ $# -eq 0 ]]; then
+  echo "cssh <appname>"
+  exit
+fi
+
+APPNAME=$1
+
+cf create-app-manifest $APPNAME
+cf-ssh -f ${APPNAME}_manifest.yml --verbose
