@@ -94,7 +94,7 @@ development with the following:
 2. Generate a set of keys, `MYUSA_KEY` and `MYUSA_SECRET`, and reference them in
 `.env`
 
-3. Edit the method `is_gsa` and its inovocation in
+3. Edit the method `is_gsa` and its invocation in
    `/app/controllers/auth_controller` to accomodate non-`gsa.gov` email
    addresses locally.
 
