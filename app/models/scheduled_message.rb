@@ -1,11 +1,14 @@
 class ScheduledMessage < ActiveRecord::Base
+  acts_as_paranoid
+  acts_as_taggable
+
+  has_many :sent_scheduled_messages, dependent: :destroy
+
   validates :body, presence: true
   validates :days_after_start, presence: true
   validates :tag_list, presence: true
   validates :time_of_day, presence: true
   validates :title, presence: true
-
-  acts_as_taggable
 
   def self.filter(params)
     if params[:title].present? || params[:body].present? || params[:tag].present?

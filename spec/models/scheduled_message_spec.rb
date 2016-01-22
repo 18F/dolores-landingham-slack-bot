@@ -1,6 +1,10 @@
 require "rails_helper"
 
 describe ScheduledMessage do
+  describe "Associations" do
+    it { should have_many(:sent_scheduled_messages).dependent(:destroy) }
+  end
+
   describe "Validations" do
      it { should validate_presence_of(:body) }
      it { should validate_presence_of(:days_after_start) }
