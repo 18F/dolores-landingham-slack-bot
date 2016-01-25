@@ -5,7 +5,6 @@ applications:
   env:
     APPLICATION_HOST: dolores-app.18f.gov
     DEFAULT_URL_HOST: dolores-app.18f.gov
-    DISABLE_SANDBOX_WARNING: true
     HOST: dolores-app.18f.gov
     RACK_ENV: production
     RAILS_ENV: production
