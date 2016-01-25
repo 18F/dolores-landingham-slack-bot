@@ -4,7 +4,7 @@ require "business_time"
 describe MessageEmployeeMatcher do
   describe "#run" do
     it "matches messages to users based on days after start" do
-      Timecop.freeze(Time.current) do
+      Timecop.freeze(Time.parse("11:00:00 UTC")) do
         days_after_start = 3
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: Time.current.in_time_zone("Eastern Time (US & Canada)"))
         employee_one = create(:employee, started_on: days_after_start.business_days.ago)
@@ -13,7 +13,7 @@ describe MessageEmployeeMatcher do
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
         expect(matched_employees_and_messages).to eq(
-            [ employee_one ]
+            [employee_one]
         )
       end
     end
@@ -29,9 +29,7 @@ describe MessageEmployeeMatcher do
 
           matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
-          expect(matched_employees_and_messages).to eq(
-            []
-          )
+          expect(matched_employees_and_messages).to eq([])
         end
       end
     end
@@ -49,7 +47,7 @@ describe MessageEmployeeMatcher do
         matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
         expect(matched_employees_and_messages).to eq(
-            [ employee_est, employee_cst ]
+            [employee_est, employee_cst]
         )
       end
     end
@@ -71,7 +69,7 @@ describe MessageEmployeeMatcher do
     end
 
     it "ignores messages that have already been sent to users" do
-      Timecop.freeze(Time.current) do
+      Timecop.freeze(Time.parse("11:00:00 UTC")) do
         days_after_start = 3
         scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: Time.current.in_time_zone("Eastern Time (US & Canada)"))
         employee_one = create(:employee, started_on: days_after_start.business_days.ago)
@@ -90,10 +88,10 @@ describe MessageEmployeeMatcher do
         post_matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
         expect(pre_matched_employees_and_messages).to eq(
-            [ employee_one, employee_two ]
+          [employee_one, employee_two]
         )
         expect(post_matched_employees_and_messages).to eq(
-            [ employee_two ]
+          [employee_two]
         )
       end
     end
