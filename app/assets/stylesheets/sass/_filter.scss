@@ -6,13 +6,13 @@
 
 .filter-area {
   background: white;
-  padding-top: 1em;
   top: 0;
   width: 100%;
 
   &.fixedsticky-on {
     border-bottom: 1px solid $gray-mid;
     padding-bottom: 1em;
+    padding-top: 1em;
   }
 }
 

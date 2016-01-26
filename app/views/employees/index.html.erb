@@ -1,5 +1,5 @@
 <header class="filter-area">
-  <h3>Filter by</h3>
+  <h2>Filter</h2>
   <%= form_tag(employees_path, method: "get", class: "navbar-form") do %>
     <div class="input-append">
       <%= text_field_tag :slack_username, params[:slack_username], class: "filter-input", placeholder: "slack username" %>
@@ -32,7 +32,9 @@
     </tr>
   <% end %>
 </table>
-<% if @employees.count == 0 %>
+<% if @employees.empty? %>
   <label>No matches found.</label>
 <% end %>
+
+<%= paginate(@employees) %>
 

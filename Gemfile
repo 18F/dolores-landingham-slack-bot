@@ -21,6 +21,7 @@ gem "slack-ruby-client"
 gem "uglifier"
 gem "business_time"
 gem "holidays"
+gem "active_record_union"
 
 group :development, :test do
   gem "awesome_print"
