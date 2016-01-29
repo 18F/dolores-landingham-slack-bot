@@ -24,9 +24,9 @@ class EmployeesController < ApplicationController
 
   def index
     if params[:slack_username].present? || params[:started_on].present?
-      @employees = Employee.filter(params).order(slack_username: :asc)
+      @employees = Employee.filter(params).order(slack_username: :asc).page(params[:page])
     else
-      @employees = Employee.order(started_on: :desc).page(params[:page])
+      @employees = Employee.order(created_at: :desc).page(params[:page])
     end
   end
 

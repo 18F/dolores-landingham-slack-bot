@@ -1,5 +1,6 @@
 <header class="filter-area">
-  <h3>Filter by<label><i>Please separate tags with a comma</i></label></h3>
+  <h2>Filter</h2>
+  <label><i>Please separate tags with a comma</i></label>
   <%= form_tag(scheduled_messages_path, method: "get", class: "navbar-form", slack_username: "search-form") do %>
     <div class="input-append">
       <%= text_field_tag :title, params[:title], class: "filter-input", placeholder: "title" %>
@@ -13,7 +14,7 @@
 
 <table>
   <tr>
-    <th>Send day (after employee start)</th>
+    <th>Send day (business days after employee start)</th>
     <th>Send time</th>
     <th>Title</th>
     <th>Body</th>
@@ -34,6 +35,8 @@
     </tr>
   <% end %>
 </table>
-<% if @scheduled_messages.count == 0 %>
+<% if @scheduled_messages.empty? %>
   <label>No matches found.</label>
 <% end %>
+
+<%= paginate(@scheduled_messages) %>

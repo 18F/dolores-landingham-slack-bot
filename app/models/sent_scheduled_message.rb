@@ -14,17 +14,22 @@ class SentScheduledMessage < ActiveRecord::Base
 
   def self.filter(params)
     if params[:slack_username].present? || params[:message_body].present? || params[:sent_on].present?
-      @employee = Employee.find_by slack_username: params[:slack_username]
 
-      results = self.all.where("lower(message_body) like ?", "%#{params[:message_body].downcase}%")
+      @employees = Employee.where("slack_username like ?", "%#{params[:slack_username].downcase}%")
 
-      if @employee
-        employee_id = @employee.id
-        results.where(employee_id: employee_id)
+      results = self.none
+
+      if @employees
+        @employees.each do |e|
+          new_results = self.all.where(employee_id: e.id)
+          results = results.union(new_results)
+        end
       end
 
+      results = results.where("lower(message_body) like ?", "%#{params[:message_body].downcase}%")
+
       if !params[:sent_on].blank?
-        results.where(sent_on: params[:sent_on])
+        results = results.where(sent_on: params[:sent_on])
       end
 
       results

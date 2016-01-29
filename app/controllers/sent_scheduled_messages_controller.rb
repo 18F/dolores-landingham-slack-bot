@@ -1,5 +1,5 @@
 class SentScheduledMessagesController < ApplicationController
   def index
-    @sent_scheduled_messages = SentScheduledMessage.filter(params).order(sent_on: :desc)
+    @sent_scheduled_messages = SentScheduledMessage.filter(params).order(created_at: :desc).page(params[:page])
   end
 end
