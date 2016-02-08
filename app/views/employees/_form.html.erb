@@ -1,6 +1,6 @@
 <%= simple_form_for @employee do |form| %>
   <%= form.input :slack_username %>
-  <%= form.input :started_on, input_html: {class: "date-time-select"}, order: [:month, :day, :year] %>
+  <%= form.input :started_on, input_html: { class: "date-time-select" }, order: [:month, :day, :year] %>
   <%= form.input :time_zone, priority: /US/ %>
   <%= form.button :submit %>
 <% end %>

@@ -30,7 +30,9 @@
       <td><%= message.title %></td>
       <td><%= truncate(message.body, length: 100) %></td>
       <td><%= message.tag_list.join(", ") %></td>
-      <td><%= link_to "Edit", edit_scheduled_message_path(message) %></td>
+      <% if @current_user.admin? %>
+        <td><%= link_to "Edit", edit_scheduled_message_path(message) %></td>
+      <% end %>
       <td><%= link_to "Test", new_scheduled_message_test_message_path(message) %></td>
     </tr>
   <% end %>

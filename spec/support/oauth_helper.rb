@@ -1,10 +1,10 @@
 module OauthHelper
-  def login_with_oauth
-    setup_mock_auth
+  def login_with_oauth(user = create(:user))
+    setup_mock_auth(user.email)
     visit "/auth/myusa"
   end
 
-  def setup_mock_auth(email = "test@example.com")
+  def setup_mock_auth(email)
     OmniAuth.config.mock_auth[:myusa] = OmniAuth::AuthHash.new(
       provider: "myusa",
       raw_info: {

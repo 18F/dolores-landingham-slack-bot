@@ -1,0 +1,16 @@
+<h2>Dolores users</h2>
+  <table>
+  <tr>
+    <th>Email</th>
+    <th>Admin</th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.admin? %></td>
+        <td><%= link_to "Edit", edit_user_path(user) %></td>
+      </tr>
+  <% end %>
+</table>

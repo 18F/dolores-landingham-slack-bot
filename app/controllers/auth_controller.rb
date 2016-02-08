@@ -6,7 +6,8 @@ class AuthController < ApplicationController
     auth_email = auth.extra.raw_info.email
 
     if is_permitted?(auth_email)
-      User.find_or_create_by(email: auth_email)
+      user = User.find_or_create_by(email: auth_email)
+      sign_in(user)
       session[:token] = auth.credentials.token
       flash[:success] = "You successfully signed in"
       redirect_to root_path
