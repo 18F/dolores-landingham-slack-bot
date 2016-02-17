@@ -13,5 +13,7 @@ applications:
   memory: 1GB
   name: dolores-app-ssh
   no-route: true
+  services:
+  - dolores-app-db
 command: script/start
 domain: 18f.gov

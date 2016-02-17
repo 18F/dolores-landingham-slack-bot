@@ -11,10 +11,11 @@ applications:
     DEFAULT_URL_HOST: dolores-app.18f.gov
     HOST: dolores-app.18f.gov
     APPLICATION_HOST: dolores-app.18f.gov
-    DISABLE_SANDBOX_WARNING: true
     RESTRICT_ACCESS: true
     RACK_ENV: production
     RAILS_ENV: production
+  services:
+    - dolores-app-db
 - name: dolores-staging
   buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
   memory: 1GB
@@ -22,7 +23,8 @@ applications:
     DEFAULT_URL_HOST: dolores-staging.18f.gov
     HOST: dolores-staging.18f.gov
     APPLICATION_HOST: dolores-staging.18f.gov
-    DISABLE_SANDBOX_WARNING: true
     RESTRICT_ACCESS: true
     RACK_ENV: production
     RAILS_ENV: production
+  services:
+    - dolores-staging-db
