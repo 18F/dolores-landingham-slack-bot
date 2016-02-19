@@ -11,7 +11,7 @@ feature "Edit scheduled messages" do
 
       login_with_oauth(admin)
       visit scheduled_messages_path
-      click_on "Edit"
+      page.find(".button-edit").click
       fill_in "Title", with: new_title
       fill_in "Tags", with: tags
       click_on "Update Scheduled message"
@@ -32,7 +32,7 @@ feature "Edit scheduled messages" do
 
       login_with_oauth(admin)
       visit scheduled_messages_path
-      click_on "Edit"
+      page.find(".button-edit").click
       fill_in "Title", with: new_title
       fill_in "Tags", with: tags
       click_on "Update Scheduled message"
@@ -50,7 +50,7 @@ feature "Edit scheduled messages" do
 
       visit scheduled_messages_path
 
-      expect(page).not_to have_content("Edit")
+      expect(page).not_to have_selector(".button-edit")
     end
 
     scenario "cannot visit edit path for a scheduled message" do

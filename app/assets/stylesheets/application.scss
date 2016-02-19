@@ -1,32 +1,14 @@
-@import "sass/core";
+// Bourban, Neat, Bitters
+@import "core";
 
-.flash {
-  &-error {
-    background-color: $bg-error;
-  }
+// Presets – variables, colors, mixins
+@import "presets";
 
-  &-notice {
-    background-color: $bg-notice;
-  }
+// Elements – overwrites element styles
+@import "elements";
 
-  color: black;
-  position: fixed;
-  font-weight: bold;
-  width: 96%;
-  margin: 20px;
+// Layouts – grid
+@import "layout/containers";
 
-  p {
-    font-size: 110%;
-    margin: 15px 0;
-  }
-}
-
-.logo-18f {
-  width: 25px;
-  float: left;
-  margin-right: 10px;
-}
-
-.date-time-select {
-    display: inline;
-}
+// Components – bundles of styles applied to site components
+@import "components";

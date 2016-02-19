@@ -6,7 +6,7 @@ feature "Delete employees" do
 
     login_with_oauth
     visit employees_path
-    click_on "Delete"
+    page.find(".button-delete").click
     click_accept_on_javascript_popup
 
     expect(page).to have_content("You deleted #{employee.slack_username}")

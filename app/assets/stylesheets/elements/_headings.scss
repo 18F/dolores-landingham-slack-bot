@@ -1,0 +1,25 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-nimbus('regular');
+
+  line-height: normal;
+  margin-top: 0;
+}
+
+h1 {
+  @include font-nimbus('bold');
+
+  font-size: 1.5em;
+  letter-spacing: 1px;
+  margin: 0 0 0.4em;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: 300;
+  letter-spacing: 1px;
+}

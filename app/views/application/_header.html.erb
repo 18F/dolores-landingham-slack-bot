@@ -1,0 +1,14 @@
+<header class="filter-area">
+  <div class="filter-inputs">
+    <h2 class="filter-header"><%= title %>
+    	<% if defined? subtitle %>
+    		<span class="filter-subheader"><%= subtitle %></span>
+    	<% end %>
+    </h2>
+    <%= yield %>
+  </div>
+  <div class="filter-logo_container">
+    <h3 class="filter-logo_text">18F Onboarding Bot</h3>
+    <%= image_tag "18F_Logo/PNG/18F-Logo-Bright-L.png", class: "filter-logo" %>
+  </div>
+</header>

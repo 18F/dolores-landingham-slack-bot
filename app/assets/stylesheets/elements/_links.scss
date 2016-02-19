@@ -1,0 +1,8 @@
+a {
+  color: $dark-18f;
+
+  &:hover,
+  &:focus {
+    color: $medium-18f;
+  }
+}

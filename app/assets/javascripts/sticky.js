@@ -1,3 +1,9 @@
 $(function(){
-  $( '.filter-area' ).fixedsticky();
+
+  var $filterHeight = $( '.filter-area' ).outerHeight();
+
+  $( '.main-content' ).css({
+  	'margin-top': $filterHeight
+  });
+
 });

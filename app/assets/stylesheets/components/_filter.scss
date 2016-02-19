@@ -1,0 +1,69 @@
+.filter-area {
+  border-bottom: 1px solid $dark-18f;
+  left: 25%;
+  right: 0;
+  padding: $base-padding;
+  background: $dark-18f;
+  color: $white;
+  top: 0;
+  width: 75%;
+  position: fixed;
+
+  &.fixedsticky-on {
+    border-bottom: 1px solid $dark-18f;
+    left: 25%;
+    right: 0;
+    padding: $base-padding;
+    background: $dark-18f;
+    color: $white;
+    width: 75%;
+  }
+}
+
+.filter-input {
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+  max-width: 150px;
+}
+
+.filter-button {
+  float: left;
+  padding: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: $dark-18f;
+  color: $white;
+  &:hover,
+  &:focus {
+    background: $bright-18f;
+    color: $dark-18f;
+  }
+}
+
+.filter-logo {
+  float: right;
+  width: 50px;
+}
+
+.filter-logo_text {
+  float: left;
+  margin-right: $base-padding;
+}
+
+.filter-logo_container {
+  float: right;
+}
+
+.filter-inputs {
+  float: left;
+}
+
+.filter-header {
+  @include font-nimbus('bold');
+}
+
+.filter-subheader {
+  font-style: italic;
+  font-size: 0.8em;
+}
