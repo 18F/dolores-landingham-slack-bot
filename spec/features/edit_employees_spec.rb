@@ -8,7 +8,7 @@ feature "Edit employees" do
 
     login_with_oauth
     visit employees_path
-    click_on "Edit"
+    page.find(".button-edit").click
     fill_in "Slack username", with: new_slack_username
     click_on "Update Employee"
 
@@ -23,7 +23,7 @@ feature "Edit employees" do
 
     login_with_oauth
     visit employees_path
-    click_on "Edit"
+    page.find(".button-edit").click
     fill_in "Slack username", with: new_slack_username
     click_on "Update Employee"
 

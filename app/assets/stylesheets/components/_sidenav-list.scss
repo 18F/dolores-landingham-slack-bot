@@ -1,0 +1,124 @@
+/*
+  Adapted from US Web Design Standards
+  https://playbook.cio.gov/designstandards
+*/
+
+$sidenav-padding: 1rem 1rem 1rem 1.8rem;
+
+.sidenav-list {
+  margin-bottom: $base-padding-extra;
+}
+
+.sidenav-list a {
+  @include font-nimbus('regular');
+
+  border: none;
+  color: $dark-18f;
+  display: block;
+  line-height: 1;
+  padding: $sidenav-padding;
+
+}
+
+.sidenav-list-item {
+  border-top: 1px solid $dark-18f;
+
+  &:first-child {
+    border-top: none;
+  }
+
+}
+
+.sidenav-sub_list {
+  margin: 0;
+  width: 100%;
+
+  li {
+    border: none;
+    margin-left: 1.8rem;
+  }
+
+  a:hover,
+  a.current {
+    border: none;
+  }
+}
+
+.sidenav-sub_list {
+  margin-bottom: $base-padding;
+}
+
+.sidenav-sub_list li {
+  &:focus,
+  &:hover {
+    @include font-nimbus('bold');
+
+    background-color: transparent;
+    border-left: 4px solid $dark-18f;
+    color: $dark-18f;
+    outline: 1px;
+  }
+}
+
+.sidenav-sub_list li a {
+  padding-left: 1.8rem;
+}
+
+.sidenav-sub_list li.current a {
+  @include font-nimbus('bold');
+}
+
+.sidenav-list_title {
+  @include font-nimbus('regular');
+
+  border-radius: 0;
+  letter-spacing: 1px;
+  padding: $sidenav-padding;
+  text-align: left;
+  width: 100%;
+
+  &[aria-expanded='true'],
+  &:focus,
+  &:hover {
+    @include font-nimbus('bold');
+
+    background-color: transparent;
+    border-left: 4px solid $dark-18f;
+    color: $dark-18f;
+    outline: 1px;
+  }
+}
+
+.sidenav-list_title .icon-circle-plus,
+.sidenav-list_title .icon-circle-minus {
+  float: right;
+  color: transparent;
+  outline: 1px;
+}
+
+.sidenav-list_title {
+    &:hover,
+    &:focus {
+      .icon-circle-plus,
+      .icon-circle-minus {
+        color: $dark-18f;
+      }
+    }
+}
+
+.sidenav-list_title[aria-expanded=true] .icon-circle-plus {
+  display: none;
+}
+
+.sidenav-list_title[aria-expanded=true] .icon-circle-minus {
+  display: block;
+  color: $dark-18f;
+}
+
+.sidenav-list_title[aria-expanded=false] .icon-circle-plus {
+  display: block;
+}
+
+.sidenav-list_title[aria-expanded=false] .icon-circle-minus {
+  display: none;
+}

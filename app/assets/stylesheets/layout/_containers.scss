@@ -1,0 +1,21 @@
+.container {
+  @include outer-container;
+}
+
+.container-banner {
+	@extend .container;
+
+	height: 100%;
+	overflow-y: auto;
+	padding: $base-padding;
+	position: fixed;
+	width: 25%;
+}
+
+.container-content {
+	@extend .container;
+
+	margin-left: 25%;
+	padding: $base-padding;
+	width: 75%;
+}

@@ -9,7 +9,7 @@ feature "View message sent to employees" do
     send_scheduled_message_to_employee
     change_scheduled_message_body
 
-    click_on "See sent scheduled messages"
+    visit sent_scheduled_messages_path
 
     expect(page).to have_content(original_scheduled_message_body)
     expect(page).to have_content(create_employee.slack_username)

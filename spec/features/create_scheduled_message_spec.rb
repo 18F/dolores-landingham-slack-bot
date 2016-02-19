@@ -6,7 +6,7 @@ feature "Create scheduled message" do
       admin = create(:admin)
       login_with_oauth(admin)
       visit root_path
-      click_on "Create scheduled message"
+      visit new_scheduled_message_path
 
       fill_in "Title", with: "Message title"
       fill_in "Message body", with: "Message body"
@@ -23,7 +23,7 @@ feature "Create scheduled message" do
       admin = create(:admin)
       login_with_oauth(admin)
       visit root_path
-      click_on "Create scheduled message"
+      visit new_scheduled_message_path
 
       fill_in "Title", with: "Message title"
       fill_in "Business days after employee starts to send message", with: 1

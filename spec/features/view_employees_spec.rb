@@ -6,7 +6,7 @@ feature "View employees" do
     visit root_path
     create_employees
 
-    click_on "See all employees"
+    visit employees_path
 
     expect(page).to have_content(first_employee.slack_username)
     expect(page).to have_content(first_employee.started_on)

@@ -1,40 +1,49 @@
-<header class="filter-area">
-  <h2>Filter</h2>
+<%= render :layout => '/application/header', :locals => {:title => 'Employees'} do %>
   <%= form_tag(employees_path, method: "get", class: "navbar-form") do %>
     <div class="input-append">
       <%= text_field_tag :slack_username, params[:slack_username], class: "filter-input", placeholder: "slack username" %>
       <%= text_field_tag :started_on, params[:started_on], class: "filter-input", placeholder: "date started" %>
-      <button class="btn filter-buttom" type="submit"><i class="icon-search"></i>Filter</button>
+      <button class="button filter-button" type="submit"><i class="icon-search"></i>Filter</button>
     </div>
   <% end %>
-</header>
-
-  <table>
-  <tr>
-    <th>Slack username</th>
-    <th>Started on</th>
-    <th>Time Zone</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <% @employees.each do |employee| %>
-    <tr>
-      <td><%= employee.slack_username %></td>
-      <td><%= employee.started_on %></td>
-      <td><%= employee.time_zone %></td>
-      <td><%= link_to "Edit", edit_employee_path(employee) %></td>
-      <td><%= link_to "Delete",
-        { action: :destroy, id: employee.id },
-        method: :delete,
-        data: { confirm: "Are you sure you want to delete @#{employee.slack_username}?" }
-        %></td>
-    </tr>
-  <% end %>
-</table>
-<% if @employees.empty? %>
-  <label>No matches found.</label>
 <% end %>
 
-<%= paginate(@employees) %>
 
+<section class="main-content">
+  <%= render "flashes" -%>
+
+  <table>
+    <tr>
+      <th>Slack username</th>
+      <th>Started on</th>
+      <th>Time Zone</th>
+      <th class="column-buttons"></th>
+      <th class="column-wide"></th>
+    </tr>
+
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.slack_username %></td>
+        <td><%= employee.started_on %></td>
+        <td><%= employee.time_zone %></td>
+        <td>
+          <%= link_to edit_employee_path(employee), class: 'button button-edit' do %>
+            <icon class="icon-edit"></icon>
+            <span>Edit</span>
+          <% end %>
+        </td>
+        <td>
+          <a class="button button-delete" data-confirm="Are you sure you want to delete @<%= employee.slack_username %>?" rel="nofollow" data-method="delete" href="/employees/<%= employee.id %>">
+            <icon class="icon-circle-x"></icon>
+            Delete
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <% if @employees.empty? %>
+    <label>No matches found.</label>
+  <% end %>
+
+  <%= paginate(@employees) %>
+</section>

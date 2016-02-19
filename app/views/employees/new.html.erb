@@ -1,2 +1,6 @@
-<h2>Add a new employee</h2>
-<%= render "form" %>
+<%= render 'header', :title => 'Add a new employee' %>
+
+<section class="main-content">
+	<%= render "flashes" -%>
+	<%= render "form" %>
+</section>

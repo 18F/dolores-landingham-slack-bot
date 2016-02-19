@@ -1,0 +1,16 @@
+.input .date {
+  display: inline-block;
+
+  select.date {
+    padding: 1em;
+  }
+}
+
+.input {
+  margin-bottom: $base-padding-lite;
+}
+
+.input:last-of-type {
+  margin-bottom: $base-padding;
+}
+

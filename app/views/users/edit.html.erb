@@ -1,5 +1,15 @@
-<%= simple_form_for @user do |form| %>
-  <%= form.input :email, disabled: true %>
-  <%= form.input :admin %>
-  <%= form.button :submit %>
-<% end %>
+<%= render 'header', :title => 'Update user' %>
+
+<section class="main-content">
+	<%= render "flashes" -%>
+
+	<%= simple_form_for @user do |form| %>
+	  <%= form.input :email, disabled: true %>
+	  <%= form.input :admin %>
+	  <%= form.button :submit %>
+	<% end %>
+</section>
+
+
+
+

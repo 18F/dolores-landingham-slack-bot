@@ -1,16 +1,25 @@
-<h2>Dolores users</h2>
-  <table>
-  <tr>
-    <th>Email</th>
-    <th>Admin</th>
-    <th></th>
-  </tr>
+<%= render 'header', :title => 'Dolores Users' %>
 
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.admin? %></td>
-        <td><%= link_to "Edit", edit_user_path(user) %></td>
-      </tr>
-  <% end %>
-</table>
+<section class="main-content">
+  <%= render "flashes" -%>
+  <table>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th></th>
+    </tr>
+
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.admin? %></td>
+          <td>
+            <%= link_to edit_user_path(user), class: 'button button-edit' do %>
+              <icon class="icon-edit"></icon>
+              <span>Edit</span>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</section>

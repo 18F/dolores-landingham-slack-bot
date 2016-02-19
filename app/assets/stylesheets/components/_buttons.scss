@@ -1,0 +1,60 @@
+button,
+button a,
+input[type='button'],
+input[type='submit'],
+input[type='reset'] {
+  background: $bright-18f;
+  border: 1px solid $bright-18f;
+  color: $dark-18f;
+
+  &:hover,
+  &:focus {
+    background: $dark-18f;
+    color: $white;
+    border: 1px solid $bright-18f;
+    text-decoration: none;
+
+    a {
+      background: $dark-18f;
+      color: $white;
+      border: 1px solid $bright-18f;
+      text-decoration: none;
+    }
+  }
+}
+
+.button {
+  @extend button;
+}
+
+.button-test {
+  background: $medium-18f;
+  color: $white;
+  border: 1px solid $medium-18f;
+}
+
+.button-delete {
+  background: $dark-18f;
+  color: $white;
+  border: 1px solid $bright-18f;
+
+  &:hover,
+  &:focus {
+    background: $red;
+    color: $dark-18f;
+    border: 1px solid $dark-18f;
+  }
+}
+
+.button-edit {
+
+  object {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+
+.test-svg path {
+  stroke: white;
+}

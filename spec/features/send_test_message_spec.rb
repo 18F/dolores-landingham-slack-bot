@@ -7,7 +7,7 @@ feature "Send test message" do
     login_with_oauth
     visit scheduled_messages_path
 
-    click_on "Test"
+    page.find(".button-test").click
     fill_in "Slack username", with: username_from_fixture
     click_on "Send test"
 
