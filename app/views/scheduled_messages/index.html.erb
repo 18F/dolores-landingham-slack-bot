@@ -46,6 +46,15 @@
             <span>Test</span>
           <% end %>
         </td>
+        <% if @current_user.admin? %>
+          <td>
+            <%= link_to 'Delete', message,
+              method: :delete,
+              class: 'button button-delete icon-circle-x',
+              data: { confirm: 'Are you sure you want to delete this message?' }
+            %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

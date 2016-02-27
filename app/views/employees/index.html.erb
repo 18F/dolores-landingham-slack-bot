@@ -33,10 +33,11 @@
           <% end %>
         </td>
         <td>
-          <a class="button button-delete" data-confirm="Are you sure you want to delete @<%= employee.slack_username %>?" rel="nofollow" data-method="delete" href="/employees/<%= employee.id %>">
-            <icon class="icon-circle-x"></icon>
-            Delete
-          </a>
+          <%= link_to 'Delete', employee,
+            method: :delete,
+            class: 'button button-delete icon-circle-x',
+            data: { confirm: "Are you sure you want to delete @#{employee.slack_username}?" }
+          %>
         </td>
       </tr>
     <% end %>

@@ -19,4 +19,9 @@ RSpec.configure do |config|
   config.order = :random
 end
 
+def click_accept_on_javascript_popup(&block)
+  page.accept_confirm do
+    yield block
+  end
+end
 WebMock.disable_net_connect!(allow_localhost: true)

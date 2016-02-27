@@ -37,6 +37,14 @@ class ScheduledMessagesController < ApplicationController
     end
   end
 
+  def destroy
+    scheduled_message = ScheduledMessage.find(params[:id])
+    scheduled_message.destroy
+
+    flash[:notice] = "You deleted #{scheduled_message.title}"
+    redirect_to scheduled_messages_path
+  end
+
   private
 
   def scheduled_message_params
