@@ -36,17 +36,9 @@ Please file an issue if you have any questions about Mrs. Landingham.
 5. Select a time that the message should be sent (the message will be sent at each employee's local time)
 6. Add tags to be able to surface the message
 
-
 ## Installing and contributing
 
 If you're interested in setting up a version of this bot or contributing to this one, our [contribution guidelines](CONTRIBUTING.md) explain how to set up and deploy this app, find potential tasks to work on, and submit pull requests.
-
-### Not sure what to work on?
-
-Check out the [Dolores Bot Waffle.io
-board](https://waffle.io/18F/dolores-landingham-bot) and pick out something in
-the "Up next" column. Make sure you move the feature you're working on the "In
-progress" and assign it to yourself so we all know who is working on what.
 
 ## Using Dolores
 

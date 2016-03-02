@@ -9,10 +9,15 @@ and ask that all contributors do the same.
 
 ### Not sure what to work on?
 
-Check out the [Dolores Bot Waffle.io
-board](https://waffle.io/18F/dolores-landingham-bot) and pick out something in
-the "Up next" column. Make sure you move the feature you're working on the "In
-progress" so we all know who is working on what.
+Issues that are ready for contributions are tagged with [help
+wanted](https://github.com/18F/dolores-landingham-bot/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22).
+
+Comment on the issue you're working on so we all know who is working on what.
+
+If you're thinking about working on a feature unrelated to an existing issue,
+consider creating an issue before you start work to get feedback from the team.
+We are always happy to receive pull requests but don't want anyone to feel like
+they wasted time if a pull request is submitted but not merged.
 
 ### Git Protocol
 
@@ -30,8 +35,9 @@ For a more detailed walk through on how to do this, you can read thoughtbot's
 Protocol](https://github.com/thoughtbot/guides/tree/master/protocol/git#write-a-feature)
 document.
 
-18f-ers can merge their changes into master after getting approval from another
-contributor.
+18F-ers can merge their changes into master after getting approval from another
+contributor. PRs can be merged manually by merging the branch into `master`
+locally and pushing `master` or by using the merge button on GitHub.
 
 ### Managing time / Updating holidays
 Each message created will send a specified number of **business days** after an employee joins 18F.
