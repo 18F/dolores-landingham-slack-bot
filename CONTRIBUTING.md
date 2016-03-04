@@ -85,7 +85,7 @@ development with the following:
 
   For Url:
 
-  `http://localhost:5000/auth/myusa/callback`
+  `http://localhost:5000/`
 
   For Redirect uri:
 
@@ -94,8 +94,9 @@ development with the following:
 2. Under `Select the API Scopes that your Application will use`: select `Email
    Address`.
 
-3. Generate a set of keys, `MYUSA_KEY` and `MYUSA_SECRET`, and reference them in
-`.env`
+3. Generate a set of keys by clicking `New Api Key` next to your application in MyUSA.
+   They will be called `Consumer Public Key` and `Consumer Secret Key` on MyUSA but will
+   map to `MYUSA_KEY` and `MYUSA_SECRET`, in your local `.env` file.
 
 4. Edit the method `is_gsa` and its invocation in
    `/app/controllers/auth_controller` to accomodate non-`gsa.gov` email
