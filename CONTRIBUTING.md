@@ -97,19 +97,23 @@ development with the following:
 
   `http://localhost:5000/auth/myusa/callback`
 
-2. Generate a set of keys, `MYUSA_KEY` and `MYUSA_SECRET`, and reference them in
-`.env`
+2. Under `Select the API Scopes that your Application will use`: select `Email
+   Address`.
 
-3. Edit the method `is_gsa` and its invocation in
+3. Generate a set of keys by clicking `New Api Key` next to your application in MyUSA.
+   They will be called `Consumer Public Key` and `Consumer Secret Key` on MyUSA but will
+   map to `MYUSA_KEY` and `MYUSA_SECRET`, in your local `.env` file.
+
+4. Edit the method `is_gsa` and its invocation in
    `/app/controllers/auth_controller` to accomodate non-`gsa.gov` email
    addresses locally.
 
 ```ruby
   # Invocation
-  if is_gsa?(auth_email)
+  if is_permitted?(auth_email)
 
   # Method
-  def is_gsa?(auth_email)
+  def is_permitted?(auth_email)
     /gsa.gov/.match(auth_email)
   end
 ```
