@@ -35,20 +35,22 @@ describe MessageEmployeeMatcher do
     end
 
     it "matches messages to users if the user's time has advanced past the scheduled message send at time but hasn't been sent yet" do
-      Timecop.freeze(Time.parse("18:30:00 UTC")) do
-        days_after_start = 3
-        scheduled_message_time = Time.parse("12:00:00 UTC")
-        scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
-        employee_est = create(:employee, started_on: days_after_start.business_days.ago)
-        employee_cst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Central Time (US & Canada)")
-        _employee_mst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Mountain Time (US & Canada)")
-        _employee_pst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Pacific Time (US & Canada)")
+      Timecop.travel(2016, 2, 1) do
+        Timecop.freeze(Time.parse("18:30:00 UTC")) do
+          days_after_start = 3
+          scheduled_message_time = Time.parse("12:00:00 UTC")
+          scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
+          employee_est = create(:employee, started_on: days_after_start.business_days.ago)
+          employee_cst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Central Time (US & Canada)")
+          _employee_mst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Mountain Time (US & Canada)")
+          _employee_pst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Pacific Time (US & Canada)")
 
-        matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
+          matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run
 
-        expect(matched_employees_and_messages).to eq(
+          expect(matched_employees_and_messages).to eq(
             [employee_est, employee_cst]
-        )
+          )
+        end
       end
     end
 

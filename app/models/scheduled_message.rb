@@ -10,6 +10,10 @@ class ScheduledMessage < ActiveRecord::Base
   validates :time_of_day, presence: true
   validates :title, presence: true
 
+  def self.date_time_ordering
+    order(:days_after_start, :time_of_day)
+  end
+
   def self.filter(params)
     if params[:title].present? || params[:body].present? || params[:tag].present?
       results = self.all.where("lower(title) like ?", "%#{params[:title].downcase}%")

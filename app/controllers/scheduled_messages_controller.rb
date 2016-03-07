@@ -18,7 +18,9 @@ class ScheduledMessagesController < ApplicationController
   end
 
   def index
-    @scheduled_messages = ScheduledMessage.filter(params).order(:days_after_start).page(params[:page])
+    @scheduled_messages = ScheduledMessage.filter(params)
+                                          .date_time_ordering
+                                          .page(params[:page])
   end
 
   def edit
