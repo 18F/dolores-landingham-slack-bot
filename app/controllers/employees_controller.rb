@@ -6,18 +6,13 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    @employee.validate_slack_username_in_org
 
-    if unknown_employee(@employee.slack_username)
-      flash.now[:error] = "There is not a slack user with the username \"#{@employee.slack_username}\" in your organization."
-      render action: :new
-    elsif @employee.save
+    if @employee.errors.full_messages.empty? && @employee.save
       flash[:notice] = "Thanks for adding #{@employee.slack_username}"
       redirect_to root_path
-    elsif !unknown_employee(@employee.slack_username)
-      flash.now[:error] = "There is already a slack user with the username \"#{@employee.slack_username}\" in your organization."
-      render action: :new
-    elsif
-      flash.now[:error] = "Could not create employee"
+    else
+      flash.now[:error] = @employee.errors.full_messages.to_sentence
       render action: :new
     end
   end
@@ -36,15 +31,15 @@ class EmployeesController < ApplicationController
 
   def update
     @employee = Employee.find(params[:id])
+    @employee.slack_username = params[:employee][:slack_username]
+    @employee.validate_slack_username_in_org
 
-    if unknown_employee(params[:employee][:slack_username])
-      flash.now[:error] = "There is not a slack user with the username \"#{params[:employee][:slack_username]}\" in your organization."
-      render action: :edit
-    elsif @employee.update(employee_params)
+
+    if @employee.errors.full_messages.empty? && @employee.update(employee_params)
       flash[:notice] = "Employee updated successfully"
       redirect_to employees_path
     else
-      flash.now[:error] = "Could not update employee"
+      flash.now[:error] = @employee.errors.full_messages.to_sentence
       render action: :edit
     end
   end
@@ -61,9 +56,5 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:slack_username, :started_on, :time_zone)
-  end
-
-  def unknown_employee(slack_username)
-    !EmployeeFinder.new(slack_username).existing_employee?
   end
 end

@@ -1,6 +1,11 @@
 <%= simple_form_for @employee do |form| %>
-  <%= form.input :slack_username %>
-  <%= form.input :started_on, input_html: { class: "date-time-select" }, order: [:month, :day, :year] %>
+  <%= form.input :slack_username,
+    required: true,
+    pattern: '^[^@]\w+[^ ]$',
+    input_html: { title: I18n.t('employees.errors.slack_username') } %>
+  <%= form.input :started_on,
+    input_html: { class: "date-time-select" },
+    order: [:month, :day, :year] %>
   <%= form.input :time_zone, priority: /US/ %>
   <%= form.button :submit %>
 <% end %>

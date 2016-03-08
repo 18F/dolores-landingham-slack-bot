@@ -17,3 +17,6 @@ en:
 
   titles:
     application: Dolores-landingham-bot
+  employees:
+    errors:
+      slack_username: Please do not enter an "@" before the username or leave a trailing space after

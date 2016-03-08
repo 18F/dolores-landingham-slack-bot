@@ -24,4 +24,5 @@ def click_accept_on_javascript_popup(&block)
     yield block
   end
 end
+
 WebMock.disable_net_connect!(allow_localhost: true)
