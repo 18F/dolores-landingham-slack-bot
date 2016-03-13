@@ -8,11 +8,16 @@ class MessageSender
 
   def run
     configure_slack
-    channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
 
-    if channel_id
+    if employee.slack_channel_id.nil?
+      channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
+      employee.slack_channel_id = channel_id
+      employee.save
+    end
+
+    if employee.slack_channel_id
       begin
-        post_message(channel_id: channel_id, message: message)
+        post_message(channel_id: employee.slack_channel_id, message: message)
         create_sent_scheduled_message(
           employee: employee,
           scheduled_message: message,
