@@ -6,6 +6,9 @@
     "https://slack.zendesk.com/hc/en-us/articles/202288908-Formatting-your-messages", target: "_blank"}.".html_safe %>
   <%= form.input :days_after_start, label: "Business days after employee starts to send message" %>
   <%= form.input :time_of_day, label: "Time of day to send message (uses employee's local time zone)", ampm: true, input_html: {class: "date-time-select"} %>
+  <%= form.input :end_date, label: "End date",
+    hint: "If this message is only valid for a limited time, enter its end date here",
+   input_html: {class: "date-select"}, include_blank: true %>
   <%= form.input :tag_list, label: "Tags", hint: "Separate tags with commas to enter multiple tags at once.", input_html: {value: @scheduled_message.tag_list.to_s} %>
   <%= form.button :submit %>
 <% end %>

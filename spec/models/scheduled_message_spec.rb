@@ -23,4 +23,14 @@ describe ScheduledMessage do
       expect(ScheduledMessage.date_time_ordering).to match_array([m1, m2, m3, m4, m5])
     end
   end
+
+  describe '.active' do
+    it 'should display messages which have no end date or have future end dates' do
+      ScheduledMessage.destroy_all
+      nil_end_date = create(:scheduled_message)
+      expired = create(:scheduled_message, end_date: Date.yesterday)
+      future_end_date = create(:scheduled_message, end_date: Date.tomorrow)
+      expect(ScheduledMessage.active).to match_array([nil_end_date, future_end_date])
+    end
+  end
 end

@@ -10,6 +10,10 @@ class ScheduledMessage < ActiveRecord::Base
   validates :time_of_day, presence: true
   validates :title, presence: true
 
+  def self.active
+    where('end_date IS NULL OR end_date > ?', Date.today)
+  end
+
   def self.date_time_ordering
     order(:days_after_start, :time_of_day)
   end

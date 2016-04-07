@@ -19,6 +19,26 @@ feature "Create scheduled message" do
       expect(page).to have_content("Scheduled message created successfully")
     end
 
+    scenario "can create a scheduled message with optional end date" do
+      admin = create(:admin)
+      login_with_oauth(admin)
+      visit root_path
+      visit new_scheduled_message_path
+
+      fill_in "Title", with: "Message title"
+      fill_in "Message body", with: "Message body"
+      fill_in "Business days after employee starts to send message", with: 1
+      select Date.today.year, from: "scheduled_message_end_date_1i"
+      select Date::MONTHNAMES[Date.today.month], from: "scheduled_message_end_date_2i"
+      select Date.today.day, from: "scheduled_message_end_date_3i"
+      select "11 AM", from: "scheduled_message_time_of_day_4i"
+      select "45", from: "scheduled_message_time_of_day_5i"
+      fill_in "Tags", with: "tag_one, tag_two, tag_three"
+      click_on "Create Scheduled message"
+
+      expect(page).to have_content("Scheduled message created successfully")
+    end
+
     scenario "unsuccessfully due to missing required fields" do
       admin = create(:admin)
       login_with_oauth(admin)

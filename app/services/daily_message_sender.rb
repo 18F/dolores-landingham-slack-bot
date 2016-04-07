@@ -1,6 +1,6 @@
 class DailyMessageSender
   def run
-    ScheduledMessage.all.each do |message|
+    ScheduledMessage.active.each do |message|
       employees_for_message = find_employees(message)
 
       employees_for_message.each do |employee|

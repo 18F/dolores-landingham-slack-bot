@@ -16,5 +16,25 @@ describe DailyMessageSender do
 
       expect(message_sender_double).to have_received(:run)
     end
+
+    it "sends only active messages" do
+      scheduled_message = create(:scheduled_message)
+      scheduled_message2 = create(:scheduled_message, end_date: Date.tomorrow)
+      expired_message = create(:scheduled_message, end_date: Date.yesterday)
+      employee = create(:employee)
+      message_sender_double = double(run: true)
+
+      matcher_double = double(run: [employee])
+      allow(MessageEmployeeMatcher).
+        to receive(:new).with(scheduled_message).and_return(matcher_double)
+      allow(MessageEmployeeMatcher).
+        to receive(:new).with(scheduled_message2).and_return(matcher_double)
+      allow(MessageSender).to receive(:new).with(employee, scheduled_message).and_return(message_sender_double)
+      allow(MessageSender).to receive(:new).with(employee, scheduled_message2).and_return(message_sender_double)
+
+      DailyMessageSender.new.run
+
+      expect(message_sender_double).to have_received(:run).twice
+    end
   end
 end

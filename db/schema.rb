@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313182803) do
+ActiveRecord::Schema.define(version: 20160402214945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160313182803) do
     t.integer  "days_after_start",                                 null: false
     t.time     "time_of_day",      default: '2000-01-01 12:00:00', null: false
     t.datetime "deleted_at"
+    t.date     "end_date"
   end
 
   add_index "scheduled_messages", ["deleted_at"], name: "index_scheduled_messages_on_deleted_at", using: :btree

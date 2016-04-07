@@ -50,6 +50,6 @@ class ScheduledMessagesController < ApplicationController
   private
 
   def scheduled_message_params
-    params.require(:scheduled_message).permit(:body, :days_after_start, :tag_list, :time_of_day, :title)
+    params.require(:scheduled_message).permit(:body, :days_after_start, :end_date, :tag_list, :time_of_day, :title)
   end
 end

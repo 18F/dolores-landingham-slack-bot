@@ -104,9 +104,9 @@ development with the following:
    They will be called `Consumer Public Key` and `Consumer Secret Key` on MyUSA but will
    map to `MYUSA_KEY` and `MYUSA_SECRET`, in your local `.env` file.
 
-4. Edit the method `is_gsa` and its invocation in
-   `/app/controllers/auth_controller` to accomodate non-`gsa.gov` email
-   addresses locally.
+4. Edit the `AUTH_DOMAIN` value in your local `.env` file such that the `is_permitted` method in
+   `/app/controllers/auth_controller` will accept the email address you used in your MyUSA
+   application.
 
 ```ruby
   # Invocation
@@ -114,7 +114,7 @@ development with the following:
 
   # Method
   def is_permitted?(auth_email)
-    /gsa.gov/.match(auth_email)
+    /#{ENV['AUTH_DOMAIN']}/.match(auth_email)
   end
 ```
 
