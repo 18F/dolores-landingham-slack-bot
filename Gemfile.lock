@@ -55,15 +55,14 @@ GEM
       activesupport (>= 3.1.0)
       tzinfo
     byebug (6.0.2)
-    capybara (2.5.0)
+    capybara (2.7.0)
+      addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.7.0)
-      capybara (>= 2.3.0, < 2.6.0)
-      json
+    cliver (0.3.2)
     clockwork (1.2.0)
       activesupport
       tzinfo
@@ -149,6 +148,11 @@ GEM
     paranoia (2.1.3)
       activerecord (~> 4.0)
     pg (0.18.3)
+    poltergeist (1.9.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -276,7 +280,6 @@ DEPENDENCIES
   bundler-audit
   business_time
   byebug
-  capybara-webkit (>= 1.2.0)
   clockwork
   daemons
   database_cleaner
@@ -291,6 +294,7 @@ DEPENDENCIES
   omniauth-myusa
   paranoia
   pg
+  poltergeist
   pry-rails
   puma
   rack-canonical-host

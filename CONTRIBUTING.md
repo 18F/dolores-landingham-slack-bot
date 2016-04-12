@@ -63,6 +63,12 @@ If you have previously run a project on a different port, a `.foreman` file
 may be generated at the root of your directory. If so, make sure that this
 file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
 
+### Testing
+Testing is done using `capybara-poltergeist`, which requires a local install of [phantomjs](https://github.com/jonleighton/poltergeist#installing-phantomjs).
+You can run the entire test suite using:
+
+`rake`
+
 ### Required Keys
 
 The setup script creates a `.env` file with a dummy environment configuration

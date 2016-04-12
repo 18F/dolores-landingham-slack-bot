@@ -7,6 +7,7 @@ abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]
 
 require "rspec/rails"
 require "shoulda/matchers"
+require "capybara/poltergeist"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
 
@@ -28,5 +29,9 @@ RSpec.configure do |config|
 end
 
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :poltergeist
 OmniAuth.config.test_mode = true
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+end
