@@ -49,7 +49,7 @@ To get started, run `bin/setup`
 
 After setting up, you can run the application using [foreman]:
 
-    % foreman start
+    foreman start
 
 If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
 is [purposefully excluded from the project's `Gemfile`][exclude].
