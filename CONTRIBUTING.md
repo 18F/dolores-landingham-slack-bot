@@ -45,6 +45,11 @@ What constitutes a business day is managed by the gem `business_time` and is con
 
 ### App setup
 
+Before running bin/setup, ensure that 'foreman' is removed from the Gemfile.  
+
+Prior to running 'bin/setup', it may be necessary to launch the postgres server using 
+```postgres -D /usr/local/var/postgres``` You can also use the OS X app.
+
 To get started, run `bin/setup`
 
 After setting up, you can run the application using [foreman]:
@@ -62,6 +67,8 @@ The application will run locally at http://localhost:5000/.
 If you have previously run a project on a different port, a `.foreman` file
 may be generated at the root of your directory. If so, make sure that this
 file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
+
+If your server isn't defaulting to Port 5000, you may have to add a .foreman file to root directory. In the file, add "port: 5000". 
 
 ### Testing
 Testing is done using `capybara-poltergeist`, which requires a local install of [phantomjs](https://github.com/jonleighton/poltergeist#installing-phantomjs).
@@ -113,6 +120,7 @@ development with the following:
 4. Edit the `AUTH_DOMAIN` value in your local `.env` file such that the `is_permitted` method in
    `/app/controllers/auth_controller` will accept the email address you used in your MyUSA
    application.
+  For example, if you use gmail, change the AUTH_DOMAIN to "gmail.com"
 
 ```ruby
   # Invocation
@@ -123,6 +131,12 @@ development with the following:
     /#{ENV['AUTH_DOMAIN']}/.match(auth_email)
   end
 ```
+
+## Granting Yourself Admin Access
+
+Once you've created an account with MyUSA, open the Rails console and change your admin status to "true". This will allow you to create and schedule messages.
+
+Note: scheduled messages may not send if you're using over the weekend, which is due to the business_time gem referenced above.
 
 ## Deployment
 
