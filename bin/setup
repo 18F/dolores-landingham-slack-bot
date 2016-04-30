@@ -31,6 +31,10 @@ if ! command -v foreman > /dev/null; then
   printf 'See https://github.com/ddollar/foreman for install instructions.\n'
 fi
 
+# Foreman uses the tmp/pids directory to create its processes, so we need to
+# make sure that dir is created
+mkdir -p tmp/pids
+
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
 # fi
