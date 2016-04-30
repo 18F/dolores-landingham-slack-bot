@@ -57,11 +57,11 @@ is [purposefully excluded from the project's `Gemfile`][exclude].
 [foreman]: https://github.com/ddollar/foreman
 [exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
 
-The application will run locally at `http://localhost:5000/`.
+The application will run locally at `http://localhost:8000/`.
 
 If you have previously run a project on a different port, a `.foreman` file
 may be generated at the root of your directory. If so, make sure that this
-file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
+file is set to port `8000` or you will be unable to authenticate locally with MyUSA.
 
 ### Testing
 Testing is done using `capybara-poltergeist`, which requires a local install of [phantomjs](https://github.com/jonleighton/poltergeist#installing-phantomjs).
