@@ -29,7 +29,7 @@ Please file an issue if you have any questions about Mrs. Landingham.
 
 **To add new messages**
 
-1. Draft the message in this Google Doc
+1. Draft the message in this [issue](https://github.com/18F/dolores-landingham-bot/issues/115)
 2. Copy the message and paste it in the message body here: https://dolores-app.18f.gov/scheduled_messages/new
 3. Add a title to your message to be able to identify the message
 4. Add the number of days after an employee starts. (Add 1 to the last message in this Google Doc)
