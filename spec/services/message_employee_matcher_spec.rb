@@ -82,7 +82,7 @@ describe MessageEmployeeMatcher do
 
         allow(Slack::Web::Client).to receive(:new).and_return(client_double)
         allow(SlackChannelIdFinder).
-          to receive(:new).with(employee_one.slack_username, client_double).
+          to receive(:new).with(employee_one.slack_user_id, client_double).
           and_return(slack_channel_finder_double)
 
         pre_matched_employees_and_messages = MessageEmployeeMatcher.new(scheduled_message).run

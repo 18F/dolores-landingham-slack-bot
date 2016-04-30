@@ -10,6 +10,10 @@ class EmployeeFinder
     SlackUserFinder.new(@slack_username, client).existing_user?
   end
 
+  def slack_user_id
+    SlackUserFinder.new(@slack_username, client).user_id
+  end
+
   def users_list
     SlackUserFinder.new(@slack_username, client).users_list
   end

@@ -12,7 +12,7 @@ describe MessageSender do
 
     allow(Slack::Web::Client).to receive(:new).and_return(client_double)
     allow(SlackChannelIdFinder).
-      to receive(:new).with(employee.slack_username, client_double).
+      to receive(:new).with(employee.slack_user_id, client_double).
       and_return(slack_channel_finder_double)
     allow(SentScheduledMessage).to receive(:create)
 
@@ -41,7 +41,7 @@ describe MessageSender do
 
     allow(Slack::Web::Client).to receive(:new).and_return(client_double)
     allow(SlackChannelIdFinder).
-      to receive(:new).with(employee.slack_username, client_double).
+      to receive(:new).with(employee.slack_user_id, client_double).
       and_return(slack_channel_finder_double)
     allow(SentScheduledMessage).to receive(:create)
 
@@ -63,7 +63,7 @@ describe MessageSender do
 
     allow(Slack::Web::Client).to receive(:new).and_return(client_double)
     allow(SlackChannelIdFinder).
-      to receive(:new).with(employee.slack_username, client_double).
+      to receive(:new).with(employee.slack_user_id, client_double).
       and_return(slack_channel_finder_double)
     allow(SentScheduledMessage).to receive(:create)
 
@@ -81,7 +81,7 @@ describe MessageSender do
     Timecop.return
   end
 
-  it "does not error if channel not found for slack user" do
+  it "does error if channel not found for slack user" do
     Timecop.freeze(Time.parse("10:00:00 UTC"))
 
     scheduled_message = create(:scheduled_message)
@@ -91,13 +91,20 @@ describe MessageSender do
 
     allow(Slack::Web::Client).to receive(:new).and_return(client_double)
     allow(SlackChannelIdFinder).
-      to receive(:new).with(employee.slack_username, client_double).
+      to receive(:new).with(employee.slack_user_id, client_double).
       and_return(slack_channel_id_double)
     allow(SentScheduledMessage).to receive(:create)
 
     MessageSender.new(employee, scheduled_message).run
 
-    expect(SentScheduledMessage).not_to have_received(:create)
+    expect(SentScheduledMessage).to have_received(:create).with(
+      employee: employee,
+      error_message: "Was unable to find a slack channel for user with name #{employee.slack_username} and slack user id #{employee.slack_user_id}",
+      scheduled_message: scheduled_message,
+      sent_on: Date.today,
+      sent_at: Time.parse("10:00:00 UTC"),
+      message_body: scheduled_message.body,
+    )
 
     Timecop.return
   end
@@ -112,7 +119,7 @@ describe MessageSender do
 
     allow(Slack::Web::Client).to receive(:new).and_return(client_double)
     allow(SlackChannelIdFinder).
-      to receive(:new).with(employee.slack_username, client_double).
+      to receive(:new).with(employee.slack_user_id, client_double).
       and_return(slack_channel_id_double)
     allow(SentScheduledMessage).to receive(:create)
 

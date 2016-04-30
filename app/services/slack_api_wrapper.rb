@@ -14,6 +14,12 @@ class SlackApiWrapper
     end
   end
 
+  def slack_user_by_id
+    @slack_user ||= all_slack_users.find do |user_data|
+      user_data["id"] == slack_username
+    end
+  end
+
   def all_slack_users
     client.users_list["members"]
   end

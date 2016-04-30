@@ -9,13 +9,20 @@ class MessageSender
   def run
     configure_slack
 
+    slack_user_id = EmployeeFinder.new(employee.slack_username).slack_user_id
+
+    if employee.slack_user_id.nil? && slack_user_id.present?
+      employee.slack_user_id = slack_user_id
+      employee.save
+    end
+
     if employee.slack_channel_id.nil?
-      channel_id = SlackChannelIdFinder.new(employee.slack_username, client).run
+      channel_id = SlackChannelIdFinder.new(employee.slack_user_id, client).run
       employee.slack_channel_id = channel_id
       employee.save
     end
 
-    if employee.slack_channel_id
+    if employee.slack_channel_id.present?
       begin
         post_message(channel_id: employee.slack_channel_id, message: message)
         create_sent_scheduled_message(
@@ -30,7 +37,14 @@ class MessageSender
           error: error,
         )
       end
+    else
+      create_sent_scheduled_message(
+        employee: employee,
+        scheduled_message: message,
+        error: StandardError.new("Was unable to find a slack channel for user with name #{employee.slack_username} and slack user id #{employee.slack_user_id}"),
+      )
     end
+
   end
 
   private

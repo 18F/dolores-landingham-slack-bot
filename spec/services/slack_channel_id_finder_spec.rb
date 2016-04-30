@@ -4,10 +4,10 @@ describe SlackChannelIdFinder do
   describe "#run" do
     it "finds the slack user channel id if member of bot's org" do
       channel_id_from_fixture = "123ABC_IM_ID"
-      slack_username_from_fixture = "testusername"
+      slack_user_id_from_fixture = "123ABC_ID"
 
       channel_id = SlackChannelIdFinder.new(
-        slack_username_from_fixture,
+        slack_user_id_from_fixture,
         Slack::Web::Client.new
       ).run
 

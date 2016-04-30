@@ -3,6 +3,12 @@ class SlackUserFinder < SlackApiWrapper
     !slack_user.nil?
   end
 
+  def user_id
+    if slack_user.present?
+      slack_user["id"]
+    end
+  end
+
   def users_list
     all_slack_users
   end

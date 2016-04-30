@@ -7,6 +7,8 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
     @employee.validate_slack_username_in_org
+    @employee.add_slack_user_id_to_employee
+
 
     if @employee.errors.full_messages.empty? && @employee.save
       flash[:notice] = "Thanks for adding #{@employee.slack_username}"
@@ -33,6 +35,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @employee.slack_username = params[:employee][:slack_username]
     @employee.validate_slack_username_in_org
+    @employee.add_slack_user_id_to_employee
 
 
     if @employee.errors.full_messages.empty? && @employee.update(employee_params)

@@ -1,5 +1,7 @@
 FactoryGirl.define do
   sequence(:slack_username) { |n| "testusername#{n}" }
+  sequence(:slack_user_id) { |n| "ID123#{n}" }
+
 
   factory :user do
     email "test@example.com"
@@ -12,6 +14,7 @@ FactoryGirl.define do
 
   factory :employee do
     slack_username
+    slack_user_id
     started_on  { Date.today }
     time_zone "Eastern Time (US & Canada)"
   end
