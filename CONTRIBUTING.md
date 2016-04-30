@@ -57,7 +57,7 @@ is [purposefully excluded from the project's `Gemfile`][exclude].
 [foreman]: https://github.com/ddollar/foreman
 [exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
 
-The application will run locally at `http://localhost:5000/`.
+The application will run locally at http://localhost:5000/.
 
 If you have previously run a project on a different port, a `.foreman` file
 may be generated at the root of your directory. If so, make sure that this
