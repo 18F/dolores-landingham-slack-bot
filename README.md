@@ -67,7 +67,7 @@ channel.
 
 If you are not internal to 18F and have a question, we would be delighted to
 help. Please [open a GitHub
-issue](https://github.con/18F/dolores-landingham-bot/issues/new) and we will get back to
+issue](https://github.com/18F/dolores-landingham-bot/issues/new) and we will get back to
 you as soon as we can.
 
 ## Public domain
