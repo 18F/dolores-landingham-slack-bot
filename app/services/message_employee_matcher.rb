@@ -1,4 +1,4 @@
-require "business_time"
+require 'business_time'
 
 class MessageEmployeeMatcher
   def initialize(message)
@@ -14,9 +14,22 @@ class MessageEmployeeMatcher
   attr_reader :message
 
   def retrieve_matching_employees
-    Employee.where(started_on: day_count.business_days.ago).select do |employee|
-      time_to_send_message?(employee.time_zone) && message_not_already_sent?(employee)
+    if @message.onboarding?
+      retrieve_employees_needing_onboarding_message
+    elsif @message.quarterly?
+      retrieve_employees_needing_quarterly_message
     end
+  end
+
+  def retrieve_employees_needing_onboarding_message
+    Employee.where(started_on: day_count.business_days.ago).select do |employee|
+      time_to_send_message?(employee.time_zone) &&
+        onboarding_message_not_already_sent?(employee)
+    end
+  end
+
+  def retrieve_employees_needing_quarterly_message
+    QuarterlyMessageEmployeeMatcher.new(@message).run
   end
 
   def day_count
@@ -36,7 +49,7 @@ class MessageEmployeeMatcher
     end
   end
 
-  def message_not_already_sent?(employee)
+  def onboarding_message_not_already_sent?(employee)
     SentScheduledMessage.where(employee: employee, scheduled_message: message).count == 0
   end
 end

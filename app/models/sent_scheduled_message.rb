@@ -12,6 +12,10 @@ class SentScheduledMessage < ActiveRecord::Base
 
   delegate :slack_username, to: :employee
 
+  def self.by_year(year)
+    where('extract(year from created_at) = ?', year)
+  end
+
   def self.filter(params)
     if params[:slack_username].present? || params[:message_body].present? || params[:sent_on].present?
 

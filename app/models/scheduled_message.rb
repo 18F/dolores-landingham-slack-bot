@@ -5,10 +5,12 @@ class ScheduledMessage < ActiveRecord::Base
   has_many :sent_scheduled_messages, dependent: :destroy
 
   validates :body, presence: true
-  validates :days_after_start, presence: true
+  validates :days_after_start, presence: true, unless: 'quarterly?'
   validates :tag_list, presence: true
   validates :time_of_day, presence: true
   validates :title, presence: true
+
+  enum message_time_frame: [:onboarding, :quarterly]
 
   def self.active
     where('end_date IS NULL OR end_date > ?', Date.today)

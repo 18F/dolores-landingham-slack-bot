@@ -15,6 +15,8 @@ module Features
   include OauthHelper
 end
 
+include TimeHelper
+
 RSpec.configure do |config|
   config.before(:each) do
     FakeSlackApi.failure = false

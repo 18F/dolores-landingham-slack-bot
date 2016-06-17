@@ -35,4 +35,15 @@ describe SentScheduledMessage do
   describe "Delegated methods" do
     it { should delegate_method(:slack_username).to(:employee) }
   end
+
+  describe "Scopes" do
+    describe ".by_year" do
+      it "should select records created in the given year" do
+        _older = create(:sent_scheduled_message, created_at: Date.parse('1-4-2015'))
+        newer = create(:sent_scheduled_message, created_at: Date.parse('1-4-2016'))
+
+        expect(SentScheduledMessage.by_year(2016)).to match_array([newer])
+      end
+    end
+  end
 end

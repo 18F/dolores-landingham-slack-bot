@@ -11,6 +11,12 @@ describe ScheduledMessage do
      it { should validate_presence_of(:tag_list) }
      it { should validate_presence_of(:time_of_day) }
      it { should validate_presence_of(:title) }
+     it 'should not validate days_after_start if message_time_frame is quarterly' do
+       quarterly_scheduled_message = build(:scheduled_message, 
+                                           days_after_start: nil, message_time_frame: :quarterly)
+
+       expect(quarterly_scheduled_message).to be_valid
+     end
   end
 
   describe '.date_time_ordering' do
@@ -31,6 +37,16 @@ describe ScheduledMessage do
       expired = create(:scheduled_message, end_date: Date.yesterday)
       future_end_date = create(:scheduled_message, end_date: Date.tomorrow)
       expect(ScheduledMessage.active).to match_array([nil_end_date, future_end_date])
+    end
+  end
+
+  describe '.quarterly' do
+    it 'should display messages with the "quarterly" message_time_frame' do
+      ScheduledMessage.destroy_all
+      onboarding_message = create(:scheduled_message, message_time_frame: :onboarding)
+      quarterly_message = create(:scheduled_message, message_time_frame: :quarterly)
+
+      expect(ScheduledMessage.quarterly).to match_array([quarterly_message])
     end
   end
 end

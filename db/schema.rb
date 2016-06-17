@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430175239) do
+ActiveRecord::Schema.define(version: 20160623213452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,14 +47,15 @@ ActiveRecord::Schema.define(version: 20160430175239) do
   add_index "employees", ["slack_user_id"], name: "index_employees_on_slack_user_id", using: :btree
 
   create_table "scheduled_messages", force: :cascade do |t|
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.string   "title",                                            null: false
-    t.text     "body",                                             null: false
-    t.integer  "days_after_start",                                 null: false
-    t.time     "time_of_day",      default: '2000-01-01 12:00:00', null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "title",                                              null: false
+    t.text     "body",                                               null: false
+    t.integer  "days_after_start"
+    t.time     "time_of_day",        default: '2000-01-01 12:00:00', null: false
     t.datetime "deleted_at"
     t.date     "end_date"
+    t.integer  "message_time_frame", default: 0
   end
 
   add_index "scheduled_messages", ["deleted_at"], name: "index_scheduled_messages_on_deleted_at", using: :btree
