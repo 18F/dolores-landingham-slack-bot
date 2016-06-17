@@ -7,7 +7,7 @@ env:
 - DB=postgresql
 language: ruby
 rvm:
-- ruby-2.2.3
+- ruby-2.3.1
 sudo: false
 script:
 - bundle exec rake

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.3"
+ruby "2.3.1"
 
 gem "acts-as-taggable-on"
 gem "bourbon"
@@ -32,7 +32,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.3.0"
+  gem "rspec-rails"
 end
 
 group :test do
