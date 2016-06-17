@@ -16,6 +16,8 @@ both 18F and the federal government.
 
 Please file an issue if you have any questions about Mrs. Landingham.
 
+The name of this bot is a friendly reference to the TV show *The West Wing*, where Mrs. Landingham is the fictional president's trusted secretary. This photo is from the show.
+
 ## Usage instructions for 18F employees
 
 **To add new users**
