@@ -48,6 +48,22 @@
         "is_owner": true,
         "has_2fa": false,
         "has_files": true
+      },
+      {
+        "id": "987FED_ID",
+        "name": "u2",
+        "deleted": false,
+        "color": "9f69e7",
+        "profile": {
+          "first_name": "Lily",
+          "last_name": "Jones",
+          "real_name": "Lily Jones",
+          "email": "lily@slack.com"
+        },
+        "is_admin": true,
+        "is_owner": true,
+        "has_2fa": false,
+        "has_files": true
       }
     ]
 }

@@ -8,8 +8,8 @@ class Employee < ActiveRecord::Base
   validates(
     :slack_username,
     format: {
-      with: /\A[a-z_0-9.]+\z/,
-      message: "Slack usernames can only contain lowercase letters, numbers, underscores, and periods."
+      with: /\A[a-z_0-9.-]+\z/,
+      message: "Slack usernames can only contain lowercase letters, numbers, underscores, hyphens, and periods."
     }
   )
 

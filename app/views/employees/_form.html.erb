@@ -1,7 +1,7 @@
 <%= simple_form_for @employee do |form| %>
   <%= form.input :slack_username,
     required: true,
-    pattern: '^[^@]\w+[^ ]$',
+    pattern: '^[a-z0-9_.-]{1,21}$',
     input_html: { title: I18n.t('employees.errors.slack_username') } %>
   <%= form.input :started_on,
     input_html: { class: "date-time-select" },
