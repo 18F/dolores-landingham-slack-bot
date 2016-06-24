@@ -35,6 +35,10 @@ group :development, :test do
   gem "rspec-rails"
 end
 
+group :development do
+  gem "rubocop", require: false
+end
+
 group :test do
   gem "poltergeist"
   gem "database_cleaner"

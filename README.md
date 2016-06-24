@@ -1,7 +1,7 @@
 # Dolores Landingham Bot
 
 [![Build Status](https://travis-ci.org/18F/dolores-landingham-bot.svg?branch=master)](https://travis-ci.org/18F/dolores-landingham-bot)
-
+[![Code Climate](https://codeclimate.com/github/18F/dolores-landingham-bot/badges/gpa.svg)](https://codeclimate.com/github/18F/dolores-landingham-bot)
 ![Dolores](http://seattletimes.nwsource.com/ABPub/2006/05/11/2002987603.jpg)
 
 This is a Slack bot that helps onboard new hires at 18F through scheduled Slack

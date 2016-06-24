@@ -1,0 +1,100 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'db/schema.rb'
+
+Style/AccessorMethodName:
+  Description: Check the naming of accessor methods for get_/set_.
+  Enabled: false
+
+Style/Alias:
+  Description: 'Use alias_method instead of alias.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#alias-method'
+  Enabled: false
+
+Style/ArrayJoin:
+  Description: 'Use Array#join instead of Array#*.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#array-join'
+  Enabled: false
+
+Style/AsciiComments:
+  Description: 'Use only ascii symbols in comments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-comments'
+  Enabled: false
+
+Style/AsciiIdentifiers:
+  Description: 'Use only ascii symbols in identifiers.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-identifiers'
+  Enabled: false
+
+Style/Attr:
+  Description: 'Checks for uses of Module#attr.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#attr'
+  Enabled: false
+
+Metrics/BlockNesting:
+  Description: 'Avoid excessive block nesting'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count'
+  Enabled: false
+
+Style/CaseEquality:
+  Description: 'Avoid explicit use of the case equality operator(===).'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-case-equality'
+  Enabled: false
+
+Style/CharacterLiteral:
+  Description: 'Checks for uses of character literals.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-character-literals'
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Description: 'Checks style of children classes and modules.'
+  Enabled: true
+  EnforcedStyle: nested
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
+
+Metrics/ModuleLength:
+  Description: 'Avoid modules longer than 100 lines of code.'
+  Enabled: false
+
+Style/ClassVars:
+  Description: 'Avoid the use of class variables.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-class-vars'
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    find: detect
+    inject: reduce
+    collect: map
+    find_all: select
+
+Style/ColonMethodCall:
+  Description: 'Do not use :: for method call.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#double-colons'
+  Enabled: false
+
+Style/CommentAnnotation:
+  Description: >-
+                 Checks formatting of special comments
+                 (TODO, FIXME, OPTIMIZE, HACK, REVIEW).
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#annotate-keywords'
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Description: >-
+                 A complexity metric that is strongly correlated to the number
+                 of test cases needed to validate a method.
+  Enabled: false
+
+Rails/Delegate:
+  Description: 'Prefer delegate method for delegations.'
+  Enabled: false
+
+Style/DeprecatedHashMethods:
+  Description: 'Checks for use of deprecated Hash methods.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#hash-key'
