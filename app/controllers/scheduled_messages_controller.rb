@@ -18,9 +18,10 @@ class ScheduledMessagesController < ApplicationController
   end
 
   def index
-    @scheduled_messages = ScheduledMessage.filter(params)
-                                          .date_time_ordering
-                                          .page(params[:page])
+    @scheduled_messages = ScheduledMessage.
+      filter(params).
+      date_time_ordering.
+      page(params[:page])
   end
 
   def edit
@@ -50,7 +51,16 @@ class ScheduledMessagesController < ApplicationController
   private
 
   def scheduled_message_params
-    params.require(:scheduled_message)
-      .permit(:body, :days_after_start, :end_date, :tag_list, :time_of_day, :title, :message_time_frame)
+    params.
+      require(:scheduled_message).
+      permit(
+        :body,
+        :days_after_start,
+        :end_date,
+        :tag_list,
+        :time_of_day,
+        :title,
+        :type,
+      )
   end
 end

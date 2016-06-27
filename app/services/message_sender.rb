@@ -65,7 +65,7 @@ class MessageSender
     client.chat_postMessage(
       channel: options[:channel_id],
       as_user: true,
-      text: options[:message].body
+      text: options[:message].body,
     )
   end
 
@@ -76,7 +76,7 @@ class MessageSender
       sent_on: Date.current,
       sent_at: Time.current,
       error_message: error_message(options[:error]),
-      message_body: MessageFormatter.new(options[:scheduled_message]).escape_slack_characters
+      message_body: formatted_message(options),
     )
   end
 
@@ -86,5 +86,9 @@ class MessageSender
     else
       ""
     end
+  end
+
+  def formatted_message(options)
+    MessageFormatter.new(options[:scheduled_message]).escape_slack_characters
   end
 end

@@ -19,4 +19,10 @@ en:
     application: Dolores-landingham-bot
   employees:
     errors:
-      slack_username: Please do not enter an "@" before the username or leave a trailing space after
+      slack_username_format:
+        'Slack usernames can only contain lowercase letters, numbers,
+        underscores, hyphens, and periods.'
+      slack_username_in_org:
+        "There is not a slack user with the username \"%{slack_username}\" in
+        your organization."
+

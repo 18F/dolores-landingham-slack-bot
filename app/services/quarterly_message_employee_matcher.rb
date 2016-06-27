@@ -29,10 +29,10 @@ class QuarterlyMessageEmployeeMatcher
   end
 
   def quarterly_message_not_already_sent?(employee)
-    SentScheduledMessage
-      .by_year(current_year)
-      .where('sent_on > ?', 1.week.ago)
-      .where(employee: employee, scheduled_message: @message).count == 0
+    SentScheduledMessage.
+      by_year(current_year).
+      where('sent_on > ?', 1.week.ago).
+      where(employee: employee, scheduled_message: @message).count == 0
   end
 
   def time_to_send_message?(time_zone)
