@@ -23,6 +23,6 @@ en:
         'Slack usernames can only contain lowercase letters, numbers,
         underscores, hyphens, and periods.'
       slack_username_in_org:
-        "There is not a slack user with the username \"%{slack_username}\" in
+        "There is not a Slack user with the username \"%{slack_username}\" in
         your organization."
 
