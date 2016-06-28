@@ -43,6 +43,8 @@ feature "Create employees" do
     select "Eastern Time (US & Canada)", from: "employee_time_zone"
     click_on "Create Employee"
 
-    expect(page).to have_content("There is not a slack user with the username \"#{username}\" in your organization.")
+    expect(page).to have_content(
+      I18n.t('employees.errors.slack_username_in_org', slack_username: username)
+    )
   end
 end

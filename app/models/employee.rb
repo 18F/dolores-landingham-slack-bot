@@ -9,8 +9,8 @@ class Employee < ActiveRecord::Base
     :slack_username,
     format: {
       with: /\A[a-z_0-9.-]+\z/,
-      message: "Slack usernames can only contain lowercase letters, numbers, underscores, hyphens, and periods."
-    }
+      message: I18n.t('employees.errors.slack_username_format'),
+    },
   )
 
   validates :started_on, presence: true
@@ -28,7 +28,10 @@ class Employee < ActiveRecord::Base
     if !EmployeeFinder.new(slack_username).existing_employee?
       errors.add(
         :slack_username,
-        "There is not a slack user with the username \"#{slack_username}\" in your organization."
+        I18n.t(
+          'employees.errors.slack_username_in_org',
+          slack_username: slack_username,
+        ),
       )
     end
   end

@@ -20,6 +20,7 @@
       <th>Title</th>
       <th>Body</th>
       <th>Tags</th>
+      <th>Type</th>
       <% if @current_user.admin? %>
         <th class="column-buttons"></th>
       <% end %>
@@ -34,6 +35,7 @@
         <td><%= message.title %></td>
         <td><%= truncate(message.body, length: 100) %></td>
         <td><%= message.tag_list.join(", ") %></td>
+        <td><%= message.type %></td>
         <% if @current_user.admin? %>
           <td>
             <%= link_to edit_scheduled_message_path(message), class: 'button button-edit' do %>

@@ -10,7 +10,10 @@ class ScheduledMessage < ActiveRecord::Base
   validates :time_of_day, presence: true
   validates :title, presence: true
 
-  enum message_time_frame: [:onboarding, :quarterly]
+  enum type: [:onboarding, :quarterly]
+
+  # disable STI
+  self.inheritance_column = nil
 
   def self.active
     where('end_date IS NULL OR end_date > ?', Date.today)
@@ -22,12 +25,14 @@ class ScheduledMessage < ActiveRecord::Base
 
   def self.filter(params)
     if params[:title].present? || params[:body].present? || params[:tag].present?
-      results = self.all.where("lower(title) like ?", "%#{params[:title].downcase}%")
-        .where("lower(body) like ?", "%#{params[:body].downcase}%")
+      results = self.
+        all.
+        where('lower(title) like ?', "%#{params[:title].downcase}%").
+        where('lower(body) like ?', "%#{params[:body].downcase}%")
 
       if params[:tag].present?
-        tags = params[:tag].split(",").each { |t| t.strip }
-        results = results.tagged_with(tags, :any => true)
+        tags = params[:tag].split(",").each(&:strip)
+        results = results.tagged_with(tags, any: true)
       end
       results
     else

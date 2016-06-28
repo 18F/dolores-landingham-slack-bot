@@ -11,11 +11,13 @@ feature "View scheduled messages" do
     expect(page).to have_content(first_scheduled_message.title)
     expect(page).to have_content(first_scheduled_message.body)
     expect(page).to have_content(first_scheduled_message.days_after_start)
+    expect(page).to have_content(first_scheduled_message.type)
     expect(page).to have_content(formatted_time(first_scheduled_message))
     expect(page).to have_content(second_scheduled_message.title)
     expect(page).to have_content(second_scheduled_message.body)
     expect(page).to have_content(second_scheduled_message.days_after_start)
     expect(page).to have_content(formatted_time(second_scheduled_message))
+    expect(page).to have_content(second_scheduled_message.type)
   end
 
   scenario "sees pagination controls" do
