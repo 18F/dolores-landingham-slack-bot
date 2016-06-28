@@ -27,6 +27,11 @@ feature "Edit employees" do
     fill_in "Slack username", with: new_slack_username
     click_on "Update Employee"
 
-    expect(page).to have_content("There is not a slack user with the username \"#{new_slack_username}\" in your organization.")
+    expect(page).to have_content(
+      I18n.t(
+        'employees.errors.slack_username_in_org',
+        slack_username: new_slack_username
+      )
+    )
   end
 end
