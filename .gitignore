@@ -12,3 +12,6 @@
 /public/assets
 /tags
 /tmp/*
+
+# Ignore Cloud Foundry files
+*_manifest.yml
