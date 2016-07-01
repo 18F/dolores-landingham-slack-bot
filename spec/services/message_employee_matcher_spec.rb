@@ -7,7 +7,13 @@ describe MessageEmployeeMatcher do
       it "matches messages to users based on days after start" do
         Timecop.freeze(Time.parse("11:00:00 UTC")) do
           days_after_start = 3
-          scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: Time.current.in_time_zone("Eastern Time (US & Canada)"))
+          employee_time_zone = "Eastern Time (US & Canada)"
+          current_time_for_employee = Time.current.in_time_zone(employee_time_zone)
+          current_time_et_as_utc = Time.zone.utc_to_local(current_time_for_employee)
+          scheduled_message = create(
+            :scheduled_message,
+            days_after_start: days_after_start,
+            time_of_day: current_time_et_as_utc)
           employee_one = create(:employee, started_on: days_after_start.business_days.ago)
           _employee_two = create(:employee, started_on: 5.business_days.ago)
 
@@ -74,7 +80,14 @@ describe MessageEmployeeMatcher do
       it "ignores messages that have already been sent to users" do
         Timecop.freeze(Time.parse("11:00:00 UTC")) do
           days_after_start = 3
-          scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: Time.current.in_time_zone("Eastern Time (US & Canada)"))
+          employee_time_zone = "Eastern Time (US & Canada)"
+          current_time_for_employee = Time.current.in_time_zone(employee_time_zone)
+          current_time_et_as_utc = Time.zone.utc_to_local(current_time_for_employee)
+          scheduled_message = create(
+            :scheduled_message,
+            days_after_start: days_after_start,
+            time_of_day: current_time_et_as_utc
+          )
           employee_one = create(:employee, started_on: days_after_start.business_days.ago)
           employee_two = create(:employee, started_on: days_after_start.business_days.ago)
           client_double = Slack::Web::Client.new
