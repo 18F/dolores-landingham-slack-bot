@@ -27,7 +27,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.middleware.use Rack::Deflater
   config.static_cache_control = "public, max-age=31557600"
-  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch("APPLICATION_HOST"),
+  }
 end
 
 Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i

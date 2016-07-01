@@ -2,5 +2,5 @@
 
 Rails.application.config.session_store(
   :cookie_store,
-  key: "_dolores_landingham_bot_session"
+  key: "_dolores_landingham_bot_session",
 )

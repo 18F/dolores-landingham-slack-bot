@@ -1,9 +1,9 @@
 GIT
-  remote: git://github.com/jessieay/acts-as-taggable-on.git
-  revision: a2dddd34b2cbe5f8766042010cdd9beccc0f90c5
+  remote: git://github.com/mbleigh/acts-as-taggable-on.git
+  revision: bc841d958d45d5cc2f73cfe6aff8f682258b22b2
   specs:
     acts-as-taggable-on (3.5.0)
-      activerecord (>= 3.2)
+      activerecord (>= 4.0)
 
 GIT
   remote: git://github.com/rubysherpas/paranoia.git

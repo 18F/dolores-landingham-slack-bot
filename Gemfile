@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.3.1"
 
 gem "active_record_union"
-gem "acts-as-taggable-on", github: "jessieay/acts-as-taggable-on"
+gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 gem "autoprefixer-rails"
 gem "business_time"
 gem "bourbon"
