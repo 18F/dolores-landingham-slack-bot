@@ -137,7 +137,6 @@ GEM
     hashdiff (0.3.0)
     hashie (3.4.4)
     holidays (4.5.0)
-    honeybadger (2.6.0)
     i18n (0.7.0)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
@@ -348,7 +347,6 @@ DEPENDENCIES
   flutie
   foreman
   holidays
-  honeybadger
   jquery-rails
   kaminari
   neat

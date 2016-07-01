@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'dolores';
-    src: font-url('/assets/dolores/dolores.eot');
-    src: font-url('/assets/dolores/dolores.eot?#iefix') format('embedded-opentype'),
-         font-url('/assets/dolores/dolores.woff') format('woff'),
-         font-url('/assets/dolores/dolores.ttf') format('truetype'),
-         font-url('/assets/dolores/dolores.svg#dolores') format('svg');
+    src: font-url('dolores/dolores.eot');
+    src: font-url('dolores/dolores.eot?#iefix') format('embedded-opentype'),
+         font-url('dolores/dolores.woff') format('woff'),
+         font-url('dolores/dolores.ttf') format('truetype'),
+         font-url('dolores/dolores.svg#dolores') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -45,17 +45,17 @@
 
 @font-face {
   font-family: 'Nimbus Sans-regular';
-  src: font-url('/assets/18F_Nimbus/18FNimbusSansL-regular.ttf') format('truetype');
+  src: font-url('18F_Nimbus/18FNimbusSansL-regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Nimbus Sans-bold';
-  src: font-url('/assets/18F_Nimbus/18FNimbusSansL-bold.ttf') format('truetype');
+  src: font-url('18F_Nimbus/18FNimbusSansL-bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Nimbus Sans-italic';
-  src: font-url('/assets/18F_Nimbus/18FNimbusSansL-italic.ttf') format('truetype');
+  src: font-url('18F_Nimbus/18FNimbusSansL-italic.ttf') format('truetype');
 }
 
 $nimbus-bold: 'Nimbus Sans-bold', $helvetica;
