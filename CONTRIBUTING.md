@@ -43,6 +43,33 @@ locally and pushing `master` or by using the merge button on GitHub.
 Each message created will send a specified number of **business days** after an employee joins 18F.
 What constitutes a business day is managed by the gem `business_time` and is configured [here](config/initializers/business_time.rb) and [here](config/business_time.yml). To add days that dolores will skip, add that date to the `holidays` field in [this yaml config file](config/business_time.yml).
 
+### Vagrant setup
+
+A [Vagrant](http://vagrantup.com) configuration is available that creates a
+local server preconfigured with all the dependencies required by this project.
+
+To use vagrant for development:
+
+```
+# Provision a new virtual server in VirtualBox (installs postgres, other
+# dependencies, and sets up the project's database)
+vagrant up
+
+# connect to the server to run foreman, run tests, etc:
+vagrant ssh
+
+# Vagrant shares your project's directory with the virtual server in the
+# /vagrant directory:
+cd /vagrant
+
+# run tests
+rake
+
+# Vagrant maps port 5000 of the virtual server to localhost:5000, so it seems
+# like you are running the project locally:
+foreman start
+```
+
 ### App setup
 
 Before running bin/setup, ensure that 'foreman' is removed from the Gemfile.  
