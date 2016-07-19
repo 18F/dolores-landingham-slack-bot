@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 ruby "2.3.1"
+gem "rails", "~> 5.0.0"
 
 gem "active_record_union"
 gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
@@ -18,11 +19,10 @@ gem "kaminari"
 gem "neat"
 gem "normalize-rails", "~> 3.0.0"
 gem "omniauth-myusa"
-gem "paranoia", github: "rubysherpas/paranoia", branch: "core"
+gem "paranoia", "2.2.0.pre"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "~> 5.0.0"
 gem "recipient_interceptor"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
@@ -44,6 +44,9 @@ group :development, :test do
 end
 
 group :development do
+  gem "listen"
+  gem "spring"
+  gem "spring-commands-rspec"
   gem "rubocop", require: false
 end
 
@@ -53,7 +56,7 @@ group :test do
   gem "database_cleaner"
   gem "shoulda-matchers"
   gem "simplecov", require: false
-  gem "sinatra", github: "sinatra/sinatra"
+  gem "sinatra", github: "sinatra/sinatra" # https://github.com/sinatra/sinatra/issues/1135
   gem "timecop"
   gem "webmock"
 end
