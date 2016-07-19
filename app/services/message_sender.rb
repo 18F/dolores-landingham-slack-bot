@@ -7,8 +7,6 @@ class MessageSender
   end
 
   def run
-    configure_slack
-
     slack_user_id = EmployeeFinder.new(employee.slack_username).slack_user_id
 
     if employee.slack_user_id.nil? && slack_user_id.present?
@@ -50,12 +48,6 @@ class MessageSender
   private
 
   attr_reader :employee, :message
-
-  def configure_slack
-    Slack.configure do |config|
-      config.token = ENV['SLACK_API_TOKEN']
-    end
-  end
 
   def client
     @client ||= Slack::Web::Client.new

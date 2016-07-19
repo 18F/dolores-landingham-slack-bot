@@ -9,6 +9,12 @@ class SlackUserFinder < SlackApiWrapper
     end
   end
 
+  def username
+    if slack_user_by_id.present?
+      slack_user["name"]
+    end
+  end
+
   def users_list
     all_slack_users
   end
