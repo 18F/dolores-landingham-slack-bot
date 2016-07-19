@@ -62,14 +62,16 @@ class MessageSender
   end
 
   def create_sent_scheduled_message(options)
-    SentScheduledMessage.create(
-      employee: options[:employee],
-      scheduled_message: options[:scheduled_message],
-      sent_on: Date.current,
-      sent_at: Time.current,
-      error_message: error_message(options[:error]),
-      message_body: formatted_message(options),
-    )
+    if message.is_a?(ScheduledMessage)
+      SentScheduledMessage.create(
+        employee: options[:employee],
+        scheduled_message: options[:scheduled_message],
+        sent_on: Date.current,
+        sent_at: Time.current,
+        error_message: error_message(options[:error]),
+        message_body: formatted_message(options),
+      )
+    end
   end
 
   def error_message(error)

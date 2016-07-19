@@ -1,0 +1,12 @@
+<%= render "header", title: "Create a new message to send to all users" %>
+
+<section class="main-content">
+  <%= simple_form_for @message do |form| %>
+    <%= form.input :title,
+      hint: "This is for identifying purposes only, employees will not see the message title" %>
+    <%= form.input :body, label: "Message body",
+      hint: "Don't forget, you can format your message using #{link_to "Slack's message formatting rules",
+      "https://slack.zendesk.com/hc/en-us/articles/202288908-Formatting-your-messages", target: "_blank"}.".html_safe %>
+    <%= form.button :submit %>
+  <% end %>
+</section>

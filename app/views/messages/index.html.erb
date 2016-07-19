@@ -1,0 +1,40 @@
+<%= render "header", title: "Messages" %>
+<section class="main-content">
+  <%= render "flashes" -%>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Sent at</th>
+      <% if @current_user.admin? %>
+        <th class="column-buttons"></th>
+      <% end %>
+      <th class="column-buttons"></th>
+    </tr>
+
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.title %></td>
+        <td><%= truncate(message.body, length: 100) %></td>
+        <td><%= message.last_sent_at %></td>
+        <% if @current_user.admin? %>
+          <td>
+            <%= link_to message_send_messages_path(message), method: :post, class: 'button button-send', data: { confirm: "Are you sure you want to send this message to all Slack users right now?" } do %>
+              <icon class="icon-send"></icon>
+              <span>Send</span>
+            <% end %>
+          </td>
+        <% end %>
+        <td>
+          <%= link_to new_message_test_message_path(message), class: 'button button-test' do %>
+            <icon class="icon-send"></icon>
+            <span>Test</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <% if @messages.empty? %>
+    <label>No matches found.</label>
+  <% end %>
+</section>
