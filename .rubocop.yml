@@ -158,6 +158,9 @@ Style/FormatString:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#sprintf'
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/GlobalVars:
   Description: 'Do not introduce global variables.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#instance-vars'
