@@ -5,7 +5,7 @@ class AllEmployeeMessageSender
 
   def run
     Employee.find_each do |employee|
-      MessageSender.new(employee, message).run
+      MessageSender.new(employee, message).delay.run
     end
 
     message.update(last_sent_at: Time.current)

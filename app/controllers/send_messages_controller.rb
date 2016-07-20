@@ -3,7 +3,7 @@ class SendMessagesController < ApplicationController
 
   def create
     message = Message.find(params[:message_id])
-    AllEmployeeMessageSender.new(message).delay.run
+    AllEmployeeMessageSender.new(message).run
 
     flash[:notice] = "Message sent to all users"
     redirect_to messages_path

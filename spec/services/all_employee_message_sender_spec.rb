@@ -8,7 +8,8 @@ describe AllEmployeeMessageSender do
         create(:employee, slack_username: username)
       end
 
-      message_sender = double(:message_sender, run: true)
+      message_sender = double(:message_sender)
+      allow(message_sender).to receive(:delay).and_return(double(run: true))
       allow(MessageSender).to receive(:new).and_return(message_sender)
 
       Timecop.freeze do
@@ -16,7 +17,7 @@ describe AllEmployeeMessageSender do
 
         employees.each do |employee|
           expect(MessageSender).to have_received(:new).with(employee, message)
-          expect(message_sender).to have_received(:run).exactly(4).times
+          expect(message_sender).to have_received(:delay).exactly(4).times
         end
 
         expect(message.reload.last_sent_at).
