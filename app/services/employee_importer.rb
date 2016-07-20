@@ -11,12 +11,14 @@ class EmployeeImporter
         success = dry_import_employee(
           slack_username: user["name"],
           slack_user_id: user["id"],
+          is_bot: user["is_bot"],
         )
         import_results[:dry_run] = true
       else
         success = import_employee(
           slack_username: user["name"],
           slack_user_id: user["id"],
+          is_bot: user["is_bot"],
         )
       end
 
@@ -38,21 +40,25 @@ class EmployeeImporter
     @client ||= Slack::Web::Client.new
   end
 
-  def dry_import_employee(slack_username:, slack_user_id:)
-    Employee.where(
+  def dry_import_employee(slack_username:, slack_user_id:, is_bot:)
+    new_employee = Employee.where(
       slack_username: slack_username,
       slack_user_id: slack_user_id,
     ).empty?
+
+    new_employee && !is_bot
   end
 
-  def import_employee(slack_username:, slack_user_id:)
-    employee = Employee.new(
-      slack_username: slack_username,
-      slack_user_id: slack_user_id,
-      started_on: Time.current,
-    )
+  def import_employee(slack_username:, slack_user_id:, is_bot:)
+    unless is_bot
+      employee = Employee.new(
+        slack_username: slack_username,
+        slack_user_id: slack_user_id,
+        started_on: Time.current,
+      )
 
-    employee.save
+      employee.save
+    end
   end
 
   def log_success(index, total_employees, user, dry_run)
