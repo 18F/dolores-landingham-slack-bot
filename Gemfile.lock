@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 8990a39c1c26f166c8006e140fb7f4ab972b5a63
-  specs:
-    acts-as-taggable-on (4.0.0.pre)
-      activerecord (>= 4.0)
-
-GIT
   remote: git://github.com/sinatra/sinatra.git
   revision: a5da6fa82c46436f59ae482d07c1752ab908c852
   specs:
@@ -57,6 +50,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (4.0.0.pre)
+      activerecord (>= 4.0)
     addressable (2.4.0)
     arel (7.0.0)
     ast (2.3.0)
@@ -335,7 +330,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_record_union
-  acts-as-taggable-on!
+  acts-as-taggable-on (= 4.0.0.pre)
   autoprefixer-rails
   awesome_print
   bourbon

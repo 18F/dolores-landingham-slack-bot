@@ -4,7 +4,7 @@ ruby "2.3.1"
 gem "rails", "~> 5.0.0"
 
 gem "active_record_union"
-gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
+gem "acts-as-taggable-on", "4.0.0.pre"
 gem "autoprefixer-rails"
 gem "business_time"
 gem "bourbon"
