@@ -14,6 +14,7 @@
         },
         "is_admin": true,
         "is_owner": true,
+        "is_bot": false,
         "has_2fa": false,
         "has_files": true
       },
@@ -30,6 +31,7 @@
         },
         "is_admin": true,
         "is_owner": true,
+        "is_bot": false,
         "has_2fa": false,
         "has_files": true
       },
@@ -46,6 +48,7 @@
         },
         "is_admin": true,
         "is_owner": true,
+        "is_bot": false,
         "has_2fa": false,
         "has_files": true
       },
@@ -62,6 +65,22 @@
         },
         "is_admin": true,
         "is_owner": true,
+        "is_bot": false,
+        "has_2fa": false,
+        "has_files": true
+      },
+      {
+        "id": "789XYZ_ID",
+        "name": "bot",
+        "deleted": false,
+        "color": "9f69e7",
+        "profile": {
+          "bot_id": "B1SSC50SD",
+          "api_app_id": ""
+        },
+        "is_admin": true,
+        "is_owner": true,
+        "is_bot": true,
         "has_2fa": false,
         "has_files": true
       }

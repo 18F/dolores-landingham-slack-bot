@@ -34,4 +34,9 @@ FactoryGirl.define do
     time_of_day { Time.parse("10:00:00 UTC") }
     tag_list "test_tag, test_tag_two"
   end
+
+  factory :message do
+    title "Message to everyone"
+    body "Everyone needs to know this thing!"
+  end
 end

@@ -2,10 +2,10 @@ require "rails_helper"
 
 describe EmployeeImporter do
   describe "#import" do
-    it "returns a hash with the number of created employees when no employees exist yet" do
+    it "returns a hash with the number of created employees when no employees exist yet, excluding bots" do
       expected_import_results = {
         created: 4,
-        skipped: 0,
+        skipped: 1,
         dry_run: false
       }
 
@@ -17,7 +17,7 @@ describe EmployeeImporter do
     it "returns a hash with the number of skipped employees when employees already exist" do
       expected_import_results = {
         created: 0,
-        skipped: 4,
+        skipped: 5,
         dry_run: false
       }
 
@@ -30,7 +30,7 @@ describe EmployeeImporter do
     it "returns a hash with the dry_run flag set to true when a dry run import is performed" do
       expected_import_results = {
         created: 4,
-        skipped: 0,
+        skipped: 1,
         dry_run: true
       }
 

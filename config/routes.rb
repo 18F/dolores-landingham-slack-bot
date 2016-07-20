@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   resources :scheduled_messages, only: [:new, :create, :index, :edit, :update, :destroy] do
     resources :test_messages, only: [:new, :create]
   end
+  resources :messages, only: [:new, :create, :index] do
+    resources :send_messages, only: [:create]
+    resources :test_messages, only: [:new, :create]
+  end
 end

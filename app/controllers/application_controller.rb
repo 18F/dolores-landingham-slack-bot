@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_user_admin
-    if !@current_user.admin?
+    if !current_user.admin?
       flash[:error] = "You are not permitted to view that page"
       redirect_to root_path
     end
