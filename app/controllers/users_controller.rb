@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :current_user_admin, only: [:edit, :update]
+  before_action :current_user_admin, only: [:edit, :update]
 
   def edit
     @user = User.find(params[:id])

@@ -35,7 +35,6 @@ describe ScheduledMessage do
 
   describe '.active' do
     it 'should display messages which have no end date or have future end dates' do
-      ScheduledMessage.destroy_all
       nil_end_date = create(:scheduled_message)
       _expired = create(:scheduled_message, end_date: Date.yesterday)
       future_end_date = create(:scheduled_message, end_date: Date.tomorrow)
@@ -45,7 +44,6 @@ describe ScheduledMessage do
 
   describe '.quarterly' do
     it 'should display messages with the "quarterly" type' do
-      ScheduledMessage.destroy_all
       _onboarding_message = create(:scheduled_message, type: :onboarding)
       quarterly_message = create(:scheduled_message, type: :quarterly)
 

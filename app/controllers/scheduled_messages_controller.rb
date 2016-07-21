@@ -1,5 +1,5 @@
 class ScheduledMessagesController < ApplicationController
-  before_filter :current_user_admin, only: [:new, :create, :edit, :update]
+  before_action :current_user_admin, only: [:new, :create, :edit, :update]
 
   def new
     @scheduled_message = ScheduledMessage.new
