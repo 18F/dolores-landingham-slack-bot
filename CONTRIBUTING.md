@@ -40,8 +40,13 @@ contributor. PRs can be merged manually by merging the branch into `master`
 locally and pushing `master` or by using the merge button on GitHub.
 
 ### Managing time / Updating holidays
-Each message created will send a specified number of **business days** after an employee joins 18F.
-What constitutes a business day is managed by the gem `business_time` and is configured [here](config/initializers/business_time.rb) and [here](config/business_time.yml). To add days that dolores will skip, add that date to the `holidays` field in [this yaml config file](config/business_time.yml).
+
+Each message created will send a specified number of **business days** after an
+employee joins 18F.  What constitutes a business day is managed by the gem
+`business_time` and is configured [here](config/initializers/business_time.rb)
+and [here](config/business_time.yml). To add days that dolores will skip, add
+that date to the `holidays` field in [this yaml config
+file](config/business_time.yml).
 
 ### Vagrant setup
 
@@ -72,16 +77,23 @@ foreman start
 
 ### App setup
 
-Before running bin/setup, ensure that 'foreman' is removed from the Gemfile.  
+Before running the setup script, ensure that 'foreman' is removed from the Gemfile.
 
-Prior to running 'bin/setup', it may be necessary to launch the postgres server using 
-```postgres -D /usr/local/var/postgres``` You can also use the OS X app.
+Prior to running 'bin/setup', it may be necessary to launch the postgres server using
+
+```
+postgres -D /usr/local/var/postgres
+```
+
+You can also use the [Postgres OSX app](http://postgresapp.com/).
 
 To get started, run `bin/setup`
 
 After setting up, you can run the application using [foreman]:
 
-    foreman start
+```bash
+foreman start
+``
 
 If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
 is [purposefully excluded from the project's `Gemfile`][exclude].
@@ -95,13 +107,18 @@ If you have previously run a project on a different port, a `.foreman` file
 may be generated at the root of your directory. If so, make sure that this
 file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
 
-If your server isn't defaulting to Port 5000, you may have to add a .foreman file to root directory. In the file, add "port: 5000". 
+If your server isn't defaulting to Port 5000, you may have to add a .foreman
+file to root directory. In the file, add "port: 5000".
 
 ### Testing
-Testing is done using `capybara-poltergeist`, which requires a local install of [phantomjs](https://github.com/jonleighton/poltergeist#installing-phantomjs).
+
+Testing is done using `capybara-poltergeist`, which requires a local install of
+[phantomjs](https://github.com/jonleighton/poltergeist#installing-phantomjs).
 You can run the entire test suite using:
 
-`rake`
+```bash
+rake
+```
 
 ### Required Keys
 
@@ -112,58 +129,69 @@ you can contact Jessie Young. Otherwise, you can create a Slack bot
 
 ### Authentication
 
-You will need to be on the developer list to authenticate locally via MyUSA.
+We are using [OmniAuth GitHub Team
+Auth](https://github.com/jonmagic/omniauth-github-team-member) for
+authentication.
 
-If you are internal to 18F, contact Brian Hedberg to be added to the developer
-list.  If you are on the list, `dolores-local` will be one of your [Authorized
-Applications](https://alpha.my.usa.gov/authorizations) on MyUSA.
+1. Create a [GitHub OAuth application](https://developer.github.com/v3/oauth/)
+for development with the following:
 
-If `dolores-local` is on your MyUSA list for Authorized Applications and you
-are still unable to authenticate, check with Brian to make sure that the `MYUSA_KEY`
-and `MYUSA_SECRET` keys listed in `.env` are up to date.
-For more on environmental variables and keys, refer to [Required Keys](#required-keys) above.
-
-If you are not part of 18F and would like to run the application locally, you can
-follow these steps:
-
-1. Create a [MyUSA Account](https://alpha.my.usa.gov/) and create an application for
-development with the following:
-
-  For Url:
+  For Homepage url:
 
   `http://localhost:5000/`
 
-  For Redirect uri:
+  Authorization callback URL:
 
-  `http://localhost:5000/auth/myusa/callback`
+  `http://localhost:5000/auth/githubteammember/callback`
 
-2. Under `Select the API Scopes that your Application will use`: select `Email
-   Address`.
+1. Save the client id and client secret from your new application in the `.env`
+file in the app directory as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (see
+.sample.env for formatting help)
 
-3. Generate a set of keys by clicking `New Api Key` next to your application in MyUSA.
-   They will be called `Consumer Public Key` and `Consumer Secret Key` on MyUSA but will
-   map to `MYUSA_KEY` and `MYUSA_SECRET`, in your local `.env` file.
+1. Edit the `GITHUB_TEAM_ID` in your local `.env` file to match the id of a
+GitHub team that you belong to.
 
-4. Edit the `AUTH_DOMAIN` value in your local `.env` file such that the `is_permitted` method in
-   `/app/controllers/auth_controller` will accept the email address you used in your MyUSA
-   application.
-  For example, if you use gmail, change the AUTH_DOMAIN to "gmail.com"
+The easiest way to find a Team ID on GitHub is to generate an [access
+token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
+and then curl with it:
+
+```bash
+curl https://api.github.com/user/teams?access_token=YOUR_ACCESS_TOKEN
+```
+
+If you do not belong to a GitHub team or would like to set up the app without
+doing the above, an alternative is to comment out the line in the controller
+that confirms you are a member of the correct team:
 
 ```ruby
-  # Invocation
-  if is_permitted?(auth_email)
+  # app/controllers/auth_controller
 
-  # Method
-  def is_permitted?(auth_email)
-    /#{ENV['AUTH_DOMAIN']}/.match(auth_email)
+  def oauth_callback
+    # if team_member?
+      dev_test_email = your_email@example.com
+      user = User.find_or_create_by(email: dev_test_email)
+      sign_in(user)
+      flash[:success] = "You successfully signed in"
+      redirect_to root_path
+    # end
   end
 ```
 
 ## Granting Yourself Admin Access
 
-Once you've created an account with MyUSA, open the Rails console and change your admin status to "true". This will allow you to create and schedule messages.
+Once you've logged in locally, open the Rails console and change
+your admin status to "true".
 
-Note: scheduled messages may not send if you're using over the weekend, which is due to the business_time gem referenced above.
+```bash
+rails c
+user = User.last
+user.update(admin: true)
+```
+
+This will allow you to create and schedule messages.
+
+Note: scheduled messages may not send if you're using over the weekend, which is
+due to the business_time gem referenced above.
 
 ## Deployment
 

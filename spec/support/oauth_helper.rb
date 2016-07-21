@@ -1,27 +1,22 @@
 module OauthHelper
   def login_with_oauth(user = create(:user))
     setup_mock_auth(user.email)
-    visit "/auth/myusa"
+    visit "/auth/githubteammember"
   end
 
-  def setup_mock_auth(email)
-    OmniAuth.config.mock_auth[:myusa] = OmniAuth::AuthHash.new(
-      provider: "myusa",
-      raw_info: {
-        "name" => "George Jetson"
-      },
-      uid: "12345",
-      nickname: "georgejetsonmyusa",
-      extra: {
-        "raw_info" => {
-          "email" => email,
-          "first_name" => "George",
-          "last_name" => "Jetson"
-        }
-      },
-      credentials: {
-        "token" => "1a2b3c4d"
-      }
+  def setup_mock_auth(email = "test@example.com")
+    OmniAuth.config.mock_auth[:githubteammember] =
+      OmniAuth::AuthHash.new(
+        credentials: {
+          "team_member?" => true,
+        },
+        provider: "githubteammember",
+        info: {
+          name: "Doris Doogooder",
+          email: email,
+          nickname: "github_username",
+          uid: "12345",
+        },
     )
   end
 end
