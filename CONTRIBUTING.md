@@ -77,27 +77,25 @@ foreman start
 
 ### App setup
 
-Before running the setup script, ensure that 'foreman' is removed from the Gemfile.
+To get started, run `bin/setup`
 
-Prior to running 'bin/setup', it may be necessary to launch the postgres server using
+Prior to running `bin/setup`, it may be necessary to launch the postgres server using
 
-```
+```bash
 postgres -D /usr/local/var/postgres
 ```
 
 You can also use the [Postgres OSX app](http://postgresapp.com/).
 
-To get started, run `bin/setup`
-
 If bin/setup fails with the following error message:
 
-```
+```bash
 fe_sendauth: no password supplied
-Couldn't create database for {"adapter"=>"postgresql", "database"=>"postgres", "encoding"=>"utf8", "host"=>"localhost", "min_messages"=>"warning", "pool"=>5, "reaping_frequency"=>10, "timeout"=>5000}```
+Couldn't create database for {"adapter"=>"postgresql", "database"=>"postgres", "encoding"=>"utf8", "host"=>"localhost", "min_messages"=>"warning", "pool"=>5, "reaping_frequency"=>10, "timeout"=>5000}
 rake aborted!
 ```
 
-check your database.yml file.  You might need to set database credentials (i.e.,username:<uname>, password:<pw>)
+check your database.yml file. You might need to set database credentials (i.e.,username:<uname>, password:<pw>)
 
 After setting up, you can run the application using [foreman]:
 
@@ -105,11 +103,7 @@ After setting up, you can run the application using [foreman]:
 foreman start
 ``
 
-If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
-is [purposefully excluded from the project's `Gemfile`][exclude].
-
 [foreman]: https://github.com/ddollar/foreman
-[exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
 
 The application will run locally at http://localhost:5000/.
 
@@ -118,7 +112,7 @@ may be generated at the root of your directory. If so, make sure that this
 file is set to port `5000` or you will be unable to authenticate locally with MyUSA.
 
 If your server isn't defaulting to Port 5000, you may have to add a .foreman
-file to root directory. In the file, add "port: 5000".
+file to root directory. In the file, add `port: 5000`.
 
 ### Testing
 
