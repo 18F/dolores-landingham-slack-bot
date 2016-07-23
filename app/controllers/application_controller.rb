@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     @current_user = user
   end
 
+  def signout_user!
+    session[:user]["email"] = nil
+    @current_user = nil
+  end
+
   def signed_in?
     current_user.present?
   end

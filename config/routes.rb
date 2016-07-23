@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root to: "scheduled_messages#index"
+  root to: "sessions#new"
 
   match "/auth/:provider/callback" => "auth#oauth_callback", via: [:get]
-
+  resource  :session, only: [:new, :create, :destroy]
   resources :employees, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :users, only: [:edit, :update, :index]
   resources :sent_scheduled_messages, only: [:index]

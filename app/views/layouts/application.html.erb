@@ -21,7 +21,7 @@
     </div>
 
     <ul class="usa-accordion sidenav-list">
-      <% if @current_user.admin? %>
+      <% if @current_user && @current_user.admin? %>
         <li class="sidenav-list-item">
           <button class="sidenav-list_title" aria-expanded="<%= is_current(users_path) -%>" aria-controls="collapsible-0">
             Users
@@ -29,7 +29,7 @@
             <icon class="icon-circle-minus"></icon>
           </button>
           <ul id="collapsible-0" aria-hidden="<%= !is_current(users_path) -%>" class="sidenav-sub_list usa-accordion-content">
-            <% if @current_user.admin? %>
+            <% if @current_user && @current_user.admin? %>
               <%= nav_link "View/Edit", users_path %>
             <% end %>
 
@@ -43,7 +43,7 @@
           <icon class="icon-circle-minus"></icon>
         </button>
         <ul id="collapsible-1" aria-hidden="<%= !is_current(scheduled_messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
-          <% if @current_user.admin? %>
+          <% if @current_user && @current_user.admin? %>
             <%= nav_link "Create", new_scheduled_message_path %>
           <% end %>
           <%= nav_link "List/Edit", scheduled_messages_path  %>
@@ -56,7 +56,7 @@
           <icon class="icon-circle-minus"></icon>
         </button>
         <ul id="collapsible-2" aria-hidden="<%= !is_current(messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
-          <% if @current_user.admin? %>
+          <% if @current_user && @current_user.admin? %>
             <%= nav_link "Create", new_message_path %>
           <% end %>
           <%= nav_link "List/Edit", messages_path  %>
@@ -84,7 +84,9 @@
         </ul>
       </li>
     </ul>
-
+    <% if current_user %>
+    <%= link_to "Sign Out", session_url, method: "delete" %>
+    <% end %>
 
   </aside>
 
