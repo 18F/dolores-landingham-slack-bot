@@ -168,7 +168,7 @@ that confirms you are a member of the correct team:
 
   def oauth_callback
     # if team_member?
-      dev_test_email = your_email@example.com
+      dev_test_email = "your_email@example.com"
       user = User.find_or_create_by(email: dev_test_email)
       sign_in(user)
       flash[:success] = "You successfully signed in"
