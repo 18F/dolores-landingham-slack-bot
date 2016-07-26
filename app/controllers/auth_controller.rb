@@ -2,23 +2,29 @@ class AuthController < ApplicationController
   skip_before_action :authenticate_user!, only: [:oauth_callback]
 
   def oauth_callback
-    auth = request.env["omniauth.auth"]
-    auth_email = auth.extra.raw_info.email
-
-    if is_permitted?(auth_email)
+    if team_member?
       user = User.find_or_create_by(email: auth_email)
       sign_in(user)
-      session[:token] = auth.credentials.token
       flash[:success] = "You successfully signed in"
       redirect_to root_path
-    else
-      redirect_to :back
     end
   end
 
   private
 
-  def is_permitted?(auth_email)
-    /#{ENV['AUTH_DOMAIN']}/.match(auth_email)
+  def team_member?
+    auth_hash.credentials.team_member?
+  end
+
+  def auth_email
+    info.email
+  end
+
+  def info
+    auth_hash.info
+  end
+
+  def auth_hash
+    request.env["omniauth.auth"]
   end
 end

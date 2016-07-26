@@ -1,16 +1,12 @@
-MYUSA_KEY = ENV.fetch('MYUSA_KEY')
-MYUSA_SECRET = ENV.fetch('MYUSA_SECRET')
-MYUSA_URL = ENV['MYUSA_URL'] || 'https://alpha.my.usa.gov'
-
 Rails.application.config.middleware.use OmniAuth::Builder do
+  GITHUB_TEAM_ID = ENV.fetch("GITHUB_TEAM_ID")
   provider(
-    :myusa,
-    MYUSA_KEY,
-    MYUSA_SECRET,
-    scope: 'profile.email',
-    client_options: {
-      site: MYUSA_URL,
-      token_url: '/oauth/authorize',
+    :githubteammember,
+    ENV["GITHUB_CLIENT_ID"],
+    ENV["GITHUB_CLIENT_SECRET"],
+    scope: "read:org user:email",
+    teams: {
+      "team_member?" => ENV["GITHUB_TEAM_ID"].to_i,
     },
   )
 end

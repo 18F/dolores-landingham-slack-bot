@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   helper_method :current_user, :signed_in?
-
   before_action :authenticate_user!
 
   protected
@@ -36,13 +34,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless signed_in?
-      flash[:error] = 'You need to sign in for access to this page.'
-      redirect_to '/auth/myusa'
+      flash[:error] = "You need to sign in for access to this page."
+      redirect_to "/auth/githubteammember"
     end
   end
 
   def unauthorized
-    raise ActionController::RoutingError.new('Unauthorized')
+    raise ActionController::RoutingError.new("Unauthorized")
   end
 
 end
