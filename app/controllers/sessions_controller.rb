@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
-
   skip_before_action :authenticate_user!
 
   def new
-
   end
 
   def destroy
@@ -13,6 +11,4 @@ class SessionsController < ApplicationController
 
   def create
   end
-
-
 end
