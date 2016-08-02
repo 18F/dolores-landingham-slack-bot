@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :signed_in_as_admin?
   before_action :authenticate_user!
 
   protected
@@ -28,14 +28,23 @@ class ApplicationController < ActionController::Base
     @current_user = user
   end
 
+  def signout_user!
+    session[:user]["email"] = nil
+    @current_user = nil
+  end
+
   def signed_in?
     current_user.present?
+  end
+
+  def signed_in_as_admin?
+    @current_user && @current_user.admin?
   end
 
   def authenticate_user!
     unless signed_in?
       flash[:error] = "You need to sign in for access to this page."
-      redirect_to "/auth/githubteammember"
+      redirect_to "/session/new"
     end
   end
 
