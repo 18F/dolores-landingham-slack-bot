@@ -25,4 +25,52 @@ en:
       slack_username_in_org:
         "There is not a Slack user with the username \"%{slack_username}\" in
         your organization."
+  
+  controllers:
+    application_controller:
+      errors:
+        current_user_admin:
+          "You are not permitted to view that page"
+        authenticate_user:
+          "You need to sign in for access to this page"
+    auth_controller:
+      successes:
+        oauth_callback: "You successfully signed in"
+    employees_controller:
+      notices:
+        create: "Thanks for adding %{slack_username}"
+        update: "Employee updated successfully"
+        destroy: "You deleted %{slack_username}"
+    messages_controller:
+      notices:
+        create: "Message created successfully"
+    scheduled_messages_controller:
+      notices:
+        create: "Scheduled message created successfully"
+        update: "Scheduled message updated successfully"
+        destroy: "You deleted %{scheduled_message_title}"
+      errors:
+        create: "Could not create scheduled message"
+        update: "Could not update scheduled message"
+    send_messages_controller:
+      notices:
+        create: "Message sent to all users"
+    test_messages_controller:
+      notices:
+        create: "Test message sent successfully"
+      errors:
+        create:
+          employee_nil: 
+            "Oops! Looks like that employee isn't in the Dolores system yet! Make sure you've entered the Slack handle (%{slack_username}) 
+            for the employee before sending him/her/them a test message."
+          not_up_to_date:
+            "Oops! Looks like this employees information isn't up to date. Check to make sure they haven't changed their slackname!"
+    users_controller:
+      notices:
+        update: "User updated successfully"
+
+
+
+
+
 

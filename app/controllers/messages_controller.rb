@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      flash[:notice] = "Message created successfully"
+      flash[:notice] = I18n.t('controllers.messages_controller.notices.create')
       redirect_to messages_path
     else
       flash.now[:error] = @message.errors.full_messages.join(", ")
