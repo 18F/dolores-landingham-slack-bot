@@ -14,11 +14,11 @@ class TestMessagesController < ApplicationController
 
     if employee && (employee.slack_channel_id || employee.slack_user_id)
       MessageSender.new(employee, message).delay.run
-      flash[:notice] = "Test message sent successfully"
+      flash[:notice] = I18n.t('controllers.test_messages_controller.notices.create')
     elsif employee.nil?
-      flash[:error] = "Oops! Looks like that employee isn't in the Dolores system yet! Make sure you've entered the Slack handle (#{slack_username}) for the employee before sending him/her/them a test message."
+      flash[:error] = I18n.t('controllers.test_messages_controller.errors.create.employee_nil', slack_username: slack_username)
     else
-      flash[:error] = "Oops! Looks like this employees information isn't up to date. Check to make sure they haven't changed their slackname!"
+      flash[:error] = I18n.t('controllers.test_messages_controller.errors.create.not_up_to_date')
     end
 
     redirect_to redirect_path

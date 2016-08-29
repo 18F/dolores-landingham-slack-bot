@@ -9,10 +9,10 @@ class ScheduledMessagesController < ApplicationController
     @scheduled_message = ScheduledMessage.new(scheduled_message_params)
 
     if @scheduled_message.save
-      flash[:notice] = "Scheduled message created successfully"
+      flash[:notice] = I18n.t('controllers.scheduled_messages_controller.notices.create')
       redirect_to root_path
     else
-      flash.now[:error] = "Could not create scheduled message"
+      flash.now[:error] = I18n.t('controllers.scheduled_messages_controller.errors.create')
       render action: :new
     end
   end
@@ -32,10 +32,10 @@ class ScheduledMessagesController < ApplicationController
     @scheduled_message = ScheduledMessage.find(params[:id])
 
     if @scheduled_message.update(scheduled_message_params)
-      flash[:notice] = "Scheduled message updated successfully"
+      flash[:notice] = I18n.t('controllers.scheduled_messages_controller.notices.update')
       redirect_to scheduled_messages_path
     else
-      flash.now[:error] = "Could not update scheduled message"
+      flash.now[:error] = I18n.t('controllers.scheduled_messages_controller.errors.update')
       render action: :edit
     end
   end
@@ -44,7 +44,7 @@ class ScheduledMessagesController < ApplicationController
     scheduled_message = ScheduledMessage.find(params[:id])
     scheduled_message.destroy
 
-    flash[:notice] = "You deleted #{scheduled_message.title}"
+    flash[:notice] = I18n.t('controllers.scheduled_messages_controller.notices.destroy', scheduled_message_title: scheduled_message.title)
     redirect_to scheduled_messages_path
   end
 

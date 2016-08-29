@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = "User updated successfully"
+      flash[:notice] = I18n.t('controllers.users_controller.notices.update')
       redirect_to employees_path
     end
   end

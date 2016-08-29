@@ -11,7 +11,7 @@ class EmployeesController < ApplicationController
 
 
     if @employee.errors.full_messages.empty? && @employee.save
-      flash[:notice] = "Thanks for adding #{@employee.slack_username}"
+      flash[:notice] = I18n.t('controllers.employees_controller.notices.create', slack_username: @employee.slack_username)
       redirect_to root_path
     else
       flash.now[:error] = @employee.errors.full_messages.to_sentence
@@ -39,7 +39,7 @@ class EmployeesController < ApplicationController
 
 
     if @employee.errors.full_messages.empty? && @employee.update(employee_params)
-      flash[:notice] = "Employee updated successfully"
+      flash[:notice] = I18n.t('controllers.employees_controller.notices.update')
       redirect_to employees_path
     else
       flash.now[:error] = @employee.errors.full_messages.to_sentence
@@ -51,7 +51,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @employee.destroy
 
-    flash[:notice] = "You deleted #{@employee.slack_username}"
+    flash[:notice] = I18n.t('controllers.employees_controller.notices.destroy', slack_username: @employee.slack_username)
     redirect_to employees_path
   end
 

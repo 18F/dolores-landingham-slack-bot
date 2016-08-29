@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def current_user_admin
     if !current_user.admin?
-      flash[:error] = "You are not permitted to view that page"
+      flash[:error] = I18n.t('controllers.application_controller.errors.current_user_admin')
       redirect_to root_path
     end
   end
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless signed_in?
-      flash[:error] = "You need to sign in for access to this page."
+      flash[:error] = I18n.t('application_controller.errors.authenticate_user')
       redirect_to "/session/new"
     end
   end
