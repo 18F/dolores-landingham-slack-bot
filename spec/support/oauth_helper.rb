@@ -4,11 +4,11 @@ module OauthHelper
     visit "/auth/githubteammember"
   end
 
-  def setup_mock_auth(email = "test@example.com")
+  def setup_mock_auth(email = "test@example.com", options = {})
     OmniAuth.config.mock_auth[:githubteammember] =
       OmniAuth::AuthHash.new(
         credentials: {
-          "team_member?" => true,
+          "team_member?" => team_member?(options),
         },
         provider: "githubteammember",
         info: {
@@ -18,5 +18,15 @@ module OauthHelper
           uid: "12345",
         },
     )
+  end
+
+  private
+
+  def team_member?(options)
+    if options[:team_member].nil?
+      true
+    else
+      options[:team_member]
+    end
   end
 end
