@@ -1,0 +1,17 @@
+<section class="main-content">
+  <h1>Forbidden</h1>
+  <p>
+    We were unable to authenticate your user profile.
+  </p>
+  <p>
+    If you are signing in via GitHub, please verify that you are a member of the
+    appropriate GitHub organization and that your
+    <%=
+      link_to "membership is public",
+        "https://help.github.com/articles/publicizing-or-hiding-organization-membership/"
+    %>.
+  <p/>
+  <p>
+    <%= link_to "Try to sign in with GitHub again", "/auth/githubteammember" %>
+  </p>
+</section>
