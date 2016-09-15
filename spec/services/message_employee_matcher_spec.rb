@@ -30,7 +30,7 @@ describe MessageEmployeeMatcher do
           Timecop.freeze(Time.parse("00:00:00 UTC")) do
             days_after_start = 3
             scheduled_message_time = Time.parse("12:00:00 UTC")
-            scheduled_message = create(:scheduled_message, days_after_start: days_after_start, time_of_day: scheduled_message_time)
+            scheduled_message = create(:scheduled_message, days_after_start: days_after_start + 1, time_of_day: scheduled_message_time)
 
             _employee_cst = create(:employee, started_on: days_after_start.business_days.ago, time_zone: "Central Time (US & Canada)")
 
