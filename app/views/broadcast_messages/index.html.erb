@@ -1,4 +1,4 @@
-<%= render "header", title: "Messages" %>
+<%= render "header", title: "Broadcast messages" %>
 <section class="main-content">
   <%= render "flashes" -%>
   <table>
@@ -12,21 +12,21 @@
       <th class="column-buttons"></th>
     </tr>
 
-    <% @messages.each do |message| %>
+    <% @broadcast_messages.each do |broadcast_message| %>
       <tr>
-        <td><%= message.title %></td>
-        <td><%= truncate(message.body, length: 100) %></td>
-        <td><%= message.last_sent_at %></td>
+        <td><%= broadcast_message.title %></td>
+        <td><%= truncate(broadcast_message.body, length: 100) %></td>
+        <td><%= broadcast_message.last_sent_at %></td>
         <% if @current_user.admin? %>
           <td>
-            <%= link_to message_send_messages_path(message), method: :post, class: 'button button-send', data: { confirm: "Are you sure you want to send this message to all Slack users right now?" } do %>
+            <%= link_to broadcast_message_send_broadcast_messages_path(broadcast_message), method: :post, class: 'button button-send', data: { confirm: "Are you sure you want to send this message to all Slack users right now?" } do %>
               <icon class="icon-send"></icon>
               <span>Send</span>
             <% end %>
           </td>
         <% end %>
         <td>
-          <%= link_to new_message_test_message_path(message), class: 'button button-test' do %>
+          <%= link_to new_broadcast_message_test_message_path(broadcast_message), class: 'button button-test' do %>
             <icon class="icon-send"></icon>
             <span>Test</span>
           <% end %>
@@ -34,7 +34,7 @@
       </tr>
     <% end %>
   </table>
-  <% if @messages.empty? %>
+  <% if @broadcast_messages.empty? %>
     <label>No matches found.</label>
   <% end %>
 </section>

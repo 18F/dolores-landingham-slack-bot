@@ -35,7 +35,7 @@ FactoryGirl.define do
     tag_list "test_tag, test_tag_two"
   end
 
-  factory :message do
+  factory :broadcast_message do
     title "Message to everyone"
     body "Everyone needs to know this thing!"
   end

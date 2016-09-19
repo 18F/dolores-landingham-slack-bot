@@ -1,21 +1,21 @@
 require "rails_helper"
 
-feature "Send message" do
-  scenario "message sends successfully", js: true do
-    create_message
+feature "Send broadcast message" do
+  scenario "broadcast message sends successfully", js: true do
+    create_broadcast_message
     create_employee
     login_with_oauth(create(:admin))
-    visit messages_path
+    visit broadcast_messages_path
 
     page.accept_confirm do
       page.find(".button-send").click
     end
 
-    expect(page).to have_content("Message sent to all users")
+    expect(page).to have_content("Broadcast message sent to all users")
   end
 
-  def create_message
-    @message ||= create(:message)
+  def create_broadcast_message
+    @message ||= create(:broadcast_message)
   end
 
   def create_scheduled_message

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718213232) do
+ActiveRecord::Schema.define(version: 20160919185207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "broadcast_messages", force: :cascade do |t|
+    t.string   "title",        null: false
+    t.string   "body",         null: false
+    t.datetime "last_sent_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -41,14 +49,6 @@ ActiveRecord::Schema.define(version: 20160718213232) do
     t.string   "slack_user_id"
     t.index ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
     t.index ["slack_user_id"], name: "index_employees_on_slack_user_id", using: :btree
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.string   "title",        null: false
-    t.string   "body",         null: false
-    t.datetime "last_sent_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "scheduled_messages", force: :cascade do |t|

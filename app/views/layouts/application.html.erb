@@ -50,16 +50,16 @@
         </ul>
       </li>
       <li class="sidenav-list-item">
-        <button class="sidenav-list_title" aria-expanded="<%= is_current(messages_path) -%>" aria-controls="collapsible-2">
-          Other messages
+        <button class="sidenav-list_title" aria-expanded="<%= is_current(broadcast_messages_path) -%>" aria-controls="collapsible-2">
+          Broadcast messages
           <icon class="icon-circle-plus"></icon>
           <icon class="icon-circle-minus"></icon>
         </button>
-        <ul id="collapsible-2" aria-hidden="<%= !is_current(messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
+        <ul id="collapsible-2" aria-hidden="<%= !is_current(broadcast_messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
           <% if signed_in_as_admin? %>
-            <%= nav_link "Create", new_message_path %>
+            <%= nav_link "Create", new_broadcast_message_path %>
           <% end %>
-          <%= nav_link "List/Edit", messages_path  %>
+          <%= nav_link "List/Edit", broadcast_messages_path  %>
         </ul>
       </li>
       <li class="sidenav-list-item">

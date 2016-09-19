@@ -4,8 +4,8 @@ class TestMessagesController < ApplicationController
       @message = ScheduledMessage.find(params[:scheduled_message_id])
       @url = scheduled_message_test_messages_path(@message)
     else
-      @message = Message.find(params[:message_id])
-      @url = message_test_messages_path(@message)
+      @message = BroadcastMessage.find(params[:broadcast_message_id])
+      @url = broadcast_message_test_messages_path(@message)
     end
   end
 
@@ -30,7 +30,7 @@ class TestMessagesController < ApplicationController
     @message ||= if params[:scheduled_message_id]
                    ScheduledMessage.find(params[:scheduled_message_id])
                  else
-                   Message.find(params[:message_id])
+                   BroadcastMessage.find(params[:broadcast_message_id])
                  end
   end
 
@@ -46,7 +46,7 @@ class TestMessagesController < ApplicationController
     if params[:scheduled_message_id]
       scheduled_messages_path
     else
-      messages_path
+      broadcast_messages_path
     end
   end
 end

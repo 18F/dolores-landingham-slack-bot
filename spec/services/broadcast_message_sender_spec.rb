@@ -1,9 +1,9 @@
 require "rails_helper"
 
-describe AllEmployeeMessageSender do
+describe BroadcastMessageSender do
   describe "#run" do
-    it "sends the message to all employees and sents the last_sent_at" do
-      message = create(:message)
+    it "sends the broadcast message to all employees and sents the last_sent_at" do
+      broadcast_message = create(:broadcast_message)
       employees = usernames_from_fixture.map do |username|
         create(:employee, slack_username: username)
       end
@@ -13,14 +13,14 @@ describe AllEmployeeMessageSender do
       allow(MessageSender).to receive(:new).and_return(message_sender)
 
       Timecop.freeze do
-        AllEmployeeMessageSender.new(message).run
+        BroadcastMessageSender.new(broadcast_message).run
 
         employees.each do |employee|
-          expect(MessageSender).to have_received(:new).with(employee, message)
+          expect(MessageSender).to have_received(:new).with(employee, broadcast_message)
           expect(message_sender).to have_received(:delay).exactly(4).times
         end
 
-        expect(message.reload.last_sent_at).
+        expect(broadcast_message.reload.last_sent_at).
           to be_within(1.second).of Time.current
       end
     end

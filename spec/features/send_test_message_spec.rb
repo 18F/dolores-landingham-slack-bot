@@ -14,11 +14,11 @@ feature "Send test message" do
     expect(page).to have_content("Test message sent")
   end
 
-  scenario "message sends successfully" do
-    create_message
+  scenario "broadcast message sends successfully" do
+    create_broadcast_message
     create_employee
     login_with_oauth
-    visit messages_path
+    visit broadcast_messages_path
 
     page.find(".button-test").click
     fill_in "Slack username", with: username_from_fixture
@@ -28,9 +28,9 @@ feature "Send test message" do
   end
 
   scenario "attempt to send test to Slack username that does not exist" do
-    create_message
+    create_broadcast_message
     login_with_oauth
-    visit messages_path
+    visit broadcast_messages_path
 
     page.find(".button-test").click
     fill_in "Slack username", with: "notreal"
@@ -40,7 +40,7 @@ feature "Send test message" do
   end
 
   scenario "attempt to send test to employee missing Slack info" do
-    create_message
+    create_broadcast_message
     create(
       :employee,
       slack_username: username_from_fixture,
@@ -49,7 +49,7 @@ feature "Send test message" do
     )
 
     login_with_oauth
-    visit messages_path
+    visit broadcast_messages_path
 
     page.find(".button-test").click
     fill_in "Slack username", with: username_from_fixture
@@ -60,8 +60,8 @@ feature "Send test message" do
 
   private
 
-  def create_message
-    @message ||= create(:message)
+  def create_broadcast_message
+    @broadcast_message ||= create(:broadcast_message)
   end
 
   def create_scheduled_message
