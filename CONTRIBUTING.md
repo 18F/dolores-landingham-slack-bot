@@ -201,7 +201,7 @@ due to the business_time gem referenced above.
 
 Dolores is configured to be deployed with Cloud Foundry as an 18f-er.
 
-Refer to [docs.18f.gov](https://docs.18f.gov/getting-started/setup/) for getting
+Refer to [docs.cloud.gov](https://docs.cloud.gov/getting-started/setup/) for getting
 set up with Cloud Foundry.
 
 The Dolores Landingham bot is deployed within the `18f` Cloud Foundry org. To
