@@ -201,17 +201,16 @@ due to the business_time gem referenced above.
 
 Dolores is configured to be deployed with Cloud Foundry as an 18f-er.
 
-Refer to [docs.cloud.gov](https://docs.cloud.gov/getting-started/setup/) for getting
-set up with Cloud Foundry.
+Refer to [docs.cloud.gov](https://docs.cloud.gov/getting-started/setup/) for
+getting set up with Cloud Foundry.
 
 The Dolores Landingham bot is deployed within the `18f` Cloud Foundry org. To
 see if you have access to the `18f` do the following in the root of your repo:
 
 `cf orgs`
 
-If `18f` does not show up as an available org, you can request access by
-posting an issue to the [DevOps repo](https://github.com/18F/DevOps/issues/new)
-on GitHub.
+If `18f` does not show up as an available org, you can request access by asking a
+space-manager to [invite you](https://docs.cloud.gov/apps/managing-teammates/).
 
 Once you have access to the org, you can target the Cloud Foundry organization
 and space for this project:
