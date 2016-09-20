@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919185207) do
+ActiveRecord::Schema.define(version: 20160920181736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,31 +51,40 @@ ActiveRecord::Schema.define(version: 20160919185207) do
     t.index ["slack_user_id"], name: "index_employees_on_slack_user_id", using: :btree
   end
 
-  create_table "scheduled_messages", force: :cascade do |t|
+  create_table "onboarding_messages", force: :cascade do |t|
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.string   "title",                                            null: false
-    t.text     "body",                                             null: false
-    t.integer  "days_after_start"
+    t.string   "body",                                             null: false
+    t.integer  "days_after_start",                                 null: false
     t.time     "time_of_day",      default: '2000-01-01 12:00:00', null: false
-    t.datetime "deleted_at"
     t.date     "end_date"
-    t.integer  "type",             default: 0
-    t.index ["deleted_at"], name: "index_scheduled_messages_on_deleted_at", using: :btree
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_onboarding_messages_on_deleted_at", using: :btree
   end
 
-  create_table "sent_scheduled_messages", force: :cascade do |t|
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.integer  "employee_id",                                          null: false
-    t.string   "error_message",        default: "",                    null: false
-    t.text     "message_body",                                         null: false
-    t.integer  "scheduled_message_id",                                 null: false
-    t.date     "sent_on",                                              null: false
-    t.time     "sent_at",              default: '2000-01-01 12:00:00', null: false
+  create_table "quarterly_messages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title",      null: false
+    t.string   "body",       null: false
     t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_sent_scheduled_messages_on_deleted_at", using: :btree
-    t.index ["employee_id", "scheduled_message_id"], name: "by_employee_scheduled_message", unique: true, using: :btree
+    t.index ["deleted_at"], name: "index_quarterly_messages_on_deleted_at", using: :btree
+  end
+
+  create_table "sent_messages", force: :cascade do |t|
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.integer  "employee_id",                                   null: false
+    t.string   "error_message", default: "",                    null: false
+    t.text     "message_body",                                  null: false
+    t.integer  "message_id",                                    null: false
+    t.date     "sent_on",                                       null: false
+    t.time     "sent_at",       default: '2000-01-01 12:00:00', null: false
+    t.datetime "deleted_at"
+    t.string   "message_type",                                  null: false
+    t.index ["deleted_at"], name: "index_sent_messages_on_deleted_at", using: :btree
+    t.index ["employee_id", "message_id", "message_type"], name: "by_employee_message", unique: true, using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|
