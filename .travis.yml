@@ -3,11 +3,29 @@ before_script:
 - bin/rake db:setup --trace
 bundler_args: "--deployment --jobs=3 --retry=3 --without development"
 cache: bundler
+before_deploy:
+  - export PATH=$HOME:$PATH
+  - travis_retry curl -L -o $HOME/cf.tgz "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.15.0"
+  - tar xzvf $HOME/cf.tgz -C $HOME
 env:
-- DB=postgresql
+  global:
+  - DB=postgresql
+  - CF_USERNAME=18f-dolores-deployer
+  - secure: AJwrGkiXOnUIXORLLnFITHAPK4djtY0dvQRYRTlmSJD8hq3/AUMhmhhFRVlSB5cje7Mp4Sm9ChiUBoB029tj1nSGZZGCAEoVdlv1/wwHMAlS3Cou/O+AhxQTEg75wFNxNJArYPyqjXQxETRLKBv19z28EUADEZ+x3EHb4KNvnD5PL/tXn4snFh090w0BYbzkx1vHBURajuxeSPYT46kz+gZeU/ogZ9Ur3sFzHJjDJkS0EgicYIm13GrLokXv7mDbZa26OKRc5Sh0X19xHuPMl5USmXXNF+avQaaf0bEq84GIwjiYdGPfQP2MF/MX8U5FSxjWCOLYQGY/qZSgzj4jjEhxXtzCA55hPRinIh/PyJnQ8qeTB5FhJNU9JhTnGB9EaWDpfF1q23oQ6SeHRgUiqUJU3Vqxamlcdg7kuwh8syabgGflb8kpmQLUPC3AsyOMM0OG9ZxrbxgLf3SEg6x+fDQI8EOfg8cKNSGpu6FZIzVgVvCurG7CnrjnH8fDht+3GVx7J0F48/pXujcfgQcQ+L3eOF6NywmeNr8qccYcthbHKS3g8fUPVfHqpUlFpw/tQfEjdlFUktbSeuqW09xXsuOEbsZVQktVS9wwYYBbVVosbcKPDF5yAk7R9YuhnlZ0LLlJ5etDAHnI8HAMmhAQy27LnmJNTRkcbg0wj86ESZg=
 language: ruby
 rvm:
 - ruby-2.3.1
 sudo: false
 script:
 - bundle exec rake
+deploy:
+- provider: script
+  script: "./bin/deploy.sh staging"
+  skip_cleanup: true
+  on:
+    branch: develop
+- provider: script
+  script: "./bin/deploy.sh production"
+  skip_cleanup: true
+  on:
+    branch: master

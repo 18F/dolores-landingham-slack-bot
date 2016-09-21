@@ -1,0 +1,12 @@
+<li class="sidenav-list-item">
+  <button class="sidenav-list_title" aria-expanded="<%= is_current(users_path) -%>" aria-controls="collapsible-0">
+    Users
+    <icon class="icon-circle-plus"></icon>
+    <icon class="icon-circle-minus"></icon>
+  </button>
+  <ul id="collapsible-0" aria-hidden="<%= !is_current(users_path) -%>" class="sidenav-sub_list usa-accordion-content">
+    <% if signed_in_as_admin? %>
+      <%= nav_link "View/Edit", users_path %>
+    <% end %>
+  </ul>
+</li>

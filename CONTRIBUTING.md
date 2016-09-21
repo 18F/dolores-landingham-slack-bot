@@ -31,13 +31,17 @@ force push on your branch (but not to `master`...please don't force push
 `master`).
 
 For a more detailed walk through on how to do this, you can read thoughtbot's
-[Git
-Protocol](https://github.com/thoughtbot/guides/tree/master/protocol/git#write-a-feature)
+[Git Protocol](https://github.com/thoughtbot/guides/tree/master/protocol/git#write-a-feature)
 document.
 
-18F-ers can merge their changes into master after getting approval from another
-contributor. PRs can be merged manually by merging the branch into `master`
-locally and pushing `master` or by using the merge button on GitHub.
+18F-ers can merge their changes into `develop` after getting approval from
+another contributor. After a PR has been merged into `develop`, it is
+automatically deployed to staging by Travis. After changes have been verified on
+staging, the commits can be merged into `master` and Travis will deploy the
+changes to production.
+
+PRs can be merged manually by merging the branch locally and pushing or by using
+the merge button on GitHub.
 
 ### Managing time / Updating holidays
 
@@ -197,9 +201,20 @@ This will allow you to create and schedule messages.
 Note: scheduled messages may not send if you're using over the weekend, which is
 due to the business_time gem referenced above.
 
-## Deployment
+## Automated Deployment
 
-Dolores is configured to be deployed with Cloud Foundry as an 18f-er.
+Dolores is configured to be deployed [automatically via Travis](https://docs.travis-ci.com/user/deployment/script/).
+
+When code is merged and pushed to the `develop` branch and the tests pass,
+Travis will deploy the changes to staging. When code is merged and pushed to
+`master` and the tests pass, Travis will deploy the changes to production. It is
+for this reason that you should verify that changes have taken place and behave
+as expected on staging before merging them to master.
+
+## Manual Deployment
+
+If for some reason you need to deploy manually, Dolores can be deployed with
+Cloud Foundry by an 18f-er.
 
 Refer to [docs.cloud.gov](https://docs.cloud.gov/getting-started/setup/) for
 getting set up with Cloud Foundry.

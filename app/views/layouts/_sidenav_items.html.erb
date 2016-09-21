@@ -1,0 +1,50 @@
+<li class="sidenav-list-item">
+  <button class="sidenav-list_title" aria-expanded="<%= is_current(scheduled_messages_path) -%>" aria-controls="collapsible-1">
+    Scheduled messages
+    <icon class="icon-circle-plus"></icon>
+    <icon class="icon-circle-minus"></icon>
+  </button>
+  <ul id="collapsible-1" aria-hidden="<%= !is_current(scheduled_messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
+    <% if signed_in_as_admin? %>
+      <%= nav_link "Create", new_scheduled_message_path %>
+    <% end %>
+    <%= nav_link "List/Edit", scheduled_messages_path  %>
+  </ul>
+</li>
+<li class="sidenav-list-item">
+  <button class="sidenav-list_title" aria-expanded="<%= is_current(broadcast_messages_path) -%>" aria-controls="collapsible-2">
+    Other messages
+    <icon class="icon-circle-plus"></icon>
+    <icon class="icon-circle-minus"></icon>
+  </button>
+  <ul id="collapsible-2" aria-hidden="<%= !is_current(broadcast_messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
+    <% if signed_in_as_admin? %>
+      <%= nav_link "Create", new_broadcast_message_path %>
+    <% end %>
+    <%= nav_link "List/Edit", broadcast_messages_path  %>
+  </ul>
+</li>
+<li class="sidenav-list-item">
+  <button class="sidenav-list_title" aria-expanded="<%= is_current(employees_path) -%>" aria-controls="collapsible-3">
+    Employees
+    <icon class="icon-circle-plus"></icon>
+    <icon class="icon-circle-minus"></icon>
+  </button>
+  <ul id="collapsible-3" aria-hidden="<%= !is_current(employees_path) -%>" class="sidenav-sub_list usa-accordion-content">
+    <%= nav_link "Add", new_employee_path %>
+    <%= nav_link "List/Edit", employees_path %>
+  </ul>
+</li>
+<li class="sidenav-list-item">
+  <button class="sidenav-list_title" aria-expanded="<%= is_current(sent_scheduled_messages_path) -%>" aria-controls="collapsible-4">
+    Sent messages
+    <icon class="icon-circle-plus"></icon>
+    <icon class="icon-circle-minus"></icon>
+  </button>
+  <ul id="collapsible-4" aria-hidden="<%= !is_current(sent_scheduled_messages_path) -%>" class="sidenav-sub_list usa-accordion-content">
+    <%= nav_link "List", sent_scheduled_messages_path %>
+  </ul>
+</li>
+<li class = "sidenav-list-item">
+  <%= link_to "Sign Out", session_url, method: "delete" %>
+</li>
