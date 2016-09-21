@@ -3,11 +3,10 @@ before_script:
 - bin/rake db:setup --trace
 bundler_args: "--deployment --jobs=3 --retry=3 --without development"
 cache: bundler
-dependencies:
-  pre:
-  - wget http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb -qO temp.deb
-  - sudo dpkg -i temp.deb
-  - cf -v
+before_deploy:
+  - export PATH=$HOME:$PATH
+  - travis_retry curl -L -o $HOME/cf.tgz "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.15.0"
+  - tar xzvf $HOME/cf.tgz -C $HOME
 env:
   global:
   - DB=postgresql
