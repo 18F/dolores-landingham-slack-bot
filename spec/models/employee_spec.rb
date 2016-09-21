@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Employee do
   describe "Associations" do
-    it { should have_many(:sent_scheduled_messages).dependent(:destroy) }
+    it { should have_many(:sent_messages).dependent(:destroy) }
   end
 
   describe "Validations" do

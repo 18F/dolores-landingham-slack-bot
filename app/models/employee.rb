@@ -1,7 +1,7 @@
 class Employee < ActiveRecord::Base
   acts_as_paranoid
 
-  has_many :sent_scheduled_messages, dependent: :destroy
+  has_many :sent_messages, dependent: :destroy
 
   validates :slack_username, presence: true
   validates_uniqueness_of :slack_username, conditions: -> { where(deleted_at: nil) }
