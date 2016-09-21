@@ -1,11 +1,24 @@
 require "rails_helper"
 
 feature "Send test message" do
-  scenario "scheduled message sends successfully" do
-    create_scheduled_message
+  scenario "onboarding message sends successfully" do
+    create_onboarding_message
     create_employee
     login_with_oauth
-    visit scheduled_messages_path
+    visit onboarding_messages_path
+
+    page.find(".button-test").click
+    fill_in "Slack username", with: username_from_fixture
+    click_on "Send test"
+
+    expect(page).to have_content("Test message sent")
+  end
+
+  scenario "quarterly message sends successfully" do
+    create_quarterly_message
+    create_employee
+    login_with_oauth
+    visit quarterly_messages_path
 
     page.find(".button-test").click
     fill_in "Slack username", with: username_from_fixture
@@ -64,12 +77,16 @@ feature "Send test message" do
     @broadcast_message ||= create(:broadcast_message)
   end
 
-  def create_scheduled_message
-    @scheduled_message ||= create(:scheduled_message)
-  end
-
   def create_employee
     @employee ||= create(:employee, slack_username: username_from_fixture)
+  end
+
+  def create_quarterly_message
+    @quarterly_message ||= create(:quarterly_message)
+  end
+
+  def create_onboarding_message
+    @onboarding_message ||= create(:onboarding_message)
   end
 
   def username_from_fixture

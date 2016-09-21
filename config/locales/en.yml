@@ -36,22 +36,30 @@ en:
     auth_controller:
       successes:
         oauth_callback: "You successfully signed in"
+    broadcast_messages_controller:
+      notices:
+        create: "Broadcast message created successfully"
     employees_controller:
       notices:
         create: "Thanks for adding %{slack_username}"
         update: "Employee updated successfully"
         destroy: "You deleted %{slack_username}"
-    broadcast_messages_controller:
+    quarterly_messages_controller:
       notices:
-        create: "Broadcast message created successfully"
-    scheduled_messages_controller:
-      notices:
-        create: "Scheduled message created successfully"
-        update: "Scheduled message updated successfully"
-        destroy: "You deleted %{scheduled_message_title}"
+        create: "Quarterly message created successfully"
+        update: "Quarterly message updated successfully"
+        destroy: "You deleted %{quarterly_message_title}"
       errors:
-        create: "Could not create scheduled message"
-        update: "Could not update scheduled message"
+        create: "Could not create quarterly message"
+        update: "Could not update quarterly message"
+    onboarding_messages_controller:
+      notices:
+        create: "Onboarding message created successfully"
+        update: "Onboarding message updated successfully"
+        destroy: "You deleted %{onboarding_message_title}"
+      errors:
+        create: "Could not create onboarding message"
+        update: "Could not update onboarding message"
     send_broadcast_messages_controller:
       notices:
         create: "Broadcast message sent to all users"

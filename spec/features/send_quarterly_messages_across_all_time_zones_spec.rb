@@ -7,7 +7,7 @@ feature "Create and send quarterly messages to users in every time zone" do
       create_employees_from_all_time_zones
 
       create_a_quarterly_message_via_form
-      quarterly_message = ScheduledMessage.first
+      quarterly_message = QuarterlyMessage.first
       simulate_64_hours_of_daily_message_sending
 
       verify_that_all_employees_got_the_message(quarterly_message)
@@ -18,8 +18,8 @@ feature "Create and send quarterly messages to users in every time zone" do
 
   def verify_that_all_employees_got_the_message(quarterly_message)
     Employee.all.each do |employee|
-      expect(SentScheduledMessage.
-             where(employee: employee, scheduled_message: quarterly_message)).not_to be_empty
+      expect(SentMessage.
+             where(employee: employee, message: quarterly_message)).not_to be_empty
     end
   end
 
@@ -30,7 +30,7 @@ feature "Create and send quarterly messages to users in every time zone" do
   def simulate_64_hours_of_daily_message_sending
     64.times do
       fast_forward_one_hour
-      DailyMessageSender.new.run
+      QuarterlyMessageSender.new.run
     end
   end
 
@@ -38,12 +38,11 @@ feature "Create and send quarterly messages to users in every time zone" do
     admin = create(:admin)
     login_with_oauth(admin)
     visit root_path
-    visit new_scheduled_message_path
+    visit new_quarterly_message_path
     fill_in "Title", with: "Message title"
     fill_in "Message body", with: message_body
     fill_in "Tags", with: "tag_one, tag_two, tag_three"
-    check "quarterly"
-    click_on "Create Scheduled message"
+    click_on "Create Quarterly message"
   end
 
   def message_body

@@ -25,4 +25,8 @@ class QuarterlyMessage < ActiveRecord::Base
       all
     end
   end
+
+  def self.ordered_by_created_at
+    order(created_at: :desc)
+  end
 end

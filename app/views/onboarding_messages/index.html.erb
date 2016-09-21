@@ -1,5 +1,5 @@
 <%= render :layout => '/application/header', :locals => {:title => 'Filter', :subtitle => '(Please separate tags with a comma)'} do %>
-  <%= form_tag(scheduled_messages_path, method: "get", class: "navbar-form", slack_username: "search-form") do %>
+  <%= form_tag(onboarding_messages_path, method: "get", class: "navbar-form", slack_username: "search-form") do %>
     <div class="input-append">
       <%= text_field_tag :title, params[:title], class: "filter-input", placeholder: "title" %>
       <%= text_field_tag :body, params[:body], class: "filter-input", placeholder: "body" %>
@@ -20,14 +20,14 @@
       <th>Title</th>
       <th>Body</th>
       <th>Tags</th>
-      <th>Type</th>
       <% if @current_user.admin? %>
+        <th class="column-buttons"></th>
         <th class="column-buttons"></th>
       <% end %>
       <th class="column-buttons"></th>
     </tr>
 
-    <% @scheduled_messages.each do |message| %>
+    <% @onboarding_messages.each do |message| %>
       <tr>
         <td><%= message.days_after_start %></td>
         <td><%= message.time_of_day.strftime("%l:%M %p") %></td>
@@ -35,17 +35,16 @@
         <td><%= message.title %></td>
         <td><%= truncate(message.body, length: 100) %></td>
         <td><%= message.tag_list.join(", ") %></td>
-        <td><%= message.type %></td>
         <% if @current_user.admin? %>
           <td>
-            <%= link_to edit_scheduled_message_path(message), class: 'button button-edit' do %>
+            <%= link_to edit_onboarding_message_path(message), class: 'button button-edit' do %>
               <icon class="icon-edit"></icon>
               <span>Edit</span>
             <% end %>
           </td>
         <% end %>
         <td>
-          <%= link_to new_scheduled_message_test_message_path(message), class: 'button button-test' do %>
+          <%= link_to new_onboarding_message_test_message_path(message), class: 'button button-test' do %>
             <icon class="icon-send"></icon>
             <span>Test</span>
           <% end %>
@@ -62,9 +61,9 @@
       </tr>
     <% end %>
   </table>
-  <% if @scheduled_messages.empty? %>
+  <% if @onboarding_messages.empty? %>
     <label>No matches found.</label>
   <% end %>
 
-  <%= paginate(@scheduled_messages) %>
+  <%= paginate(@onboarding_messages) %>
 </section>

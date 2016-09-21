@@ -1,13 +1,13 @@
 require "rails_helper"
 
-feature "Delete scheduled messages" do
+feature "Delete onboarding messages" do
   context "admin user" do
-    scenario "from list of scheduled messages", :js do
+    scenario "from list of onboarding messages", :js do
       admin = create(:admin)
-      message = create(:scheduled_message)
+      message = create(:onboarding_message)
 
       login_with_oauth(admin)
-      visit scheduled_messages_path
+      visit onboarding_messages_path
       click_accept_on_javascript_popup do
         page.find(".button-delete").click
       end
@@ -17,12 +17,12 @@ feature "Delete scheduled messages" do
   end
 
   context "non-admin user" do
-    scenario "does not see link to destroy scheduled messages", :js do
+    scenario "does not see link to destroy onboarding messages", :js do
       user = create(:user)
-      message = create(:scheduled_message)
+      message = create(:onboarding_message)
 
       login_with_oauth(user)
-      visit scheduled_messages_path
+      visit onboarding_messages_path
 
       expect(page).not_to have_content("Delete")
     end

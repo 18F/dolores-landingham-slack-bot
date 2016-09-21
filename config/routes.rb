@@ -7,7 +7,7 @@ end
 
 Rails.application.routes.draw do
   constraints(AuthConstraint.new) do
-    root to: "scheduled_messages#index"
+    root to: "onboarding_messages#index"
   end
 
   root to: "sessions#new"
@@ -16,8 +16,25 @@ Rails.application.routes.draw do
   resource  :session, only: [:new, :create, :destroy]
   resources :employees, only: [:new, :create, :index, :edit, :update, :destroy]
   resources :users, only: [:edit, :update, :index]
-  resources :sent_scheduled_messages, only: [:index]
-  resources :scheduled_messages, only: [:new, :create, :index, :edit, :update, :destroy] do
+  resources :sent_messages, only: [:index]
+  resources :onboarding_messages, only: [
+    :new,
+    :create,
+    :index,
+    :edit,
+    :update,
+    :destroy,
+  ] do
+    resources :test_messages, only: [:new, :create]
+  end
+  resources :quarterly_messages, only: [
+    :new,
+    :create,
+    :index,
+    :edit,
+    :update,
+    :destroy,
+  ] do
     resources :test_messages, only: [:new, :create]
   end
   resources :broadcast_messages, only: [:new, :create, :index] do

@@ -5,8 +5,8 @@ feature "Create quarterly message" do
     scenario "can create a quarterly message", :js do
       create_a_quarterly_message_via_form
 
-      expect(page).to have_content("Scheduled message created successfully")
-      expect(ScheduledMessage.count).to eq 1
+      expect(page).to have_content("Quarterly message created successfully")
+      expect(QuarterlyMessage.count).to eq 1
     end
 
     scenario "can create a quarterly message that goes out to employees on the right day", :js do
@@ -14,9 +14,9 @@ feature "Create quarterly message" do
       employee = create(:employee, time_zone: should_get_message_zone)
       Timecop.freeze(wed_april_1_nine_am_utc)
 
-      DailyMessageSender.new.run
+      QuarterlyMessageSender.new.run
 
-      latest_sent = SentScheduledMessage.last
+      latest_sent = SentMessage.last
       expect(latest_sent.employee).to eq employee
       expect(latest_sent.message_body).to eq message_body
     end
@@ -26,9 +26,9 @@ feature "Create quarterly message" do
       create(:employee, time_zone: should_get_message_zone)
       Timecop.freeze(wed_april_1_nine_am_utc - 7.days)
 
-      DailyMessageSender.new.run
+      QuarterlyMessageSender.new.run
 
-      expect(SentScheduledMessage.count).to eq 0
+      expect(SentMessage.count).to eq 0
     end
   end
 
@@ -37,12 +37,11 @@ feature "Create quarterly message" do
     admin = create(:admin)
     login_with_oauth(admin)
     visit root_path
-    visit new_scheduled_message_path
+    visit new_quarterly_message_path
     fill_in "Title", with: "Message title"
     fill_in "Message body", with: message_body
     fill_in "Tags", with: "tag_one, tag_two, tag_three"
-    check "quarterly"
-    click_on "Create Scheduled message"
+    click_on "Create Quarterly message"
   end
 
   def message_body

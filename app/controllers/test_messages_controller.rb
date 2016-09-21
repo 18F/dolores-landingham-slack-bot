@@ -1,12 +1,13 @@
 class TestMessagesController < ApplicationController
   def new
-    if params[:scheduled_message_id]
-      @message = ScheduledMessage.find(params[:scheduled_message_id])
-      @url = scheduled_message_test_messages_path(@message)
-    else
-      @message = BroadcastMessage.find(params[:broadcast_message_id])
-      @url = broadcast_message_test_messages_path(@message)
-    end
+    @message = message
+    @url = if message.is_a? OnboardingMessage
+             onboarding_message_test_messages_path(@message)
+           elsif message.is_a? QuarterlyMessage
+             quarterly_message_test_messages_path(@message)
+           else
+             broadcast_message_test_messages_path(@message)
+           end
   end
 
   def create
@@ -27,8 +28,10 @@ class TestMessagesController < ApplicationController
   private
 
   def message
-    @message ||= if params[:scheduled_message_id]
-                   ScheduledMessage.find(params[:scheduled_message_id])
+    @message ||= if params[:onboarding_message_id]
+                   OnboardingMessage.find(params[:onboarding_message_id])
+                 elsif params[:quarterly_message_id]
+                   QuarterlyMessage.find(params[:quarterly_message_id])
                  else
                    BroadcastMessage.find(params[:broadcast_message_id])
                  end
@@ -43,8 +46,10 @@ class TestMessagesController < ApplicationController
   end
 
   def redirect_path
-    if params[:scheduled_message_id]
-      scheduled_messages_path
+    if params[:onboarding_message_id]
+      onboarding_messages_path
+    elsif params[:quarterly_message_id]
+      quarterly_messages_path
     else
       broadcast_messages_path
     end
