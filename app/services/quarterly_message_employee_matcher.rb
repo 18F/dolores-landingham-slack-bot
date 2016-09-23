@@ -1,4 +1,4 @@
-require 'business_time'
+require "business_time"
 
 class QuarterlyMessageEmployeeMatcher
   TIME_OF_DAY_TO_SEND = 900
@@ -29,15 +29,14 @@ class QuarterlyMessageEmployeeMatcher
   end
 
   def quarterly_message_not_already_sent?(employee)
-    SentScheduledMessage.
-      by_year(current_year).
-      where('sent_on > ?', 1.week.ago).
-      where(employee: employee, scheduled_message: @message).count == 0
+    SentMessage.by_year(current_year).
+      where("sent_on > ?", 1.week.ago).
+      where(employee: employee, message: @message).count == 0
   end
 
   def time_to_send_message?(time_zone)
     employee_current_time = Time.current.in_time_zone(time_zone)
-    employee_current_time_value = employee_current_time.strftime('%H%M').to_i
+    employee_current_time_value = employee_current_time.strftime("%H%M").to_i
     message_time_value = TIME_OF_DAY_TO_SEND
     employee_current_time_value >= message_time_value
   end
