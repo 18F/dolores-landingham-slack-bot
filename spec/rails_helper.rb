@@ -14,6 +14,10 @@ module Features
   include OauthHelper
 end
 
+module Services
+  include SlackApiHelper
+end
+
 include TimeHelper
 
 RSpec.configure do |config|
@@ -24,6 +28,7 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
   config.include Features, type: :feature
+  config.include Services
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = false

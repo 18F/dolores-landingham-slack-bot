@@ -23,22 +23,22 @@ class MessageSender
     if employee.slack_channel_id.present?
       begin
         post_message(channel_id: employee.slack_channel_id, message: message)
-        create_sent_scheduled_message(
+        create_sent_message(
           employee: employee,
-          scheduled_message: message,
+          message: message,
           error: nil,
         )
       rescue Slack::Web::Api::Error => error
-        create_sent_scheduled_message(
+        create_sent_message(
           employee: employee,
-          scheduled_message: message,
+          message: message,
           error: error,
         )
       end
     else
-      create_sent_scheduled_message(
+      create_sent_message(
         employee: employee,
-        scheduled_message: message,
+        message: message,
         error: StandardError.new("Was unable to find a slack channel for user with name #{employee.slack_username} and slack user id #{employee.slack_user_id}"),
       )
     end
@@ -61,17 +61,15 @@ class MessageSender
     )
   end
 
-  def create_sent_scheduled_message(options)
-    if message.is_a?(ScheduledMessage)
-      SentScheduledMessage.create(
-        employee: options[:employee],
-        scheduled_message: options[:scheduled_message],
-        sent_on: Date.current,
-        sent_at: Time.current,
-        error_message: error_message(options[:error]),
-        message_body: formatted_message(options),
-      )
-    end
+  def create_sent_message(options)
+    SentMessage.create(
+      employee: options[:employee],
+      message: options[:message],
+      sent_on: Date.current,
+      sent_at: Time.current,
+      error_message: error_message(options[:error]),
+      message_body: formatted_message(options),
+    )
   end
 
   def error_message(error)
@@ -83,6 +81,6 @@ class MessageSender
   end
 
   def formatted_message(options)
-    MessageFormatter.new(options[:scheduled_message]).escape_slack_characters
+    MessageFormatter.new(options[:message]).escape_slack_characters
   end
 end
