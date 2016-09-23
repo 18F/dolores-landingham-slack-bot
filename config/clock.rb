@@ -3,9 +3,14 @@ require_relative "boot"
 require_relative "environment"
 
 module Clockwork
-  every(1.minute, "scheduled_messages.send") do
-    puts "Sending scheduled messages"
-    DailyMessageSender.new.delay.run
+  every(1.minute, "onboarding_messages.send") do
+    puts "Sending onboarding messages"
+    OnboardingMessageSender.new.delay.run
+  end
+
+  every(1.hour, "quarterly_messages.send") do
+    puts "Sending quarterly messages"
+    QuarterlyMessageSender.new.delay.run
   end
 
   every(1.day, "employees.import", at: "03:00", tz: "UTC") do
