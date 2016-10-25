@@ -6,7 +6,7 @@ describe SendBroadcastMessagesController do
       user = create(:user, admin: false)
       allow(controller).to receive(:current_user).and_return(user)
 
-      post :create, broadcast_message_id: 1
+      process :create, method: :post, params: { broadcast_message_id: 1 }
 
       expect(response).to redirect_to root_path
       expect(flash[:error]).to be_present
