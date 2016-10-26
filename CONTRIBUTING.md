@@ -105,7 +105,7 @@ After setting up, you can run the application using [foreman]:
 
 ```bash
 foreman start
-``
+```
 
 [foreman]: https://github.com/ddollar/foreman
 
