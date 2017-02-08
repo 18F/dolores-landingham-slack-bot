@@ -1,5 +1,6 @@
 # based on https://github.com/18F/C2/blob/master/manifest.yml
-domain: 18f.gov
+# domain: 18f.gov
+# ^ Temporarily commented out. This fails with 'Domain not found'. –@fureigh
 command: script/start
 
   # environment-specific configuration
