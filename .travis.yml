@@ -5,16 +5,18 @@ bundler_args: "--jobs=3 --retry=3 --without development"
 cache: bundler
 before_deploy:
   - export PATH=$HOME:$PATH
-  - travis_retry curl -L -o $HOME/cf.tgz "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.15.0"
+  - travis_retry curl -L -o $HOME/cf.tgz "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.24.0"
   - tar xzvf $HOME/cf.tgz -C $HOME
 env:
   global:
   - DB=postgresql
-  - CF_USERNAME=18f-dolores-deployer
-  - secure: AJwrGkiXOnUIXORLLnFITHAPK4djtY0dvQRYRTlmSJD8hq3/AUMhmhhFRVlSB5cje7Mp4Sm9ChiUBoB029tj1nSGZZGCAEoVdlv1/wwHMAlS3Cou/O+AhxQTEg75wFNxNJArYPyqjXQxETRLKBv19z28EUADEZ+x3EHb4KNvnD5PL/tXn4snFh090w0BYbzkx1vHBURajuxeSPYT46kz+gZeU/ogZ9Ur3sFzHJjDJkS0EgicYIm13GrLokXv7mDbZa26OKRc5Sh0X19xHuPMl5USmXXNF+avQaaf0bEq84GIwjiYdGPfQP2MF/MX8U5FSxjWCOLYQGY/qZSgzj4jjEhxXtzCA55hPRinIh/PyJnQ8qeTB5FhJNU9JhTnGB9EaWDpfF1q23oQ6SeHRgUiqUJU3Vqxamlcdg7kuwh8syabgGflb8kpmQLUPC3AsyOMM0OG9ZxrbxgLf3SEg6x+fDQI8EOfg8cKNSGpu6FZIzVgVvCurG7CnrjnH8fDht+3GVx7J0F48/pXujcfgQcQ+L3eOF6NywmeNr8qccYcthbHKS3g8fUPVfHqpUlFpw/tQfEjdlFUktbSeuqW09xXsuOEbsZVQktVS9wwYYBbVVosbcKPDF5yAk7R9YuhnlZ0LLlJ5etDAHnI8HAMmhAQy27LnmJNTRkcbg0wj86ESZg=
+  - CF_USERNAME_PRODUCTION=95a52758-4a02-460b-9942-54d552b298b8
+  - secure: "ceP4d1q5Kac7wpnLu9Oee1TmJEVFoICJdgsSbzA3R4y5neVO3djn1UwH7N3lScaOYgXJTocyrUpLjxx0ILWdyIwFrMo9ClgzNynd9hyOBWxKpkFD9ZW7+L7G71IPg3wHZJSxVwLix1bXoRbhoJhHcJTkg4jr5nCHVYyw1mLUL3ah/ltsHGm64ehtRzjhFIKow5iPRuvO/7+u5g8mjL+3+BzSH4VDyP1hZnpY0cWE79zRwHL6+Fgxsfp11iqy/yGDFLUCdg0yn8mx7B+ULWOrEs3CyCJXr0oZn4GCca7Ywj5V6w+yy2FuLGlDZBElp5FXFHMxCc2tzEFQ+qFDYOiAfNksb+2vk86RSrdiiypWvh/EE4sIEZs91BMgGrTNVRifQNM0HU2Is2jKqcyM1zoh+1F/9pOPx2bbyx+ro9wi+aj+EbUns80KHEzmzQ4yP4j8ZczC1iZdVl6HH82t1uZ2as8ezeG5figw+H1ojEM2mNd8WicoeGkH8/HabPDrskkksg6Q3nNxmrl97COLCrOQ6FpskF+4F6ABCxIvw5yMzgAlz7RwwAliqxw1I8/6+wa19QQ/TXotnB15lB+Dy//Yt3RWmxv67t89aTkfO7wwRs/PAgZg4q/r/trkOj5r6fW9cnZg1V7c90VWXmCdJ65yfZz5RKbcx0ccniw+a8oqCD0="
+  - CF_USERNAME_STAGING=a31c1a7d-6929-48d4-9edf-be2a805a5c7e
+  - secure: "dM+XWHIKL/lkm3edTGCY81hyFlTMJUNZqanGCfFLuONBdeMAwql6shRBL4DsQeDGRA9wL4BByUAObqCTtnmfFQaAu99ONC4V8j0UdvIfirNjdTX1OK7Q2ovzjxNs1EY/ui4TNzTmnGSeO4QPKFPWI+7YVgjAPkYZsY3tK6dMSk7il+GeXTN3u2D7rhT5VtYym/4AJFZmPjtGDotiuSfoA/FpFdaK2dNcZDxAmtA1g9LirWMExwd0VDfI4pGLROUX45KtugU/3ExOxQ9Esdsv1nzoMRmaXrqWZ4gWufoVErUMs5UI6g18h6bb6KNnRN36o59GttevkK8y56nshbeuTcHSMnSjSbjrX6vvfWXiDEiBcsuJAYWV1yMTbGpBZ+KkYfZm5PXSKmZwOQ1bWd7FHURA3gL4EtWBxo9qq4gBMYmbZmtTJF4dsCD9+htFXg8j11cQUE7S1X8oJJgty31uQuDCk403zIeN6TE6ByDJUyiaZ4m/DFvdcIlrHSZgPOEqY0nXdoxby8DN7r8sAgiv3WrFd9unMcU86uvVzogOZhheMv/FPGqVM5WJe3aS0o/4z47AVLOrLLcFRZCKq3/wc8evXWk6/Tv5kbssOiS0bKwV/ClKBC/eXHaGcvd/h1at1tH5g1z3a9QSjeAUpqgCJ4ChcSOpoDOvC704x45SmD8="
 language: ruby
 rvm:
-- ruby-2.3.1
+- ruby-2.3.3
 sudo: false
 script:
 - bundle exec rake
@@ -25,7 +27,7 @@ deploy:
   on:
     branch: develop
 - provider: script
-  script: "./bin/deploy.sh production"
+  script: "./bin/deploy.sh prod"
   skip_cleanup: true
   on:
     branch: master

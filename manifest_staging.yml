@@ -1,0 +1,13 @@
+# staging environment-specific configuration
+inherit: manifest_base.yml
+no-hostname: true
+applications:
+- name: dolores-staging
+  domains:
+    - dolores-staging.18f.gov
+  env:
+    DEFAULT_URL_HOST: dolores-staging.18f.gov
+    HOST: dolores-staging.18f.gov
+    APPLICATION_HOST: dolores-staging.18f.gov
+  services:
+    - dolores-staging-db

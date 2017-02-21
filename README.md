@@ -51,8 +51,8 @@ Any 18F employee with a Slack handle can add themselves as a Dolores Landingham
 message recipient [here](https://dolores-app.18f.gov/).
 
 Only admin users can add and update scheduled messages. If you would like to
-add or update scheduled messages, please DM Melody Kramer on Slack or open an
-Issue on this repo.
+add or update scheduled messages, please 
+[open an issue](https://github.com/18F/dolores-landingham-slack-bot/issues/new) on this repo.
 
 Admin users can add scheduled messages
 [here](https://dolores-app.18f.gov/scheduled_messages/new).

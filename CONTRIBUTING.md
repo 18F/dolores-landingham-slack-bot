@@ -105,7 +105,7 @@ After setting up, you can run the application using [foreman]:
 
 ```bash
 foreman start
-``
+```
 
 [foreman]: https://github.com/ddollar/foreman
 
@@ -219,27 +219,44 @@ Cloud Foundry by an 18f-er.
 Refer to [docs.cloud.gov](https://docs.cloud.gov/getting-started/setup/) for
 getting set up with Cloud Foundry.
 
-The Dolores Landingham bot is deployed within the `18f` Cloud Foundry org. To
-see if you have access to the `18f` do the following in the root of your repo:
+The Dolores Landingham bot is deployed within the `gsa-18f-dolores` Cloud Foundry org. To
+see if you have access to the `gsa-18f-dolores` do the following in the root of your repo:
 
 `cf orgs`
 
-If `18f` does not show up as an available org, you can request access by asking a
-space-manager to [invite you](https://docs.cloud.gov/apps/managing-teammates/).
+If `gsa-18f-dolores` does not show up as an available org, you can request access by asking a
+org-manager to [invite you as a `SpaceDeveloper`](https://docs.cloud.gov/apps/managing-teammates/) to
+the `prod` and `staging` spaces of that org.
 
 Once you have access to the org, you can target the Cloud Foundry organization
 and space for this project:
 
-`cf target -o 18f -s dolores`
+```bash
+# To target the production space
+cf target -o gsa-18f-dolores -s prod
+
+# To target the staging space
+cf target -o gsa-18f-dolores -s staging
+```
 
 Once your target is set, you can push the application. We have two Cloud Foundry
 instances: `dolores-app` and `dolores-staging`. Test your changes by pushing to
-`dolores-staging` before pushing to the `dolores-app` instance.
+`dolores-staging` in the `staging` space before pushing to the `dolores-app`
+instance to the `prod` space.
 
-`cf push <app-instance-name>`
+```bash
+# Pushing the production app while targeting the "prod" space.
+cf push -f manifest.yml
 
-New migrations will be run automatically. See the [manifest](manifest.yml) for
+# Pushing the staging app while targeting the "staging" space.
+cf push -f manifest_staging.yml
+```
+
+New migrations will be run automatically. See the manifest files for
 more details on the Cloud Foundry setup.
+- [Production manifest](manifest.yml)
+- [Staging manifest](manifest_staging.yml)
+- [Base manifest](manifest_base.yml)
 
 To see existing environment variables:
 
@@ -248,3 +265,9 @@ To see existing environment variables:
 To set or change the value of an environment variable:
 
 `cf set-env <app-instance-name> <env-name> <env-value>`
+
+You may have to set these environment variables manually as they contain secrets.
+- `GITHUB_CLIENT_ID`
+- `GITHUB_CLIENT_SECRET`
+- `GITHUB_TEAM_ID`
+- `SLACK_API_TOKEN`
