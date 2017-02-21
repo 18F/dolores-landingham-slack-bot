@@ -2,7 +2,7 @@
 ---
 command: script/start
 memory: 1GB
-buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+buildpack: ruby_buildpack
 env:
   RESTRICT_ACCESS: true
   RACK_ENV: production
