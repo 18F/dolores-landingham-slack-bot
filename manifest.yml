@@ -1,30 +1,13 @@
-# based on https://github.com/18F/C2/blob/master/manifest.yml
-domain: 18f.gov
-command: script/start
-
-  # environment-specific configuration
+# production environment-specific configuration
+inherit: manifest_base.yml
+no-hostname: true
 applications:
 - name: dolores-app
-  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
-  memory: 1GB
+  domains:
+    - dolores-app.18f.gov
   env:
     DEFAULT_URL_HOST: dolores-app.18f.gov
     HOST: dolores-app.18f.gov
     APPLICATION_HOST: dolores-app.18f.gov
-    RESTRICT_ACCESS: true
-    RACK_ENV: production
-    RAILS_ENV: production
   services:
     - dolores-app-db
-- name: dolores-staging
-  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
-  memory: 1GB
-  env:
-    DEFAULT_URL_HOST: dolores-staging.18f.gov
-    HOST: dolores-staging.18f.gov
-    APPLICATION_HOST: dolores-staging.18f.gov
-    RESTRICT_ACCESS: true
-    RACK_ENV: production
-    RAILS_ENV: production
-  services:
-    - dolores-staging-db
