@@ -6,8 +6,8 @@ applications:
   domains:
     - dolores-staging.18f.gov
   env:
+    APPLICATION_HOST: dolores-staging.18f.gov
     DEFAULT_URL_HOST: dolores-staging.18f.gov
     HOST: dolores-staging.18f.gov
-    APPLICATION_HOST: dolores-staging.18f.gov
   services:
     - dolores-staging-db
