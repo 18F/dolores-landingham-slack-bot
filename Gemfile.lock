@@ -55,7 +55,7 @@ GEM
     addressable (2.4.0)
     arel (7.0.0)
     ast (2.3.0)
-    autoprefixer-rails (6.3.7)
+    autoprefixer-rails (6.7.6)
       execjs
     awesome_print (1.7.0)
     babel-source (5.8.35)
@@ -385,4 +385,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
