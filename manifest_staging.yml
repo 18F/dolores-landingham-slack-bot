@@ -9,5 +9,6 @@ applications:
     APPLICATION_HOST: dolores-staging.18f.gov
     DEFAULT_URL_HOST: dolores-staging.18f.gov
     HOST: dolores-staging.18f.gov
+    SLACK_API_TOKEN: 'xox-123'
   services:
     - dolores-staging-db
