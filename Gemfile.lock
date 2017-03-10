@@ -125,7 +125,7 @@ GEM
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
     hashie (3.5.1)
-    holidays (4.5.0)
+    holidays (5.4.0)
     i18n (0.8.1)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
