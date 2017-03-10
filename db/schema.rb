@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920181736) do
+ActiveRecord::Schema.define(version: 20170310195553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20160920181736) do
     t.datetime "deleted_at"
     t.string   "message_type",                                  null: false
     t.index ["deleted_at"], name: "index_sent_messages_on_deleted_at", using: :btree
-    t.index ["employee_id", "message_id", "message_type"], name: "by_employee_message", unique: true, using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|

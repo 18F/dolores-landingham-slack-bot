@@ -4,9 +4,7 @@ class SentMessage < ActiveRecord::Base
   belongs_to :employee
   belongs_to :message, polymorphic: true
 
-  validates :employee, presence: true, uniqueness: {
-    scope: [:message_id, :message_type],
-  }
+  validates :employee, presence: true
   validates :message_body, presence: true
   validates :message, presence: true
   validates :sent_at, presence: true
