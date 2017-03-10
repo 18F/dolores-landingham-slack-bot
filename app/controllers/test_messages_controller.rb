@@ -14,7 +14,7 @@ class TestMessagesController < ApplicationController
     employee = Employee.find_by(slack_username: slack_username)
 
     if employee && (employee.slack_channel_id || employee.slack_user_id)
-      MessageSender.new(employee, message).delay.run
+      MessageSender.new(employee, message, test_message: true).delay.run
       flash[:notice] = I18n.t('controllers.test_messages_controller.notices.create')
     elsif employee.nil?
       flash[:error] = I18n.t('controllers.test_messages_controller.errors.create.employee_nil', slack_username: slack_username)

@@ -25,6 +25,16 @@ RSpec.shared_examples :message_sender do |message_type|
     Timecop.return
   end
 
+  it "doesn't create a sent message if the test_message option is true" do
+    employee = create(:employee)
+    mock_slack_channel_finder_for_employee(employee, channel_id: "fake_slack_channel_id")
+
+    allow(SentMessage).to receive(:create)
+
+    MessageSender.new(employee, message, test_message: true).run
+    expect(SentMessage).not_to have_received(:create)
+  end
+
   it 'presists the channel id to the employee\'s slack_channel_id field if sent successfully' do
     Timecop.freeze(Time.parse("10:00:00 UTC"))
 
