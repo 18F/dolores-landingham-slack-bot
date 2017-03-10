@@ -124,7 +124,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
-    hashie (3.5.1)
+    hashie (3.5.5)
     holidays (5.4.0)
     i18n (0.8.1)
     jquery-rails (4.1.1)
@@ -279,7 +279,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    slack-ruby-client (0.7.8)
+    slack-ruby-client (0.7.9)
       activesupport
       faraday (>= 0.9)
       faraday_middleware
