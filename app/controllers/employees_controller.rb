@@ -9,10 +9,9 @@ class EmployeesController < ApplicationController
     @employee.validate_slack_username_in_org
     @employee.add_slack_user_id_to_employee
 
-
     if @employee.errors.full_messages.empty? && @employee.save
       flash[:notice] = I18n.t('controllers.employees_controller.notices.create', slack_username: @employee.slack_username)
-      redirect_to root_path
+      redirect_to employees_path
     else
       flash.now[:error] = @employee.errors.full_messages.to_sentence
       render action: :new

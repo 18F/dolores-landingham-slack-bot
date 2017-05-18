@@ -12,24 +12,6 @@ describe SentMessage do
     it { should validate_presence_of(:message) }
     it { should validate_presence_of(:sent_at) }
     it { should validate_presence_of(:sent_on) }
-
-    it "validates employee uniqueness scoped to message" do
-      employee = build_stubbed(:employee)
-      message = build_stubbed(:onboarding_message)
-      create(
-        :sent_message,
-        employee: employee,
-        message: message,
-      )
-
-      duplicate_sent_scheduled_message = build(
-        :sent_message,
-        employee: employee,
-        message: message,
-      )
-
-      expect(duplicate_sent_scheduled_message).not_to be_valid
-    end
   end
 
   describe "Delegated methods" do

@@ -1,9 +1,10 @@
 require "slack-ruby-client"
 
 class MessageSender
-  def initialize(employee, message)
+  def initialize(employee, message, test_message: false)
     @employee = employee
     @message = message
+    @test_message = test_message
   end
 
   def run
@@ -47,7 +48,7 @@ class MessageSender
 
   private
 
-  attr_reader :employee, :message
+  attr_reader :employee, :message, :test_message
 
   def client
     @client ||= Slack::Web::Client.new
@@ -62,14 +63,16 @@ class MessageSender
   end
 
   def create_sent_message(options)
-    SentMessage.create(
-      employee: options[:employee],
-      message: options[:message],
-      sent_on: Date.current,
-      sent_at: Time.current,
-      error_message: error_message(options[:error]),
-      message_body: formatted_message(options),
-    )
+    if !test_message
+      SentMessage.create(
+        employee: options[:employee],
+        message: options[:message],
+        sent_on: Date.current,
+        sent_at: Time.current,
+        error_message: error_message(options[:error]),
+        message_body: formatted_message(options),
+      )
+    end
   end
 
   def error_message(error)
