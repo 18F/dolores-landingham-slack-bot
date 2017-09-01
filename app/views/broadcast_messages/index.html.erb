@@ -1,39 +1,9 @@
 <%= render "header", title: "Broadcast messages" %>
 <section class="main-content">
-  <%= render "flashes" -%>
-  <table>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Sent at</th>
-      <% if @current_user.admin? %>
-        <th class="column-buttons"></th>
-      <% end %>
-      <th class="column-buttons"></th>
-    </tr>
-
-    <% @broadcast_messages.each do |broadcast_message| %>
-      <tr>
-        <td><%= broadcast_message.title %></td>
-        <td><%= truncate(broadcast_message.body, length: 100) %></td>
-        <td><%= broadcast_message.last_sent_at %></td>
-        <% if @current_user.admin? %>
-          <td>
-            <%= link_to broadcast_message_send_broadcast_messages_path(broadcast_message), method: :post, class: 'button button-send', data: { confirm: "Are you sure you want to send this message to all Slack users right now?" } do %>
-              <icon class="icon-send"></icon>
-              <span>Send</span>
-            <% end %>
-          </td>
-        <% end %>
-        <td>
-          <%= link_to new_broadcast_message_test_message_path(broadcast_message), class: 'button button-test' do %>
-            <icon class="icon-send"></icon>
-            <span>Test</span>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render "flashes" %>
+  <% @broadcast_messages.each do |message| %>
+    <%= render 'broadcast_message', message: message %>
+  <% end %>
   <% if @broadcast_messages.empty? %>
     <label>No matches found.</label>
   <% end %>
