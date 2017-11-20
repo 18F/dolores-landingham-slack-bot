@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.3.3"
+ruby "2.3.5"
 gem "rails", "~> 5.0.0"
 
 gem "active_record_union"
