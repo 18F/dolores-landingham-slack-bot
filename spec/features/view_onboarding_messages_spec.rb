@@ -57,22 +57,16 @@ feature "View onboarding messages" do
 
     visit onboarding_messages_path
 
-    expect(page).to have_message_in_order(message: first_onboarding_message,
-                                          order: 1)
-    expect(page).to have_message_in_order(message: second_onboarding_message,
-                                          order: 2)
+    date_html_tags = page.all('.main-content h2')
+
+    expect(date_html_tags[0]).to have_content formatted_time(first_onboarding_message)
+    expect(date_html_tags[1]).to have_content formatted_time(second_onboarding_message)
   end
 
   private
 
-  def have_message_in_order(message:, order:)
-    order = order + 1
-    have_selector("table > tr:nth-child(#{order}) > td:nth-child(2)",
-                  text: formatted_time(message).strip)
-  end
-
   def formatted_time(onboarding_message)
-    onboarding_message.time_of_day.strftime("%l:%M %p")
+    onboarding_message.time_of_day.strftime("%l:%M %p").gsub(/^ /, '')
   end
 
   def create_onboarding_messages
