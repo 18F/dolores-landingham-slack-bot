@@ -1,0 +1,19 @@
+<h1><%= message.title %></h1>
+<p><%= message.body %></p>
+<% if message.last_sent_at.present? %>
+  <p>
+    <strong>Last sent at:</strong>
+    <%= message.last_sent_at %>
+  </p>
+<% end %>
+<% if current_user.admin? %>
+  <%= link_to broadcast_message_send_broadcast_messages_path(message), method: :post, class: 'button button-send', data: { confirm: "Are you sure you want to send this message to all Slack users right now?" } do %>
+    <icon class="icon-send"></icon>
+    <span>Send</span>
+  <% end %>
+  <%= link_to new_broadcast_message_test_message_path(message), class: 'button button-test' do %>
+    <icon class="icon-send"></icon>
+    <span>Test</span>
+  <% end %>
+<% end %>
+<hr>

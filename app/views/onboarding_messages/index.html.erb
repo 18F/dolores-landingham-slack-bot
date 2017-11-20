@@ -12,55 +12,9 @@
 
 <section class="main-content">
   <%= render "flashes" -%>
-  <table>
-    <tr>
-      <th>Send day <span class="data-small">(business days after employee start)</span></th>
-      <th>Send time</th>
-      <th>End date</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Tags</th>
-      <% if @current_user.admin? %>
-        <th class="column-buttons"></th>
-        <th class="column-buttons"></th>
-      <% end %>
-      <th class="column-buttons"></th>
-    </tr>
-
-    <% @onboarding_messages.each do |message| %>
-      <tr>
-        <td><%= message.days_after_start %></td>
-        <td><%= message.time_of_day.strftime("%l:%M %p") %></td>
-        <td><%= message.end_date %></td>
-        <td><%= message.title %></td>
-        <td><%= truncate(message.body, length: 100) %></td>
-        <td><%= message.tag_list.join(", ") %></td>
-        <% if @current_user.admin? %>
-          <td>
-            <%= link_to edit_onboarding_message_path(message), class: 'button button-edit' do %>
-              <icon class="icon-edit"></icon>
-              <span>Edit</span>
-            <% end %>
-          </td>
-        <% end %>
-        <td>
-          <%= link_to new_onboarding_message_test_message_path(message), class: 'button button-test' do %>
-            <icon class="icon-send"></icon>
-            <span>Test</span>
-          <% end %>
-        </td>
-        <% if @current_user.admin? %>
-          <td>
-            <%= link_to 'Delete', message,
-              method: :delete,
-              class: 'button button-delete icon-circle-x',
-              data: { confirm: 'Are you sure you want to delete this message?' }
-            %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+  <% @onboarding_messages.each do |message| %>
+    <%= render 'onboarding_message', message: message %>
+  <% end %>
   <% if @onboarding_messages.empty? %>
     <label>No matches found.</label>
   <% end %>

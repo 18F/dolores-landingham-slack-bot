@@ -4,7 +4,7 @@ feature "Send test message" do
   scenario "onboarding message sends successfully" do
     create_onboarding_message
     create_employee
-    login_with_oauth
+    login_with_oauth create(:admin)
     visit onboarding_messages_path
 
     page.find(".button-test").click
@@ -17,7 +17,7 @@ feature "Send test message" do
   scenario "quarterly message sends successfully" do
     create_quarterly_message
     create_employee
-    login_with_oauth
+    login_with_oauth create(:admin)
     visit quarterly_messages_path
 
     page.find(".button-test").click
@@ -30,7 +30,7 @@ feature "Send test message" do
   scenario "broadcast message sends successfully" do
     create_broadcast_message
     create_employee
-    login_with_oauth
+    login_with_oauth create(:admin)
     visit broadcast_messages_path
 
     page.find(".button-test").click
@@ -42,7 +42,7 @@ feature "Send test message" do
 
   scenario "attempt to send test to Slack username that does not exist" do
     create_broadcast_message
-    login_with_oauth
+    login_with_oauth create(:admin)
     visit broadcast_messages_path
 
     page.find(".button-test").click
@@ -61,7 +61,7 @@ feature "Send test message" do
       slack_user_id: nil,
     )
 
-    login_with_oauth
+    login_with_oauth create(:admin)
     visit broadcast_messages_path
 
     page.find(".button-test").click

@@ -1,0 +1,24 @@
+<h1><%= message.title %></h1>
+<p><%= message.body %></p>
+<p>
+  <strong>Tags:</strong>
+  <% message.tag_list.each do |tag| %>
+    <%= link_to tag, quarterly_messages_path(tag: tag, title: '', body: '') %>
+  <% end %>
+</p>
+<% if current_user.admin? %>
+  <%= link_to edit_quarterly_message_path(message), class: 'button button-edit' do %>
+    <icon class="icon-edit"></icon>
+    <span>Edit</span>
+  <% end %>
+  <%= link_to new_quarterly_message_test_message_path(message), class: 'button button-test' do %>
+    <icon class="icon-send"></icon>
+    <span>Test</span>
+  <% end %>
+  <%= link_to 'Delete', message,
+    method: :delete,
+    class: 'button button-delete icon-circle-x',
+    data: { confirm: 'Are you sure you want to delete this message?' }
+  %>
+<% end %>
+<hr>
