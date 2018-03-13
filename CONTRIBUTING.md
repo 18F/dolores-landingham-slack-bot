@@ -167,6 +167,8 @@ and then curl with it:
 curl https://api.github.com/user/teams?access_token=YOUR_ACCESS_TOKEN
 ```
 
+Note: Make sure you choose a team where privacy is not secret
+
 If you do not belong to a GitHub team or would like to set up the app without
 doing the above, an alternative is to comment out the line in the controller
 that confirms you are a member of the correct team:
