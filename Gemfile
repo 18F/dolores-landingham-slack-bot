@@ -55,7 +55,7 @@ group :test do
   gem "database_cleaner"
   gem "shoulda-matchers"
   gem "simplecov", require: false
-  gem "sinatra", github: "sinatra/sinatra" # https://github.com/sinatra/sinatra/issues/1135
+  gem "sinatra"
   gem "timecop"
   gem "webmock"
 end
