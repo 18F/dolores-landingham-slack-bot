@@ -1,9 +1,0 @@
-# base configuration
----
-command: script/start
-memory: 1GB
-buildpack: ruby_buildpack
-env:
-  RESTRICT_ACCESS: true
-  RACK_ENV: production
-  RAILS_ENV: production

@@ -1,5 +1,4 @@
 # production environment-specific configuration
-inherit: manifest_base.yml
 no-hostname: true
 applications:
 - name: dolores-app
@@ -11,3 +10,11 @@ applications:
     APPLICATION_HOST: dolores-app.18f.gov
   services:
     - dolores-app-db
+command: script/start
+memory: 1GB
+buildpack: ruby_buildpack
+env:
+  RESTRICT_ACCESS: true
+  RACK_ENV: production
+  RAILS_ENV: production
+stack: cflinuxfs3
